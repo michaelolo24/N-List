@@ -1,0 +1,19 @@
+{
+  "name": "greenfield",
+  "version": "1.0.0",
+  "description": "yolo",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neekon91/greenfield.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neekon91/greenfield/issues"
+  },
+  "homepage": "https://github.com/neekon91/greenfield#readme"
+}
