@@ -10,10 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/neekon91/greenfield.git"
   },
-  "author": "",
+  "author": "Kent for now will add everyone else later",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/neekon91/greenfield/issues"
   },
-  "homepage": "https://github.com/neekon91/greenfield#readme"
+  "homepage": "https://github.com/neekon91/greenfield#readme",
+  "dependencies": {
+    "body-parser": "1.14.1",
+    "express": "4.13.3",
+    "fs": "0.0.2",
+    "multer": "1.1.0",
+    "mongojs": "^0.18.1"
+  }
 }
