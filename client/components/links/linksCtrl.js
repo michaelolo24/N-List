@@ -18,7 +18,7 @@ app.controller('linksCtrl',function($scope) {
   };
 
   $scope.addPost = function() {
-    var post = {name: $scope.name, title: $scope.title, type: $scope.link, language: $scope.language, $scope.link, likes:0, dislikes:0};
+    var post = {name: $scope.name, title: $scope.title, type: $scope.link, language: $scope.language, link: $scope.link, likes:0, dislikes:0};
     $scope.posts.push(post);
     $scope.name = '';
     $scope.title = '';
