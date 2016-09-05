@@ -1,9 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>NeekonsList</title>
+
+  <meta charset="UTF-8">
+  <title>Captain Planet to the Rescue</title>
+
 </head>
-<body>
-  <p>Dan Is the First Man to step on the Moon</p>
+
+<body ng-app="nList" ng-controller="mainCont">
+
+  <div ng-repeat="post in posts | orderBy:'-upvotes'">
+    <span>{{post.title}}</span>
+    <span ng-click="incrementUpvotes(post)" style = "margin-left:20px">{{post.upvotes}} votes</span>
+  </div>
+
+  <form ng-submit="addPost()"> <!--resource submission form-->
+    <h2>Post Your Resources or Click to Vote</h2>
+
+    <div>
+      <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
+    </div>
+
+    <div>
+      <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
+    </div>
+
+    <button type="submit">Post</button>
+  </form>
+
+
+
+
+
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="controllers/mainCont.js"></script>
 </body>
 </html>
