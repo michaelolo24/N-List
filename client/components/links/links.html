@@ -1,0 +1,46 @@
+<div ng-controller="linkCtrl">
+  <div class = 'navigation'>
+    <ul>
+      <li><a href='/#/about'>About</a></li>
+      <li><a href='/#/links'>links</a></li>
+      <li><a>Sign Out</a></li>
+    </ul>
+  </div>
+
+  <h2>Add Links</h2>
+    <form ng-submit="addPost()">
+      <table class="table" style="margin-left:20px;">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Language</th>
+            <th>Links</th>
+          </tr>
+
+          <tr ng-sumbit ="addPost()">
+            <td><input type="text" placeholder="Name" ng-model="name"></td>
+            <td><input type="text" placeholder="Title" ng-model="title"></td>
+            <td><input type="text" placeholder="Type" ng-model="type"></td>
+            <td><input type="text" placeholder="Language" ng-model="language"></td>
+            <td><input type="text" placeholder="Link" ng-model="link"></td>
+            <td><button type="submit">Add</button></td>
+          </tr>
+
+        </thead>
+      </table>
+    </form>
+
+  <h2>View Links</h2>
+    <div ng-repeat="post in posts | orderBy:'-likes'">
+      <span>{{post.title}}</span>
+      <span>{{post.type}}</span>
+      <span>{{post.language}}<span>
+      <span>{{post.link}}</span>
+      <span ng-click="incrementLike(post)" style = "margin-left:20px">{{post.likes}} Likes</span>
+      <span ng-click="incrementDislike(post)" style = "margin-left:20px">{{post.dislikes}} Dislikes</span>
+    </div>
+
+
+</div>
