@@ -5,7 +5,7 @@ var router = express.Router();
 //api routes
 router.route('/resources')
 .post(function(req, res){
-  res.send('post request received')
+  res.send('post request received');
 })
 .get(function(req, res){
   !req.session.active ? res.redirect('/login') : res.send('get request received');
@@ -20,6 +20,6 @@ router.route('/resource/:resource_id')
 })
 .delete(function(req, res){
   !req.session.active ? res.redirect('/login') : res.send('delete request received');
-})
+});
 
 module.exports = router;

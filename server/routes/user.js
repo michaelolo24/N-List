@@ -8,13 +8,13 @@ userRouter.route('/signup')
 
 .post(function(){
   res.send('user signup received');
-})
+});
 
 
 userRouter.route('/login')
 .post(function(req, res){
 
-})
+});
 
 userRouter.route('/logout')
 .get(function(req, res){
