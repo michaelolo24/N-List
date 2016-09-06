@@ -44,7 +44,7 @@ app.controller('linksCtrl',function($scope) {
     $scope.name = '';
     $scope.data.type = null;
     $scope.language = null;
-  }
+  };
 
 
 });
