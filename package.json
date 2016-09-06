@@ -10,7 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/neekon91/greenfield.git"
   },
-  "author": "Kent for now will add everyone else later",
+  "contributors":[
+    "Daniel Wirz",
+    "Harris Lee",
+    "Kent Moreland",
+    "Michael Olorunnisola",
+    "Neekon Etemad"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/neekon91/greenfield/issues"
