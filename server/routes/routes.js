@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-
+//our team is so strong!! 
 //api routes
 router.route('/resources')
 .post(function(req, res){
