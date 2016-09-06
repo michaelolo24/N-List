@@ -15,7 +15,7 @@ angular.module('nList', ['ui.router', 'nList.links'])
       url:'/links',
       templateUrl: 'components/links/links.html',
       controller: 'linksCtrl'
-    })
+    });
 
 
 });
