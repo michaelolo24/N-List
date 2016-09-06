@@ -1,12 +1,18 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var app = express();
-router = require('./routes');
-
+router = require('./routes/routes');
+userRouter = require('./routes/user');
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyParser.json());
 app.use('/api', router);
+app.use(session({
+  secret: 'my team is the suicide squad',
+  cookie: {}
+}));
+
 //////////////////////////////////////////
 //                                      //
 //               Routes                 //
