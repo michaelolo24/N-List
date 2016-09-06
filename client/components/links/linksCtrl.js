@@ -2,12 +2,30 @@ var app = angular.module('nList.links', []);
 
 app.controller('linksCtrl',function($scope) {
 
-  ///////////////////Sample Data for Testing Purposes///////////////////
+  //Sample data for testing purpose======================
   $scope.posts = [
-  {name: 'neekon', title: 'Learn Angular Routing', type:'video', language: 'angular js', link: 'www.google.com', likes: 5, dislikes: 2},
-  {name: 'kent', title: 'React and Redux', type:'blog', language: 'react js', link: 'www.hello.com', likes: 8, dislikes: 1}
+  {name: 'neekon', description: 'Learn Angular Routing', type:'video', language: 'angular js', link: 'www.google.com', likes: 5, dislikes: 2},
+  {name: 'kent', description: 'React and Redux', type:'blog', language: 'react js', link: 'www.hello.com', likes: 8, dislikes: 1}
   ];
-  //////////////////////////////////////////////////////////////////////
+  //=====================================================
+
+  //Selected Options for type & language=================
+  $scope.data = {
+    type: null,
+    typeOptions: [
+      {value: 'forum', label: 'Forum'},
+      {value: 'article', label: 'Article'},
+      {value: 'video', label: 'Video'}
+    ],
+    language: null,
+    languageOptions: [
+      {value: 'javascript', label: 'Javascript'},
+      {value: 'ruby', label: 'Ruby'},
+      {value: 'angular', label: 'Angular.js'},
+      {value: 'c++', label: 'C++'}
+    ]
+   };
+  //=====================================================
 
   $scope.incrementLike = function(post) {
     post.likes++;
@@ -18,14 +36,14 @@ app.controller('linksCtrl',function($scope) {
   };
 
   $scope.addPost = function() {
-    var post = {name: $scope.name, title: $scope.title, type: $scope.link, language: $scope.language, link: $scope.link, likes:0, dislikes:0};
+    var post = {name: $scope.name, description: $scope.description, type: $scope.data.type, language: $scope.data.language, link: $scope.link, likes:0, dislikes:0};
     $scope.posts.push(post);
     $scope.name = '';
-    $scope.title = '';
+    $scope.description = '';
     $scope.link = '';
     $scope.name = '';
-    $scope.type = '';
-    $scope.language = '';
+    $scope.data.type = null;
+    $scope.language = null;
   }
 
 
