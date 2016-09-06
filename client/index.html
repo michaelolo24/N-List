@@ -2,39 +2,29 @@
 <html ng-app="nList" lang="en">
 <head>
   <meta charset="UTF-8">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <title>Captain Planet to the Rescue</title>
+
 </head>
 
 <body>
-  <header>
-    <h1>Captain Planet to the Rescue<h1>
-    <hr>
-    <div class = 'navigation'>
+<div class = 'navigation'>
     <ul>
-      <li><a ui-sref='home'>Home</a></li>
-      <li><a ui-sref='links'>Resources</a></li>
+      <li><a ui-sref='home'>About</a></li>
+      <li><a ui-sref='links'>links</a></li>
       <li><a>Sign Out</a></li>
     </ul>
-  </div>
-  </header>
+</div>
 
+  <h1>Captain Planet to the Rescue<h1>
   <div>
-  <hr>
   <ui-view><ui-view>
   </div>
+
+
 
   <script src="lib/angular/angular.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
   <script src="components/links/linksCtrl.js"></script>
   <script src="router/routes.js"></script>
-  <script src="style/style.css"></script>
 </body>
 </html>
-
-
-
-
-
-
-
