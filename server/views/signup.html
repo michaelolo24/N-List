@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -15,6 +16,12 @@
       margin: 1em auto;
     }
   </style>
+  <!-- need to use link these from the correct folder -->
+  <!-- <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+  <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+  <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+  <script src="/controller.js"></script> -->
+
 </head>
 <body>
   <section class="container">
@@ -23,6 +30,22 @@
       <input class="input" type="text" value="accountname" placeholder="Full Name">
       <input class="input" type="email" value="email" placeholder="Email Address">
       <input class="input" type="text" value="password" placeholder="Password">
+      <form   name="up.upload_form">
+        <input
+            type="file"
+            ngf-select
+            ng-model="up.file"
+            name="file"
+            id="file"
+            ngf-pattern="'image/*'"
+            accept="image/*"
+            ngf-max-size="20MB"
+            />
+
+        <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+
+    </div>
+    </form>
       <button type="submit">Submit</button>
     </form>
 </section>

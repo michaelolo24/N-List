@@ -28,7 +28,7 @@
     "express-session": "^1.14.1",
     "fs": "0.0.2",
     "multer": "1.1.0",
-    "mongojs": "^0.18.1"
+    "mysql": "^2.11.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
