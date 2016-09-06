@@ -4,8 +4,8 @@ var session = require('express-session');
 var app = express();
 router = require('./routes/routes');
 userRouter = require('./routes/user');
-// dbCon
-var db = require('../db/dbConnect/con');
+// connection
+var db = require('../db/dbConnect/connection.js');
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyParser.json());
