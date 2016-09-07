@@ -2,10 +2,11 @@
   <h1>Update Profile</h1>
 
 
-  <!-- <form action"post" > -->
-    <!-- <input class="input" ng-model="userUpdate.name" name="name" type="text" value="{{userUpdate.name}}" placeholder="Full Name">
+  <form method="post" >
+    <input class="input" ng-model="userUpdate.name" name="name" type="text" value="{{userUpdate.name}}" placeholder="Full Name">
     <input class="input" ng-model="userUpdate.email" name="email" type="email" value="{{userUpdate.email}}" placeholder="Email Address">
-    <input class="input" ng-model="userUpdate.password" name="password" type="text" value="{{userUpdate.password}}" placeholder="Password"> -->
+    <input class="input" ng-model="userUpdate.password" name="password" type="text" value="{{userUpdate.password}}" placeholder="Password">
+  </form>
     <form   name="up.upload_form">
       <input
           type="file"
@@ -21,7 +22,7 @@
       <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
 
 
-    <!-- </form> -->
+
       <button ng-click="up.submit(); editProfile()">Submit</button>
     </form>
   </div>

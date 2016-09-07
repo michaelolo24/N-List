@@ -23,10 +23,10 @@ var Users = {
 
    // ****GET USER INFO FOR UPDATE PAGE ****
   getOne: function (params, callback) {
-    var data = [params.email, params.password];
+    // var data = [params.email, params.password];
 
-    var query = 'SELECT * FROM users WHERE email=? AND password=? LIMIT 1';
-    db.query(query, data, function(err, results) {
+    var query = 'SELECT * FROM users WHERE id=? LIMIT 1';
+    db.query(query, [params], function(err, results) {
       callback(err, results);
     });
   },
@@ -34,7 +34,7 @@ var Users = {
    // ****UPDATE USER INFO****
   updateOne: function (params, callback) {
     var data = [params.name, params.photoPath, (params.languages || null), params.email, params.password];
-
+    console.log(params);
     var query = 'UPDATE users SET name=?, photo_path=?, languages=?, email=?, password=? WHERE id ="'+params.id+'" LIMIT 1';
     db.query(query, data, function(err, results) {
       callback(err, results);

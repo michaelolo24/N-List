@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var app = express();
-router = require('./routes/routes');
+linksRouter = require('./routes/links');
 userRouter = require('./routes/user');
 
 // connection
@@ -16,19 +16,20 @@ app.use('/login', express.static(__dirname + '/views/login.html'));
 
 
 //Routing
-app.use('/api', router);
+app.use('/api', linksRouter);
 app.use('/users', userRouter);
 
 app.use(session({
   secret: 'my team is the suicide squad',
   cookie: {}
 }));
+// id
 //////////////////////////////////////////
 //                                      //
 //               imageU                 //
 //                                      //
 //////////////////////////////////////////
-// var router = express.Router();
+// var linksRouter = express.Router();
 var multer = require('multer');
 
 var storage = multer.diskStorage({
