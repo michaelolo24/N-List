@@ -1,6 +1,6 @@
 var express = require('express');
 var userRouter = express.Router();
-var helpers = require('../../db/controller/helpers.js');
+var Users = require('../../db/controller/users-helpers.js');
 
 // SIGNUP ROUTE
 
@@ -9,7 +9,7 @@ userRouter.route('/signup')
   res.render('signup');
 })
 .post(function(req,res){
-  helpers.Users.signUp(req.body, function(err,data){
+  Users.signUp(req.body, function(err,data){
     if(err) console.log(err);
     res.json(data);
   });
@@ -23,7 +23,7 @@ userRouter.route('/login')
   res.render('login');
 })
 .post(function(req, res){
-  helpers.Users.signIn(req.body, function(err,data){
+  Users.signIn(req.body, function(err,data){
     if(err) console.log(err);
     //create user session here (set equal to true);
     res.json(data);
@@ -36,21 +36,21 @@ userRouter.route('/login')
 userRouter.route('/updateUser')
 .post(function(req, res){
   //verify user is currently signed in
-  helpers.Users.getOne(req.body, function(err,data){
+  Users.getOne(req.body, function(err,data){
     if(err) console.log(err);
     res.json(data);
   });
 })
 .put(function(req, res){
   //verify user is currently signed in
-  helpers.Users.updateOne(req.body, function(err,data){
+  Users.updateOne(req.body, function(err,data){
     if(err) console.log(err);
     res.json(data);
   });
 })
 .delete(function(req, res){
   //verify user is currently signed in
-  helpers.Users.deleteOne(req.body, function(err,data){
+  Users.deleteOne(req.body, function(err,data){
     if(err) console.log(err);
     //delete user session here
     res.json(data);

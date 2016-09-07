@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var helpers = require('../../db/controller/helpers.js');
+var Links = require('../../db/controller/links-helpers.js');
+
 //each callback below is routed to helper functions that preform the actual querying on the database
 
 //our team is so strong!!
@@ -22,7 +23,7 @@ var helpers = require('../../db/controller/helpers.js');
 
 router.route('/resources')
 .post(function(req, res){
-  helpers.Links.postOne(req.body,function(err,data){ //Post one resource into resource database
+  Links.postOne(req.body,function(err,data){ //Post one resource into resource database
     if(err) console.log(err);
     res.json(data);
   });
@@ -30,7 +31,7 @@ router.route('/resources')
 
 .get(function(req, res){
   // !req.session.active ? res.redirect('/login') :
-  helpers.Links.getAll(function(err,data){
+  Links.getAll(function(err,data){
     if(err) console.log(err);
     res.json(data);
   });
@@ -38,7 +39,7 @@ router.route('/resources')
 
 .put(function(req, res){
   // !req.session.active ? res.redirect('/login') :
-  helpers.Links.updateOne(req.body, function(err,data){
+  Links.updateOne(req.body, function(err,data){
     if(err) console.log(err);
     res.json(data);
   });
@@ -49,14 +50,14 @@ router.route('/resources')
 router.route('/resources/:id')
 .get(function(req, res){
   // !req.session.active ? res.redirect('/login') :
-  helpers.Links.getOne(req.params.id, function(err,data){
+  Links.getOne(req.params.id, function(err,data){
     if(err) console.log(err);
     res.json(data);
   });
 })
 .delete(function(req, res){
   // !req.session.active ? res.redirect('/login') :
-  helpers.Links.deleteOne(req.params.id, function(err,data){
+  Links.deleteOne(req.params.id, function(err,data){
     console.log('***SINGLE RESOURCE DELETE****', req.params.id);
     if(err) console.log(err);
     res.json(data);
