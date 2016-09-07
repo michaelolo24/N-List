@@ -20,11 +20,27 @@
 <body>
   <section class="container">
     <h1>LOGIN</h1>
-    <form action"post">
-        <input class="input" name="email" type="email" value="username" placeholder="Email">
-        <input class="input" name="password" type="text" value="password" placeholder="Password">
+    <form method="post">
+        <input id="email" class="input" name="email" type="email" placeholder="Email">
+        <input id="password" class="input" name="password" type="text" placeholder="Password">
         <button type="submit">Submit</button>
     </form>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+  $('button').on('click', function(e){
+    e.preventDefault();
+    var data = {'email': $('#email').val(), 'password': $('#password').val()}
+    $.ajax({
+      url: "/users/login",
+      contentType: "application/json",
+      type: "post",
+      data: JSON.stringify(data),
+      success: function(){
+        window.location.href = 'http://localhost:3000/'
+      }
+    })
+  })
+</script>
 </body>
 </html>
