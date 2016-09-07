@@ -35,7 +35,7 @@ var Users = {
    // ****UPDATE USER INFO****
   updateOne: function (params, callback) {
     var data = [params.name, params.photoPath, (params.languages || null), params.email, params.password];
-
+    
     var query = 'UPDATE users SET name=?, photo_path=?, languages=?, email=?, password=? WHERE id ="'+params.id+'" LIMIT 1';
     db.query(query, data, function(err, results) {
       callback(err, results);

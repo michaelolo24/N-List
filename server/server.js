@@ -52,7 +52,7 @@ app.post('/upload', function(request, response) {
 });
 
 app.use('/uploads',express.static(__dirname + '/uploads'));
-// image upload end 
+// image upload end
 
 app.listen(process.env.PORT || 3000);
 console.log("Server is doing big things on port 3000");

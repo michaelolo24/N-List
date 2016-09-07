@@ -34,7 +34,7 @@ userRouter.route('/login')
 //USER UPDATE ROUTE
 
 userRouter.route('/updateUser')
-.post(function(req, res){
+.get(function(req, res){
   //verify user is currently signed in
   Users.getOne(req.body, function(err,data){
     if(err) console.log(err);
