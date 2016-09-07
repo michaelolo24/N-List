@@ -2,21 +2,41 @@
 
   <h2>Add Links</h2>
     <form ng-submit="addPost()">
-      <table class="table" style="margin-left:20px;">
+      <table>
         <thead>
+
           <tr>
-            <th>Name</th>
-            <th>Title</th>
+            <th>Creator</th>
+            <th>Description</th>
             <th>Type</th>
             <th>Language</th>
+            <th>Topic</th>
             <th>Links</th>
           </tr>
 
           <tr ng-sumbit ="addPost()">
             <td><input type="text" placeholder="Name" ng-model="name"></td>
-            <td><input type="text" placeholder="Title" ng-model="title"></td>
-            <td><input type="text" placeholder="Type" ng-model="type"></td>
-            <td><input type="text" placeholder="Language" ng-model="language"></td>
+            <td><input type="text" placeholder="Description" ng-model="description"></td>
+            <td>
+            <form name="myForm">
+              <select name="repeatSelect" id="repeatSelect" ng-model="data.type">
+                <option ng-repeat="option in data.typeOptions" value="{{option.label}}">{{option.label}}</option>
+              </select>
+            </form>
+            <td>
+              <form name="myForm">
+              <select name="repeatSelect" id="repeatSelect" ng-model="data.language">
+                <option ng-repeat="option in data.languageOptions" value="{{option.label}}">{{option.label}}</option>
+              </select>
+            </form>
+            </td>
+            <td>
+              <form name="myForm">
+              <select name="repeatSelect" id="repeatSelect" ng-model="data.topic">
+                <option ng-repeat="option in data.topics" value="{{option.label}}">{{option.label}}</option>
+              </select>
+            </form>
+            </td>
             <td><input type="text" placeholder="Link" ng-model="link"></td>
             <td><button type="submit">Add</button></td>
           </tr>
@@ -26,14 +46,27 @@
     </form>
 
   <h2>View Links</h2>
-    <div ng-repeat="post in posts | orderBy:'-likes'">
-      <span>{{post.title}}</span>
-      <span>{{post.type}}</span>
-      <span>{{post.language}}<span>
-      <span>{{post.link}}</span>
-      <span ng-click="incrementLike(post)" style = "margin-left:20px">{{post.likes}} Likes</span>
-      <span ng-click="incrementDislike(post)" style = "margin-left:20px">{{post.dislikes}} Dislikes</span>
-    </div>
+    <form>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Lanaguage</th>
+            <th>Topic</th>
+            <th>Links</th>
+            <th>Votes</th>
 
-
+          <tr ng-repeat="post in posts | orderBy: '-likes' ">
+            <td><span>{{post.description}}</span></td>
+            <td><span style = "margin-left:20px">{{post.type}}</span></td>
+            <td><span style = "margin-left:20px">{{post.language}}</span></td>
+            <td><span style = "margin-left:20px">{{post.topic}}</span></td>
+            <td><span style = "margin-left:20px">{{post.link}}</span></td>
+            <td><span ng-click="incrementLike(post)" style = "margin-left:20px">{{post.likes}} Likes</span></td>
+            <td><span ng-click="incrementDislike(post)" style = "margin-left:20px">{{post.dislikes}} Dislikes</span></td>
+          </tr>
+        </thead>
+      </table>
+    </form>
 </div>
