@@ -8,7 +8,7 @@ userRouter.route('/signup')
 .get(function(){
   res.render('signup');
 })
-.post(function(){
+.post(function(req,res){
   helpers.Users.signUp(req.body, function(err,data){
     if(err) console.log(err);
     res.json(data);
@@ -23,7 +23,7 @@ userRouter.route('/login')
   res.render('login');
 })
 .post(function(req, res){
-  helpers.Users.signIn(req.body, function(err,data){ //changed getOne to signIn --> change in helpers
+  helpers.Users.signIn(req.body, function(err,data){
     if(err) console.log(err);
     //create user session here (set equal to true);
     res.json(data);
@@ -34,7 +34,7 @@ userRouter.route('/login')
 //USER UPDATE ROUTE
 
 userRouter.route('/updateUser')
-.get(function(req, res){
+.post(function(req, res){
   //verify user is currently signed in
   helpers.Users.getOne(req.body, function(err,data){
     if(err) console.log(err);
