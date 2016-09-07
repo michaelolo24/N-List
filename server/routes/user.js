@@ -27,7 +27,9 @@ userRouter.route('/login')
   Users.signIn(req.body, function(err,data){
     if(err) console.log(err);
     //create user session here (set equal to true);
-    res.json(data);
+    console.log(data);
+    res.redirect('http://localhost:3000/');
+
   });
 });
 
