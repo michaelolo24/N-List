@@ -14,4 +14,4 @@ dbCon.connect(function(err) {
   console.log('Connected to rezzy database BIG THIngs are COMING');
 });
 
-exports.dbCon = dbCon;
+module.exports = dbCon
