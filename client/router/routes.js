@@ -1,4 +1,4 @@
-angular.module('nList', ['ui.router', 'nList.links'])
+angular.module('nList', ['ui.router', 'nList.links', 'nList.profile'])
 
 .config(function($stateProvider, $urlRouterProvider){
 
@@ -17,5 +17,10 @@ angular.module('nList', ['ui.router', 'nList.links'])
       controller: 'linksCtrl'
     })
 
+    .state('profile', {
+        url: '/profile',
+        templateUrl: 'components/profile/profile.html',
+        controller: 'ProfileController'
+    })
 
 });
