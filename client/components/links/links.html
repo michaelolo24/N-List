@@ -1,13 +1,10 @@
-<div>
-
-  <h2>Add Links</h2>
-    <form ng-submit="addPost()">
+<div> <!--Add Resources-->
+  <button ng-click="showadd=true" >Add Resources</button>
+    <form class="check-element animate show" ng-show="showadd" ng-submit="addPost()">
       <table>
         <thead>
-
           <tr>
-            <th>Creator</th>
-            <th>Description</th>
+           <th>Description</th>
             <th>Type</th>
             <th>Language</th>
             <th>Topic</th>
@@ -15,7 +12,6 @@
           </tr>
 
           <tr ng-sumbit ="addPost()">
-            <td><input type="text" placeholder="Name" ng-model="name"></td>
             <td><input type="text" placeholder="Description" ng-model="description"></td>
             <td>
             <form name="myForm">
@@ -44,8 +40,22 @@
         </thead>
       </table>
     </form>
+</div>
 
-  <h2>View Links</h2>
+
+<div> <!--View Resources-->
+  <h2>Resources</h2>
+    <div>
+    <button ng-click="languageFilter = {language: 'Javascript'}">Javascript</button>
+    <button ng-click="languageFilter = {language: 'C++'}">C++</button>
+    <button ng-click="languageFilter = {}">Clear Filter</button>
+    </div>
+    <a>
+    <button ng-repeat="topic in data.topics" ng-click="setFilter('topic', topic.label);">{{topic.label}}</button>
+    <button ng-click="topicFilter ={}">Clear</button>
+    </a>
+    <hr>
+    <input type="text" placeholder="Search Resources" ng-model="search" />
     <form>
       <table>
         <thead>
@@ -54,15 +64,13 @@
             <th>Type</th>
             <th>Lanaguage</th>
             <th>Topic</th>
-            <th>Links</th>
             <th>Votes</th>
 
-          <tr ng-repeat="post in posts | orderBy: '-likes' ">
-            <td><span>{{post.description}}</span></td>
+          <tr ng-repeat="post in posts | orderBy: '-likes' | filter: languageFilter | filter:topicFilter | filter:search">
+            <td ><a ng-href={{post.link}}>{{post.description}}</a></td>
             <td><span style = "margin-left:20px">{{post.type}}</span></td>
             <td><span style = "margin-left:20px">{{post.language}}</span></td>
             <td><span style = "margin-left:20px">{{post.topic}}</span></td>
-            <td><span style = "margin-left:20px">{{post.link}}</span></td>
             <td><span ng-click="incrementLike(post)" style = "margin-left:20px">{{post.likes}} Likes</span></td>
             <td><span ng-click="incrementDislike(post)" style = "margin-left:20px">{{post.dislikes}} Dislikes</span></td>
           </tr>
