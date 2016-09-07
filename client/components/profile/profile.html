@@ -1,5 +1,28 @@
 <div ng-controller="ProfileController">
   <h1>Update Profile</h1>
 
+  
+  <form action"post">
+    <input class="input" name="name" type="text" value="accountname" placeholder="Full Name">
+    <input class="input" name="email" type="email" value="email" placeholder="Email Address">
+    <input class="input" name="password" type="text" value="password" placeholder="Password">
+    <form   name="up.upload_form">
+      <input
+          type="file"
+          ngf-select
+          ng-model="up.file"
+          name="file"
+          id="file"
+          ngf-pattern="'image/*'"
+          accept="image/*"
+          ngf-max-size="20MB"
+          />
+
+      <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+
+  </div>
+  </form>
+    <button type="submit">Submit</button>
+  </form>
 
 </div>
