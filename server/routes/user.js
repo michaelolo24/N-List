@@ -5,8 +5,9 @@ var Users = require('../../db/controller/users-helpers.js');
 // SIGNUP ROUTE
 
 userRouter.route('/signup')
-.get(function(){
-  res.render('signup');
+.get(function(req, res){
+  console.log("hello???")
+  res.render('../views/signup');
 })
 .post(function(req,res){
   Users.signUp(req.body, function(err,data){
