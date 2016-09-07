@@ -22,3 +22,4 @@ dbCon.connect(function(err) {
 });
 
 module.exports = dbCon
+ 

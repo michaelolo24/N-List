@@ -1,7 +1,13 @@
 {
   "name": "captain-planet",
   "version": "0.0.0",
-  "authors": [],
+  "authors": [
+    "Daniel Wirz",
+    "Harris Lee",
+    "Kent Moreland",
+    "Michael Olorunnisola",
+    "Neekon Etemad"
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
