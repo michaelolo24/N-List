@@ -35,12 +35,13 @@ app.controller('ProfileController', [ '$scope', '$http', 'Upload', '$window', fu
     var data = {
       id:1,
       name: 'mike',
-      email: 'big O',
+      email: 'big Oooooooooooo',
       password: 'safjdh',
       photoPath: 'http://localhost:3000/uploads/'+$scope.findPicName()
     }
     $http.put('/users/updateUser', data).success(function(res){
       //place photo back up here
+      load();
       console.log(res);
     })
   }

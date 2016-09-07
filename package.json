@@ -27,7 +27,6 @@
     "express": "4.13.3",
     "express-session": "^1.14.1",
     "fs": "0.0.2",
-    "mongojs": "^0.18.1",
     "multer": "1.1.0",
     "mysql": "^2.11.1"
   },
