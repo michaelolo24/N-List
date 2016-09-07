@@ -22,7 +22,26 @@
 <body>
   <section class="container">
     <h1>SIGN-UP</h1>
-    
+    <form method="post">
+      <input id="name" type="text" name="name" placeholder="Username">
+      <input id="email" type="email" name="email" placeholder="Email">
+      <input id="password" type="password" name="password" placeolder="Password">
+      <button type="submit">Sign Up</button>
+    </form>
 </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+  $('button').on('click', function(e){
+    e.preventDefault();
+    var data = { 'name' : $('#name').val(), 'email': $('#email').val(), 'password': $('#password').val()}
+    $.ajax({
+      url: "/users/signup",
+      contentType: "application/json",
+      type: "post",
+      data: JSON.stringify(data)
+    })
+  })
+</script>
 </body>
 </html>

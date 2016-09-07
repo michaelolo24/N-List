@@ -10,6 +10,10 @@ var db = require('../db/dbConnect/connection.js');
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyParser.json());
+app.use('/signup', express.static(__dirname + '/views/signup.html'));
+app.use('/login', express.static(__dirname + '/views/login.html'));
+
+
 
 //Routing
 app.use('/api', router);
