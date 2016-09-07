@@ -16,11 +16,38 @@ app.use(session({
 }));
 //////////////////////////////////////////
 //                                      //
-//               Routes                 //
+//               imageU                 //
 //                                      //
 //////////////////////////////////////////
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+        destination: function (request, file, callback) {
+            callback(null, './uploads/');
+        },
+        filename: function (request, file, callback) {
+
+            callback(null, file.originalname);
+        }
+    });
+
+var upload = multer({
+                storage: storage
+            }).single('file');
 
 
+app.post('/upload', function(request, response) {
+    upload(request,response,function(err){
+        if(err){
+             response.json({error_code:1, err_desc:err});
+             return;
+        }
+         response.json({error_code:0, err_desc:null});
+    });
+});
+
+app.use('/uploads',express.static(__dirname + '/uploads'));
+// image upload end 
 
 app.listen(process.env.PORT || 3000);
 console.log("Server is doing big things on port 3000");
