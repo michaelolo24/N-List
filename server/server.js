@@ -4,12 +4,17 @@ var session = require('express-session');
 var app = express();
 router = require('./routes/routes');
 userRouter = require('./routes/user');
+
 // connection
 var db = require('../db/dbConnect/connection.js');
 
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyParser.json());
+
+//Routing
 app.use('/api', router);
+app.use('/users', userRouter);
+
 app.use(session({
   secret: 'my team is the suicide squad',
   cookie: {}
