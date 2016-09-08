@@ -1,6 +1,6 @@
 var app = angular.module('nList.profile', ['ngFileUpload']);
 
-app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'checkUser', '$log', function($scope, $http, Upload, $window, checkUser,$log){
+app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'checkUser', '$log', function($scope, $http, Upload, $window, checkUser, $log){
 
   $scope.userUpdate = checkUser.currUser;
 
