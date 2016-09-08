@@ -4,7 +4,7 @@ app.controller('ProfileController', [ '$scope', '$http', 'Upload', '$window', fu
 
   var load = function(){
     $http.get('/updateUser').success(function(res){
-      console.log("*****RESULTRESULTRESULT*****", res);
+
       $scope.userUpdate = res[0];
     });
   };
