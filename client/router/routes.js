@@ -25,7 +25,12 @@ angular.module('nList', ['nList.services','ui.router', 'nList.links', 'nList.pro
     .state('profile', {
         url: '/profile',
         templateUrl: 'components/profile/profile.html',
-        controller: 'ProfileController'
+        controller: 'ProfileController',
+        resolve: {
+          checkUser : ['checkUser', function(checkUser){
+            return checkUser.userStatus();
+          }]
+        }
     })
 
 });

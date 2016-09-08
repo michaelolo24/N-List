@@ -1,14 +1,26 @@
 var app = angular.module('nList.profile', ['ngFileUpload']);
 
-app.controller('ProfileController', [ '$scope', '$http', 'Upload', '$window', function($scope, $http, Upload, $window){
+app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'checkUser', '$log', function($scope, $http, Upload, $window, checkUser,$log){
 
-  var load = function(){
-    $http.get('/updateUser').success(function(res){
+  $scope.userUpdate = checkUser.currUser;
 
-      $scope.userUpdate = res[0];
-    });
-  };
-  load();
+  console.log("***checkUser****",$scope.userUpdate);
+
+
+  //Load user information into front end;
+  // var CheckLoggedIn = function(){
+  //   $http.get('/updateUser').then(function(res){
+  //     //$scope.userUpdate = res[0];
+  //     return res[0];
+  //   }).catch(function(res){
+  //     if(res.status === 401){
+  //       $window.location.href="/login";
+  //     }
+  //   });
+  // };
+  //load();
+
+
   $scope.findPicName = function (){
     var pic = document.getElementById('file').files[0];
     $scope.picName = pic;
