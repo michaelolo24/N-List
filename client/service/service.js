@@ -57,7 +57,13 @@ app.factory('checkUser', function($http, $window) {
     });
   };
 
+  checkUser.signout = function(){
+    return $http.post('/logout')
+    .success(function(data){
+      $window.location.href="/login";
+    })
+  }
+
   return checkUser;
 
 });
-

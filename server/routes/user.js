@@ -98,15 +98,11 @@ module.exports.deleteOne = function(req, res){
   });
 };
 
+//LOGOUT ROUTE
+module.exports.logout = function(req, res){
+  sess = undefined;
+  req.session.destroy();
+  res.status(200).send("request processed");
+  };
 
 module.exports.sess = sess; //session variable to pass in session information to
-
-
-
-//LOGOUT ROUTE
-
-// userRouter.route('/logout')
-// .get(function(req, res){
-//   req.session.destroy();
-//   res.redirect('login');
-// });
