@@ -76,6 +76,7 @@ var Links = {
    var query = 'DELETE FROM resources WHERE id=? LIMIT 1';
     db.query(query, data, function(err, results){
       callback(err, results);
+      console.log("resuts!")
     });
   }
 
