@@ -2,7 +2,7 @@
   <button ng-click="showadd=true" >Add Resources</button>
     <form class="check-element animate show" ng-show="showadd" ng-submit="addPost()">
       <table>
-        <thead> 
+        <thead>
           <tr>
            <th>Description</th>
             <th>Type</th>
@@ -45,31 +45,28 @@
 
 <div> <!--View Resources-->
   <h2>Resources</h2>
-
     <div>
-
-    <button ng-repeat="language in data.languageOptions" ng-click="setFilter('language', language.label)">{{language.label}}</button>
+    <button ng-click="languageFilter = {language: 'Javascript'}">Javascript</button>
+    <button ng-click="languageFilter = {language: 'C++'}">C++</button>
     <button ng-click="languageFilter = {}">Clear Filter</button>
     </div>
-
-    <div>
+    <a>
     <button ng-repeat="topic in data.topics" ng-click="setFilter('topic', topic.label);">{{topic.label}}</button>
-    <button ng-click="topicFilter ={}">Clear Filter</button>
-    </div>
+    <button ng-click="topicFilter ={}">Clear</button>
+    </a>
     <hr>
     <input type="text" placeholder="Search Resources" ng-model="search" />
-
     <form>
       <table>
         <thead>
           <tr>
             <th>Description</th>
             <th>Type</th>
-            <th>Language</th>
+            <th>Lanaguage</th>
             <th>Topic</th>
             <th>Votes</th>
 
-          <tr ng-repeat="post in posts | orderBy: 'dislikes - likes' | filter: languageFilter | filter:topicFilter | filter:search">
+          <tr ng-repeat="post in posts | orderBy: '-likes' | filter: languageFilter | filter:topicFilter | filter:search">
             <td ><a ng-href={{post.link}}>{{post.keywords}}</a></td>
             <td><span style = "margin-left:20px">{{post.type}}</span></td>
             <td><span style = "margin-left:20px">{{post.name}}</span></td>
