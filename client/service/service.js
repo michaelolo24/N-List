@@ -50,11 +50,14 @@ app.factory('checkUser', function($http, $window) {
     return $http.get('/updateUser')
     .success(function(data) {
       checkUser.currUser = data[0];
-     //angular.copy(data, checkUser.currUser);
+    }).error(function(res, status){
+      if(status === 401){
+        $window.location.href="/login";
+      }
     });
   };
 
-return checkUser;
+  return checkUser;
 
 });
 

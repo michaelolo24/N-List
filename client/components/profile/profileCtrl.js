@@ -7,17 +7,10 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
   console.log("***checkUser****",$scope.userUpdate);
 
 
-  //Load user information into front end;
-  // var CheckLoggedIn = function(){
-  //   $http.get('/updateUser').then(function(res){
-  //     //$scope.userUpdate = res[0];
-  //     return res[0];
-  //   }).catch(function(res){
-  //     if(res.status === 401){
-  //       $window.location.href="/login";
-  //     }
-  //   });
-  // };
+  //Reroute user if not logged in;
+  // if($scope.userUpdate === undefined){
+  //   $window.location.href="/login";
+  // }
   //load();
 
 
