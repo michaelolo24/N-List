@@ -36,11 +36,6 @@ app.controller('linksCtrl',function($scope, links) {
     $scope[type+'Filter'][type] = value;
   };
 
-  $scope.sf= function(type, value) {
-    $scope[type+'Filter'] = {};
-    $scope[type+'Filter'][type] = value;
-  };
-
 
 
 
