@@ -2,9 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var app = express();
-var Users = require('../db/controller/users-helpers.js');
+var Users = require('../db/controller/users-helpers');
 linksRouter = require('./routes/links');
 var user = require('./routes/user');
+var photos = require('./routes/photos');
 
 // connection
 var db = require('../db/dbConnect/connection.js');
@@ -40,43 +41,14 @@ app.delete('/updateUser', user.deleteOne);
 app.use('/api', linksRouter);
 // app.use('/users', userRouter);
 
-
-// id
 //////////////////////////////////////////
 //                                      //
 //               imageU                 //
 //                                      //
 //////////////////////////////////////////
 // var linksRouter = express.Router();
-var multer = require('multer');
 
-var storage = multer.diskStorage({
-        destination: function (request, file, callback) {
-            callback(null, './uploads/');
-            // console.log("line 37");
-        },
-        filename: function (request, file, callback) {
-            // console.log("line 40");
-            callback(null, file.originalname);
-        }
-    });
-
-var upload = multer({
-                storage: storage
-            }).single('file');
-
-
-app.post('/upload', function(request, response) {
-    upload(request,response,function(err){
-        if(err){
-              // console.log("line 53");
-             response.json({error_code:1, err_desc:err});
-             return;
-        }
-          // console.log("line 57");
-         response.json({error_code:0, err_desc:null});
-    });
-});
+app.post('/upload', photos.uploader);
 
 app.use('/uploads',express.static(__dirname + '/uploads'));
 // image upload end
