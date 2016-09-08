@@ -1,0 +1,213 @@
+/* ERIC MYERS CSS RESET -- http://cssreset.com/scripts/eric-meyer-reset-css/ */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strong, sub, sup, var,
+b, u, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+html { /* added by team captain planet */
+  box-sizing: border-box;
+}
+*, *:before, *:after { /* added by team captain planet */
+  box-sizing: inherit;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/****************** END CSS RESET **********************/
+/* for reference: golden ratio: 1.618 */
+
+
+/**************** SHARED CSS BETWEEN STATIC PAGES SERVED BY SERVER AND APPLICATION PAGES ************************/
+body {
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 16px; /* sets base for em font values below */
+  color: #333;
+}
+
+
+a{
+  text-decoration: none;
+  font-weight: 400;
+  color: rgba(16,91,99, 1);
+}
+
+
+footer{
+  text-align: center;
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  margin:0 auto;
+  width: 100%;
+  padding-bottom: 1em;
+}
+
+footer ul{
+    list-style:none;
+    padding:0;
+    margin:0 auto;
+}
+
+footer ul li{
+  display: inline;
+  margin:.5em 1em;
+}
+footer ul .copyright{
+  margin:.5em auto .5em auto;
+}
+
+
+/********** LOGIN - SIGN IN - ABOUT - BLOG - PRESS - CAREERS - CONTACT - TERMS & PRIVACY PAGES ************/
+
+.verification_header{
+  text-align:center;
+  padding:1em 0em;
+}
+.verification_logo{
+  width:125px;
+}
+.verification_container{
+  display:block;
+  width:50%;
+  max-width:600px;
+  min-width:300px;
+  text-align: center;
+  margin: auto;
+  margin-top: 3.236em;
+
+  /* box stylings */
+  border:thin solid #CCC;
+  box-shadow: .1em .1em .2em #999;
+}
+
+.verification_container h1{
+  margin: .809em 0em;
+  font-size: 3.236em;
+}
+
+.verification_container p{
+  font-size: .9em;
+}
+
+.verification_container .errorMsg{
+  color: #f00;
+}
+
+.verification_container input{
+  font-size: 1em;
+  height: 2.5em;
+  width: 16.8em;
+  padding:0em .5em;
+  margin: 1em 0em;
+  border:thin solid #CCC;
+  outline-color: #099;
+}
+
+.verification_container button{
+  width:100%;
+  height:2.5em;
+  margin-bottom:1.618em;
+  color:#EEE;
+  font-size: 1.1em;
+  background-color: rgba(16,91,99, .6);
+  outline: none;
+  border:none;
+  box-shadow: .1em 0em .2em #999;
+
+}
+
+.verification_container button:hover{
+  transition: background-color .4s, color .4s;
+  background-color: rgba(16,91,99, .85);
+  color:#FFF;
+  cursor: pointer;
+
+}
+
+.verification_container button:active{
+  transition: background-color .4s, color .4s;
+  background-color: rgba(16,91,99, 1);
+  outline: none;
+  color:#FFF;
+  cursor: pointer;
+
+}
+
+/********** LOGIN - SIGN IN - ABOUT - BLOG - PRESS - CAREERS - CONTACT - TERMS & PRIVACY PAGES ************/
+
+.appHeader {
+  float:left;
+  width:100%;
+  background-color: rgba(189,73,50,1);
+  border-bottom:#333 dashed thick;
+}
+
+.appHeaderNav{
+  padding:.5em;
+  width:95%;
+}
+
+.appHeaderNav > li{
+  display:inline;
+  float:left;
+  line-height:62.5px;
+  height:62.5px;
+  padding:0em 1em;
+}
+
+.topbar_logo{
+  width: 62.5px;
+}
+
+.profile{
+  float:right !important;
+}
+
+.appHeader a{
+  color:#FFF;
+}
+
+.appHeader a:hover{
+  color:rgba(41,255,255,1);
+  cursor: pointer;
+}
+
+
+#main_view{
+  clear:both;
+}

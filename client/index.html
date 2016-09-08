@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <title>Captain Planet to the Rescue</title>
-
-  <script src="style/style.css"></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800|Source+Sans+Pro" rel="stylesheet"><!-- FONTS FROM GOOGLE -->
+  <link rel="stylesheet" type="text/css" href="style/style.css">
   <!-- need to use link these from the correct folder -->
 
   <script type="text/javascript" src="lib/angular/angular.js"></script>
@@ -21,25 +21,31 @@
 </head>
 
 <body>
-  <header>
-    <h1>Captain Planet to the Rescue<h1>
-    <hr>
-    <div class = 'navigation'>
-    <ul>
-      <li><a ui-sref='home'>Home</a></li>
-      <li><a ui-sref='links'>Resources</a></li>
-      <li><a ui-sref='profile'>Edit Pofile</a></li>
+  <header class="appHeader">
+    <ul class="appHeaderNav">
+      <li class="logo"><a ui-sref='home'><img class="topbar_logo" src="http://localhost:3000/style/images/logo_500.png"></a></li>
+      <li  class="resources"><a ui-sref='links'>Resources</a></li>
+      <li class="profile"><a href='/login'>Login</a> | <a href='/signup'>Sign Up</a></li>
+      <li class="profile"><a ui-sref='profile'>Edit Pofile</a></li>
       <li><a>Sign Out</a></li>
     </ul>
-  </div>
   </header>
 
-  <div>
-  <hr>
+  <div id="main_view">
   <ui-view><ui-view>
   </div>
 
-
+  <footer>
+    <ul>
+        <li class="about_footer"><a href="/about">About</a></li>
+        <li class="blog_footer"><a href="/blog">Blog</a></li>
+        <li class="press_footer"><a href="/press">Press</a></li>
+        <li class="careers_footer"><a href="/careers">Careers</a></li>
+        <li class="contact_footer"><a href="/contact">Contact</a></li>
+        <li class="terms_footer"><a href="/terms">Terms &amp; Privacy</a></li>
+        <li class="copyright">&copy; NList 2016</li>
+    </ul>
+  </footer>
 
 
 </body>
