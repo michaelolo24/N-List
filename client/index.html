@@ -21,12 +21,12 @@
 
 <body>
   <header class="appHeader">
-    <ul class="appHeaderNav">
+    <ul ng-controller="ProfileController" class="appHeaderNav">
       <li class="logo"><a ui-sref='home'><img class="topbar_logo" src="http://localhost:3000/style/images/logo_500.png"></a></li>
       <li  class="resources"><a ui-sref='links'>Resources</a></li>
       <li class="profile"><a href='/login'>Login</a> | <a href='/signup'>Sign Up</a></li>
       <li class="profile"><a ui-sref='profile'>Edit Pofile</a></li>
-      <li><a>Sign Out</a></li>
+      <li ng-click="signout()"><a>Sign Out</a></li>
     </ul>
   </header>
 
@@ -49,4 +49,3 @@
 
 </body>
 </html>
-

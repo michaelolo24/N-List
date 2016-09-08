@@ -51,4 +51,8 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
     });
   };
 
+  $scope.signout = function(){
+    checkUser.signout();
+  }
+
 }])

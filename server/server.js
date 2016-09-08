@@ -36,6 +36,7 @@ app.put('/updateUser', user.updateOne);
 
 app.delete('/updateUser', user.deleteOne);
 
+app.post('/logout', user.logout);
 //Routing for users and links requests
 
 // app.use('/api', linksRouter);
