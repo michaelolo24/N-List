@@ -1,32 +1,44 @@
 var app = angular.module('nList.links', []);
 
-app.controller('linksCtrl',function($scope) {
-  $scope.setFilter = function(type, value) {
-    $scope[type+'Filter'] = {};
-    $scope[type+'Filter'][type] = value;
-}
+app.controller('linksCtrl',function($scope, links) {
+  $scope.posts = links.links;
+  console.log($scope.posts)
 
   $scope.incrementLike = function(post) {
-    post.likes++;
+    post.likes += 1;
   };
 
   $scope.incrementDislike = function(post) {
-    post.dislikes++;
+    post.dislikes += 1;
   };
 
   $scope.addPost = function() {
-    var post = {name: $scope.name, description: $scope.description, type: $scope.data.type, language: $scope.data.language, topic:$scope.data.topic, link: $scope.link, likes:0, dislikes:0};
-    $scope.posts.push(post);
-    $scope.name = '';
+    links.addOne({
+      language: $scope.data.language,
+      subTopic: $scope.data.topic,
+      type: $scope.data.type,
+      link: $scope.link,
+      keywords: $scope.description,
+      likes: $scope.posts.likes,
+      dislikes: $scope.posts.dislikes
+    });
+
     $scope.description = '';
     $scope.link = '';
-    $scope.name = '';
     $scope.topic = null;
     $scope.data.type = null;
     $scope.language = null;
+  };
+
+  $scope.setFilter = function(type, value) {
+    $scope[type+'Filter'] = {};
+    $scope[type+'Filter'][type] = value;
   }
 
-//Selected Options for type & language=================
+
+
+
+//Selected Options for type, language & topics==
   $scope.data = {
     type: null,
     typeOptions: [
@@ -38,43 +50,20 @@ app.controller('linksCtrl',function($scope) {
     languageOptions: [
       {value: '1', label: 'Javascript'},
       {value: '2', label: 'C++'},
-      {value: '3', label: 'Ruby'}
+      {value: '3', label: 'Java'},
+      {value: '4', label: 'C#'},
+      {value: '5', label: 'Python'},
+      {value: '6', label: 'Ruby/Rails'}
     ],
     topic: null,
     topics: [
-      {value: '1', label: 'React.js'},
-      {value: '2', label: 'Angular.js'},
-      {value: '3', label: 'D3'},
-      {value: '4', label: 'Backbone.js'},
-      {value: '5', label: 'Node.js'},
-      {value: '6', label: 'Express.js'},
-      {value: '7', label: 'Rest API'},
-      {value: '7', label: 'Meteor.js'},
-      {value: '8', label: 'Database'},
-      {value: '9', label: 'Ember.js'},
-      {value: '10', label: 'ES6'},
-
+      {value: '1', label: 'Front-End'},
+      {value: '2', label: 'REST APIs'},
+      {value: '3', label: 'Database'},
+      {value: '4', label: 'Back-End'},
     ]
    };
-  //=====================================================
+//=================================================
 
 
-
-
-
-
-
-//Sample data for testing purpose======================
-  $scope.posts = [
-  {description: 'Learn Angular Routing', type:'Video', language: 'Javascript', topic: 'Angular.js', link: 'http://www.google.com', likes: 5, dislikes: 2},
-  {description: 'React and Redux', type:'Blog', language: 'Javascript', topic:'React.js', link: 'http://www.hello.com', likes: 8, dislikes: 1},
-  {description: 'Learn Angular Routing', type:'Video', language: 'Javascript', topic: 'D3.js', link: 'http://google.com', likes: 98, dislikes: 1},
-  {description: 'Express Routing', type:'Forum', language: 'Javascript', topic:'Express.js', link: 'http://google.com', likes: 8, dislikes: 1},
-  {description: 'Learn Angular Routing', type:'Video', language: 'Javascript', topic: 'Node.js', link: 'http://google.com', likes: 5, dislikes: 2},
-  {description: 'Intro to C++', type:'Video', language: 'C++', topic:'Random', link: 'http://google.com', likes: 8, dislikes: 1},
-  {description: 'C++', type:'Video', language: 'C++', topic:'Random', link: 'http://google.com', likes: 8, dislikes: 1}
-
-  ];
-  //=====================================================
 });
-

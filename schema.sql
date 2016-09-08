@@ -38,12 +38,12 @@ DROP TABLE IF EXISTS `resources`;
 CREATE TABLE `resources` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_languages` INTEGER UNSIGNED NOT NULL,
-  `sub_topic_id` INTEGER UNSIGNED DEFAULT NULL,
+  `id_sub_topic` INTEGER UNSIGNED DEFAULT NULL,
   `id_resource_type` INTEGER UNSIGNED NOT NULL,
   `link` VARCHAR(2000) NOT NULL,
   `keywords` VARCHAR(255) DEFAULT NULL,
-  `likes` INTEGER UNSIGNED DEFAULT NULL,
-  `dislikes` INTEGER UNSIGNED DEFAULT NULL,
+  `likes` INTEGER UNSIGNED DEFAULT 0,
+  `dislikes` INTEGER UNSIGNED DEFAULT 0,
   `date_added` TIMESTAMP NOT NULL,
   `date_updated` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -75,12 +75,20 @@ CREATE TABLE `resource_type` (
   PRIMARY KEY (`id`)
 );
 
+DROP TABLE IF EXISTS `sub_topic`;
+
+CREATE TABLE `sub_topic` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `topic` VARCHAR(55) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 -- ---
 -- Foreign Keys
 -- ---
 
 ALTER TABLE `resources` ADD FOREIGN KEY (id_languages) REFERENCES `languages` (`id`);
 ALTER TABLE `resources` ADD FOREIGN KEY (id_resource_type) REFERENCES `resource_type` (`id`);
+ALTER TABLE `resources` ADD FOREIGN KEY (id_sub_topic) REFERENCES `sub_topic` (`id`);
 
 -- ---
 -- Table Properties
@@ -98,15 +106,15 @@ ALTER TABLE `resources` ADD FOREIGN KEY (id_resource_type) REFERENCES `resource_
 -- INSERT INTO `users` (`id`,`name`,`email`,`password`,`photo_path`,`bookmarked`,`languages`) VALUES
 -- ('','','','','','','');
 
--- INSERT INTO `resources` (`id`,`id_sub_topics`,`id_resource_type`,`link`,`keywords`,`likes`,`dislikes`,`date_added`,`date_updated`) VALUES
--- ('','','','','','','','','');
+-- INSERT INTO `resources` (`id_sub_topic`,`id_languages`,`id_resource_type`,`link`,`keywords`,`likes`,`dislikes`,`date_added`) VALUES
+-- (1, 2, 2,'http://google.com','Testing Testing', 1,0 ,NOW());
 
 
 -- Languages Test Data
 -- INSERT INTO `languages` (`id`,`name`) VALUES
 -- ('','');
   INSERT INTO `languages` (`name`) VALUES
-  ('Javascript');
+  ('Javascript'), ('C++'), ('Java'), ('C#'), ('Python'), ('Ruby/Rails');
 
 -- this will create an id_languages of 1 via auto_increment for the sub_topics below
 
@@ -118,5 +126,9 @@ ALTER TABLE `resources` ADD FOREIGN KEY (id_resource_type) REFERENCES `resource_
 
 INSERT INTO `resource_type` (`type`) VALUES
 ('Forum'), ('Article'), ('Video');
+
+
+INSERT INTO `sub_topic` (`topic`) VALUES
+('Front-End'), ('REST APIs'), ('Database'), ('Back-End');
 
 
