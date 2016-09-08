@@ -1,4 +1,4 @@
-angular.module('nList', ['ui.router', 'nList.links', 'nList.profile'])
+angular.module('nList', ['nList.services','ui.router', 'nList.links', 'nList.profile'])
 
 .config(function($stateProvider, $urlRouterProvider){
 
@@ -14,7 +14,12 @@ angular.module('nList', ['ui.router', 'nList.links', 'nList.profile'])
     .state('links', {
       url:'/links',
       templateUrl: 'components/links/links.html',
-      controller: 'linksCtrl'
+      controller: 'linksCtrl',
+      resolve: {
+        linkPromise : ['links', function(links){
+          return links.getAll();
+        }]
+      }
     })
 
     .state('profile', {
@@ -24,3 +29,4 @@ angular.module('nList', ['ui.router', 'nList.links', 'nList.profile'])
     })
 
 });
+
