@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var app = express();
 var Users = require('../db/controller/users-helpers');
-linksRouter = require('./routes/links');
+var links = require('./routes/links');
 var user = require('./routes/user');
 var photos = require('./routes/photos');
 
@@ -38,8 +38,20 @@ app.delete('/updateUser', user.deleteOne);
 
 //Routing for users and links requests
 
-app.use('/api', linksRouter);
-// app.use('/users', userRouter);
+// app.use('/api', linksRouter);
+
+app.post('/resources', links.resourses.postOne);
+
+app.get('/resources', links.resourses.getAll);
+
+app.put('/resources', links.resourses.updateOne);
+
+
+
+app.get('/resources/:id', links.resourcesID.getOne);
+
+app.delete('/resources/:id', links.resourcesID.deleteOne);
+
 
 //////////////////////////////////////////
 //                                      //
