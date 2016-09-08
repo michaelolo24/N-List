@@ -32,7 +32,7 @@
     e.preventDefault();
     var data = {'email': $('#email').val(), 'password': $('#password').val()}
     $.ajax({
-      url: "/users/login",
+      url: "/login/validate",
       contentType: "application/json",
       type: "post",
       data: JSON.stringify(data),

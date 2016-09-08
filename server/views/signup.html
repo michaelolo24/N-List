@@ -36,7 +36,7 @@
     e.preventDefault();
     var data = { 'name' : $('#name').val(), 'email': $('#email').val(), 'password': $('#password').val()}
     $.ajax({
-      url: "/users/signup",
+      url: "/signup/register",
       contentType: "application/json",
       type: "post",
       data: JSON.stringify(data)
