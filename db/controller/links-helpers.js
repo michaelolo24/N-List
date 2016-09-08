@@ -13,7 +13,7 @@ var Links = {
       l: languages
       s: subtopics
     */
-    var query = 'SELECT r.id, r.id_sub_topic, r.id_languages, r.id_resource_type, r.link, r.date_added, r.date_updated, r.keywords, r.likes, r.dislikes, t.type, l.name, s.topic \
+    var query = 'SELECT r.title, r.id, r.id_sub_topic, r.id_languages, r.id_resource_type, r.link, r.date_added, r.date_updated, r.keywords, r.likes, r.dislikes, t.type, l.name, s.topic \
     FROM resources r \
     JOIN resource_type t ON t.id = r.id_resource_type \
     JOIN languages l ON l.id = r.id_languages \
@@ -28,9 +28,9 @@ var Links = {
 
   postOne: function (params, callback) {
 
-   var data = [params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
+   var data = [params.title, params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
 
-    var query = 'INSERT INTO resources(id_languages, id_sub_topic, id_resource_type, link, date_added, keywords, likes, dislikes) value (?, ?, ?, ?, NOW(), ?, ?, ?)';
+    var query = 'INSERT INTO resources(title, id_languages, id_sub_topic, id_resource_type, link, date_added, keywords, likes, dislikes) value (?,?, ?, ?, ?, NOW(), ?, ?, ?)';
     db.query(query, data, function(err, results) {
       callback(err, results);
     });

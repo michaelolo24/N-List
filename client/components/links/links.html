@@ -4,24 +4,26 @@
       <table>
         <thead>
           <tr>
-           <th>Description</th>
+            <th>Title</th>
+            <th>Description</th>
             <th>Type</th>
             <th>Language</th>
             <th>Topic</th>
             <th>Links</th>
           </tr>
 
-          <tr ng-sumbit ="addPost()">
-            <td><input type="text" placeholder="Description" ng-model="description"></td>
+          <tr name="myForm" ng-sumbit ="addPost()">
+            <td><input type="text" name="title", placeholder="Title" ng-model="title" required></td>
+            <td><input type="text" name="Description" placeholder="Description" ng-model="description" required></td>
             <td>
-            <form name="myForm">
+            <form>
               <select name="repeatSelect" id="repeatSelect" ng-model="data.type">
                 <option ng-repeat="option in data.typeOptions" value="{{option.value}}">{{option.label}}</option>
               </select>
             </form>
             <td>
               <form name="myForm">
-              <select name="repeatSelect" id="repeatSelect" ng-model="data.language">
+              <select name="repeatSelect" id="repeatSelect" ng-model="data.name">
                 <option ng-repeat="option in data.languageOptions" value="{{option.value}}">{{option.label}}</option>
               </select>
             </form>
@@ -37,6 +39,7 @@
             <td><button type="submit">Add</button></td>
           </tr>
 
+
         </thead>
       </table>
     </form>
@@ -45,29 +48,39 @@
 
 <div> <!--View Resources-->
   <h2>Resources</h2>
+
     <div>
-    <button ng-click="languageFilter = {language: 'Javascript'}">Javascript</button>
-    <button ng-click="languageFilter = {language: 'C++'}">C++</button>
+    <button ng-click="languageFilter = {name: 'Javascript'}">Javascript</button>
+    <button ng-click="languageFilter = {name: 'C++'}">C++</button>
+    <button ng-click="languageFilter = {name: 'Java '}">Java</button>
+    <button ng-click="languageFilter = {name: 'C#'}">C#</button>
+    <button ng-click="languageFilter = {name: 'Python'}">Python</button>
+    <button ng-click="languageFilter = {name: 'Ruby/Rails'}">Ruby/Rails</button>
+    <!-- <button ng-repeat="name in data.languageOptions" ng-click="setFilter('name', name.label);">{{name.label}}</button> -->
     <button ng-click="languageFilter = {}">Clear Filter</button>
     </div>
-    <a>
+
+    <div>
     <button ng-repeat="topic in data.topics" ng-click="setFilter('topic', topic.label);">{{topic.label}}</button>
-    <button ng-click="topicFilter ={}">Clear</button>
-    </a>
+    <button ng-click="topicFilter ={}">Clear Filter</button>
+    </div>
     <hr>
     <input type="text" placeholder="Search Resources" ng-model="search" />
+
     <form>
       <table>
         <thead>
           <tr>
+            <th>Title</th>
             <th>Description</th>
             <th>Type</th>
-            <th>Lanaguage</th>
+            <th>Language</th>
             <th>Topic</th>
             <th>Votes</th>
 
-          <tr ng-repeat="post in posts | orderBy: '-likes' | filter: languageFilter | filter:topicFilter | filter:search">
-            <td ><a ng-href={{post.link}}>{{post.keywords}}</a></td>
+          <tr ng-repeat="post in posts | orderBy: 'dislikes - likes' | filter: languageFilter | filter:topicFilter | filter:search">
+            <td ><a ng-href={{post.link}}>{{post.title}}</a></td>
+            <td><span style = "margin-left:20px">{{post.keywords}}</span></td>
             <td><span style = "margin-left:20px">{{post.type}}</span></td>
             <td><span style = "margin-left:20px">{{post.name}}</span></td>
             <td><span style = "margin-left:20px">{{post.topic}}</span></td>

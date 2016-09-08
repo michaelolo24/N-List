@@ -5,35 +5,39 @@ app.controller('linksCtrl',function($scope, links) {
   console.log($scope.posts)
 
   $scope.incrementLike = function(post) {
-    post.likes += 1;
+    console.log(post);
+    links.upvote(post);
   };
 
   $scope.incrementDislike = function(post) {
-    post.dislikes += 1;
+    links.downvote(post);
   };
 
   $scope.addPost = function() {
     links.addOne({
-      language: $scope.data.language,
+      title: $scope.title,
+      language: $scope.data.name,
       subTopic: $scope.data.topic,
       type: $scope.data.type,
       link: $scope.link,
       keywords: $scope.description,
-      likes: $scope.posts.likes,
-      dislikes: $scope.posts.dislikes
+      likes: $scope.posts.likes || 0,
+      dislikes: $scope.posts.dislikes || 0
     });
-
+    $scope.title='';
     $scope.description = '';
     $scope.link = '';
-    $scope.topic = null;
+    $scope.data.topic = null;
     $scope.data.type = null;
-    $scope.language = null;
+    $scope.data.name = null;
   };
 
   $scope.setFilter = function(type, value) {
     $scope[type+'Filter'] = {};
     $scope[type+'Filter'][type] = value;
-  }
+  };
+
+
 
 
 
@@ -46,11 +50,11 @@ app.controller('linksCtrl',function($scope, links) {
       {value: '2', label: 'Article'},
       {value: '3', label: 'Video'}
     ],
-    language: null,
+    name: null,
     languageOptions: [
       {value: '1', label: 'Javascript'},
       {value: '2', label: 'C++'},
-      {value: '3', label: 'Java'},
+      {value: '3', label: 'Java '},
       {value: '4', label: 'C#'},
       {value: '5', label: 'Python'},
       {value: '6', label: 'Ruby/Rails'}
