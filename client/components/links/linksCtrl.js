@@ -2,14 +2,15 @@ var app = angular.module('nList.links', []);
 
 app.controller('linksCtrl',function($scope, links) {
   $scope.posts = links.links;
-  console.log($scope.posts)
+
 
   $scope.incrementLike = function(post) {
-    post.likes += 1;
+    console.log(post);
+    links.upvote(post);
   };
 
   $scope.incrementDislike = function(post) {
-    post.dislikes += 1;
+    links.downvote(post);
   };
 
   $scope.addPost = function() {
@@ -19,8 +20,8 @@ app.controller('linksCtrl',function($scope, links) {
       type: $scope.data.type,
       link: $scope.link,
       keywords: $scope.description,
-      likes: $scope.posts.likes,
-      dislikes: $scope.posts.dislikes
+      likes: $scope.posts.likes || 0,
+      dislikes: $scope.posts.dislikes || 0
     });
 
     $scope.description = '';
@@ -33,7 +34,7 @@ app.controller('linksCtrl',function($scope, links) {
   $scope.setFilter = function(type, value) {
     $scope[type+'Filter'] = {};
     $scope[type+'Filter'][type] = value;
-  }
+  };
 
 
 

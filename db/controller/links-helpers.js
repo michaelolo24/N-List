@@ -55,9 +55,14 @@ var Links = {
   // ****UPDATE A RESOURCE-accessed via req.params in url bar****
 
   updateOne: function (params, callback) {
-    var data = [params.language, params.subTopic, params.type, params.link, params.keywords];
+    var data = [params.likes, params.dislikes];
+    // var data = [params.language, params.subTopic, params.type, params.link, params.keywords];
 
-    var query = 'UPDATE resources r SET id_languages = ?, sub_topic_id = ?, id_resource_type = ?, link = ?, date_updated = NOW(), keywords = ? WHERE r.id = '+params.id +'LIMIT 1';
+    // var query = 'UPDATE resources r SET id_languages = ?, sub_topic_id = ?, id_resource_type = ?, link = ?, date_updated = NOW(), keywords = ? WHERE r.id = '+params.id +'LIMIT 1';
+    console.log(params);
+    var query = 'UPDATE resources r SET likes = ?, dislikes = ? WHERE r.id = '+ params.id;
+    console.log(query);
+    console.log(data);
     db.query(query, data, function(error, data){
       callback(error, data);
     });
@@ -71,6 +76,7 @@ var Links = {
    var query = 'DELETE FROM resources WHERE id=? LIMIT 1';
     db.query(query, data, function(err, results){
       callback(err, results);
+      console.log("resuts!")
     });
   }
 
