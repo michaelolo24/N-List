@@ -5,42 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Login</title>
-  <style>
-    .container{
-      text-align: center;
-      margin-top: 5em;
-    }
-
-    .input{
-      display: block;
-      margin: 1em auto;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800|Source+Sans+Pro" rel="stylesheet"> <!--FONTS FROM GOOGLE -->
+  <link rel="stylesheet" type="text/css" href="http://localhost:3000/style/style.css">
 </head>
 <body>
-  <section class="container">
-    <h1>LOGIN</h1>
+
+  <header class="verification_header">
+    <a href="/"><img class="verification_logo" src="http://localhost:3000/style/images/logo_500.png"></a>
+  </header>
+
+  <section class="verification_container">
+    <h1>Login</h1>
     <form method="post">
-        <input id="email" class="input" name="email" type="email" placeholder="Email">
-        <input id="password" class="input" name="password" type="text" placeholder="Password">
-        <button type="submit">Submit</button>
+        <p class="errorMsg"></p>
+        <input id="email" class="input" name="email" type="email" placeholder="Email" required>
+        <br/>
+        <input id="password" class="input" name="password" type="password" placeholder="Password" required>
+        <br/>
+        <br/>
+        <button type="submit">Login</button>
+        <p><a href="/forgotPassword">Forgot your password?</a></p>
+        <br/>
+        <p>Not a member yet? <a href="/signup">Sign Up </a></p>
+        <br/>
     </form>
 </section>
+
+<footer>
+  <ul>
+      <li class="about_footer"><a href="/about">About</a></li>
+      <li class="blog_footer"><a href="/blog">Blog</a></li>
+      <li class="press_footer"><a href="/press">Press</a></li>
+      <li class="careers_footer"><a href="/careers">Careers</a></li>
+      <li class="contact_footer"><a href="/contact">Contact</a></li>
+      <li class="terms_footer"><a href="/terms">Terms &amp; Privacy</a></li>
+      <li class="copyright">&copy; NList 2016</li>
+  </ul>
+</footer>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-  $('button').on('click', function(e){
-    e.preventDefault();
-    var data = {'email': $('#email').val(), 'password': $('#password').val()}
+
+var email = $('#email');
+var password = $('#password');
+var errorMsg = $('.errorMsg');
+
+$('button').on('click', function(e){
+  e.preventDefault();
+
+  if(email.val()===""){
+    errorMsg.hide().fadeIn(300).text("Please enter your email.");
+    email.css('outline-color','#f00');
+    email.focus();
+    return false;
+  };
+
+  var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if((email.val()) && !filter.test(email.val())){
+    errorMsg.hide().fadeIn(300).text('Your email is not valid.');
+    email.css('outline-color','#f00');
+    email.focus();
+   return false;
+  };
+
+  if(password.val()===""){
+    errorMsg.hide().fadeIn(300).text('Please enter your password.');
+    password.css('outline-color','#f00');
+    password.focus();
+    return false;
+  };
+
+  var data = {'email': email.val(), 'password': password.val() };
+
     $.ajax({
       url: "/login/validate",
       contentType: "application/json",
       type: "post",
       data: JSON.stringify(data),
       success: function(){
-        window.location.href = 'http://localhost:3000/'
+        window.location.href = 'http://localhost:3000/';
+      },
+      error: function(data){
+        $('.errorMsg').fadeOut(function(){ $(this).text(data.responseText); }).fadeIn(200);
       }
-    })
-  })
+    });
+  });
 </script>
 </body>
 </html>

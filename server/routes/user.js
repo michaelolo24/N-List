@@ -25,8 +25,7 @@ module.exports.signIn = function(req, res){
       res.status(401).send("That email and/or password was not found");
     }
   });
-}
-
+};
 
 
 
@@ -49,9 +48,11 @@ module.exports.signUp =function(req, res){
 
       Users.signUp(req.body, function(err,data){
         if(err) console.log(err);
+        console.log(data);
           sess = req.session;
-          sess.email = data[0].email;
-          sess.user = data[0].id;
+          sess.email = req.body.email;
+          sess.user = data.insertId;
+          console.log(sess);
           res.redirect('http://localhost:3000/');
       });
     }
