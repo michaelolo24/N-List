@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+
+
 var Links = require('../../db/controller/links-helpers.js');
 
 //each callback below is routed to helper functions that preform the actual querying on the database
@@ -19,49 +19,58 @@ var Links = require('../../db/controller/links-helpers.js');
   delete -> deletes one resource : uses deleteOne helper -- needs user id in req.params
 
 */
+module.exports= {};
 
 
-router.route('/resources')
-.post(function(req, res){
-  Links.postOne(req.body,function(err,data){ //Post one resource into resource database
-    if(err) console.log(err);
-    res.json(data);
-  });
-})
 
-.get(function(req, res){
-  // !req.session.active ? res.redirect('/login') :
-  Links.getAll(function(err,data){
-    if(err) console.log(err);
-    res.json(data);
-  });
-})
 
-.put(function(req, res){
-  // !req.session.active ? res.redirect('/login') :
-  Links.updateOne(req.body, function(err,data){
-    if(err) console.log(err);
-    res.json(data);
-  });
-});
+module.exports.resourses = {
 
+  postOne: function(req, res){
+    Links.postOne(req.body,function(err,data){ //Post one resource into resource database
+        if(err) console.log(err);
+        res.json(data);
+      });
+    },
+
+  getAll: function(req, res){
+      // !req.session.active ? res.redirect('/login') :
+      Links.getAll(function(err,data){
+        if(err) console.log(err);
+        res.json(data);
+      });
+    },
+
+  updateOne: function(req, res){
+      // !req.session.active ? res.redirect('/login') :
+      Links.updateOne(req.body, function(err,data){
+        if(err) console.log(err);
+        res.json(data);
+      });
+    }
+};
 // SINGLE RESOURCE UPDATES (GET, PUT(UPDATE), DELETE);
 
-router.route('/resources/:id')
-.get(function(req, res){
-  // !req.session.active ? res.redirect('/login') :
-  Links.getOne(req.params.id, function(err,data){
-    if(err) console.log(err);
-    res.json(data);
-  });
-})
-.delete(function(req, res){
-  // !req.session.active ? res.redirect('/login') :
-  Links.deleteOne(req.params.id, function(err,data){
-    console.log('***SINGLE RESOURCE DELETE****', req.params.id);
-    if(err) console.log(err);
-    res.json(data);
-  });
-});
 
-module.exports = router;
+
+
+
+module.exports.resourcesID = {
+
+  getOne: function(req, res){
+      // !req.session.active ? res.redirect('/login') :
+      Links.getOne(req.params.id, function(err,data){
+        if(err) console.log(err);
+        res.json(data);
+      });
+    },
+
+  deleteOne: function(req, res){
+      // !req.session.active ? res.redirect('/login') :
+      Links.deleteOne(req.params.id, function(err,data){
+        console.log('***SINGLE RESOURCE DELETE****', req.params.id);
+        if(err) console.log(err);
+        res.json(data);
+      });
+    }
+};
