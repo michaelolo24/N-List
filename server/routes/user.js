@@ -13,6 +13,7 @@ var Users = require('../../db/controller/users-helpers.js');
 module.exports = {};
 
 var sess;
+
 // lOGIN USERS AND REGISTER SESSION
 module.exports.signIn = function(req, res){
   Users.signIn(req.body, function(err,data){
@@ -52,8 +53,6 @@ module.exports.signUp =function(req, res){
           sess = req.session;
           sess.email = req.body.email;
           sess.user = data.insertId;
-          console.log(sess);
-          res.redirect('http://localhost:3000/');
       });
     }
   });
@@ -62,13 +61,13 @@ module.exports.signUp =function(req, res){
 
 module.exports.getOneUser = function(req, res){
   //verify user is currently signed in
-  if(sess.user !== undefined){
+  if(sess !== undefined){
     Users.getOne(sess.user, function(err,data){
       if(err) console.log(err);
       res.json(data);
     });
   } else {
-    res.redirect('http://localhost:3000/login');
+    res.status(401).send("Please Login");
   }
 };
 
