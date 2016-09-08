@@ -42,8 +42,8 @@ CREATE TABLE `resources` (
   `id_resource_type` INTEGER UNSIGNED NOT NULL,
   `link` VARCHAR(2000) NOT NULL,
   `keywords` VARCHAR(255) DEFAULT NULL,
-  `likes` INTEGER UNSIGNED DEFAULT 0,
-  `dislikes` INTEGER UNSIGNED DEFAULT 0,
+  `likes` INTEGER UNSIGNED DEFAULT '0',
+  `dislikes` INTEGER UNSIGNED DEFAULT '0',
   `date_added` TIMESTAMP NOT NULL,
   `date_updated` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -130,5 +130,4 @@ INSERT INTO `resource_type` (`type`) VALUES
 
 INSERT INTO `sub_topic` (`topic`) VALUES
 ('Front-End'), ('REST APIs'), ('Database'), ('Back-End');
-
 
