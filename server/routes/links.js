@@ -1,7 +1,3 @@
-
-
-var Links = require('../../db/controller/links-helpers.js');
-
 //each callback below is routed to helper functions that preform the actual querying on the database
 
 //our team is so strong!!
@@ -21,17 +17,18 @@ var Links = require('../../db/controller/links-helpers.js');
 */
 module.exports= {};
 
-
-
-
 module.exports.resourses = {
-
+// login here
   postOne: function(req, res){
-    Links.postOne(req.body,function(err,data){ //Post one resource into resource database
+    if(users.sess.email !== undefined){
+      Links.postOne(req.body,function(err,data){ //Post one resource into resource database
         if(err) console.log(err);
         res.json(data);
       });
-    },
+    } else{
+      res.redirect("http://localhost:3000/login");
+    }
+  },
 
   getAll: function(req, res){
       // !req.session.active ? res.redirect('/login') :
@@ -40,13 +37,18 @@ module.exports.resourses = {
         res.json(data);
       });
     },
-
+// login here
   updateOne: function(req, res){
+
       // !req.session.active ? res.redirect('/login') :
-      Links.updateOne(req.body, function(err,data){
-        if(err) console.log(err);
-        res.json(data);
-      });
+      if(user.sess.email !== undefined){
+        Links.updateOne(req.body, function(err,data){
+          if(err) console.log(err);
+          res.json(data);
+        });
+      } else {
+        res.redirect("http://localhost:3000/login")
+      }
     }
 };
 // SINGLE RESOURCE UPDATES (GET, PUT(UPDATE), DELETE);
@@ -64,13 +66,17 @@ module.exports.resourcesID = {
         res.json(data);
       });
     },
-
+// login here
   deleteOne: function(req, res){
       // !req.session.active ? res.redirect('/login') :
-      Links.deleteOne(req.params.id, function(err,data){
-        console.log('***SINGLE RESOURCE DELETE****', req.params.id);
-        if(err) console.log(err);
-        res.json(data);
-      });
+      if(user.sess.email !== undefined){
+        Links.deleteOne(req.params.id, function(err,data){
+          console.log('***SINGLE RESOURCE DELETE****', req.params.id);
+          if(err) console.log(err);
+          res.json(data);
+        });
+      } else {
+        res.redirect("http://localhost:3000/login")
+      }
     }
 };

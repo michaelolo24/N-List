@@ -4,8 +4,8 @@ var Users = {
 
   // ****SIGN IN HELPER ****
   signIn: function (params, callback) {
-    var data = [params.email, params.password];
-    var query = 'SELECT * FROM users WHERE email=? AND password=? LIMIT 1';
+    var data = [params.email];
+    var query = 'SELECT * FROM users WHERE email=? LIMIT 1';
     db.query(query, data, function(err, results) {
       callback(err, results);
     });
