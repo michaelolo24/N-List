@@ -51,8 +51,11 @@ app.factory('checkUser', function($http, $window) {
     .success(function(data) {
       checkUser.currUser = data[0];
     }).error(function(res, status){
-      if(status === 401){
-        $window.location.href="/login";
+      if(window.location.href !== 'http://localhost:3000/#/home'){
+        if(status === 401){
+          console.log(window.location.href);
+          $window.location.href="/login";
+        }
       }
     });
   };

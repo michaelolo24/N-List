@@ -4,7 +4,6 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
 
   $scope.userUpdate = checkUser.currUser;
 
-  console.log("***checkUser****",$scope.userUpdate);
 
 
   //Reroute user if not logged in;
@@ -50,9 +49,5 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
       console.log(res);
     });
   };
-
-  $scope.signout = function(){
-    checkUser.signout();
-  }
 
 }])
