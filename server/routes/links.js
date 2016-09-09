@@ -1,10 +1,13 @@
-//each callback below is routed to helper functions that preform the actual querying on the database
+var Links =  require("../../db/controller/links-helpers.js");
+
+var users = require("./user");
+//each callback below is routed to helper s that preform the actual querying on the database
 
 //our team is so strong!!
 
 //API ROUTES
 
-/* All resources below use the Links helper functions
+/* All resources below use the Links helper s
 /resources
   post -> posts one resource : uses postOne helper
   get -> gets all resources : uses getAll helper
@@ -19,9 +22,9 @@ module.exports= {};
 
 module.exports.resourses = {
 // login here
-  postOne: function(req, res){
-    if(users.sess.email !== undefined){
-      Links.postOne(req.body,function(err,data){ //Post one resource into resource database
+  postOne: (req, res)=>{
+    if(users.sess !== undefined){
+      Links.postOne(req.body, (err,data)=>{ //Post one resource into resource database
         if(err) console.log(err);
         res.json(data);
       });
@@ -30,19 +33,19 @@ module.exports.resourses = {
     }
   },
 
-  getAll: function(req, res){
+  getAll: (req, res)=>{
       // !req.session.active ? res.redirect('/login') :
-      Links.getAll(function(err,data){
+      Links.getAll((err,data)=>{
         if(err) console.log(err);
         res.json(data);
       });
     },
 // login here
-  updateOne: function(req, res){
+  updateOne: (req, res)=>{
 
       // !req.session.active ? res.redirect('/login') :
       if(user.sess.email !== undefined){
-        Links.updateOne(req.body, function(err,data){
+        Links.updateOne(req.body, (err,data)=>{
           if(err) console.log(err);
           res.json(data);
         });
@@ -59,18 +62,18 @@ module.exports.resourses = {
 
 module.exports.resourcesID = {
 
-  getOne: function(req, res){
+  getOne: (req, res)=>{
       // !req.session.active ? res.redirect('/login') :
-      Links.getOne(req.params.id, function(err,data){
+      Links.getOne(req.params.id, (err,data)=>{
         if(err) console.log(err);
         res.json(data);
       });
     },
 // login here
-  deleteOne: function(req, res){
+  deleteOne: (req, res)=>{
       // !req.session.active ? res.redirect('/login') :
       if(user.sess.email !== undefined){
-        Links.deleteOne(req.params.id, function(err,data){
+        Links.deleteOne(req.params.id, (err,data)=>{
           console.log('***SINGLE RESOURCE DELETE****', req.params.id);
           if(err) console.log(err);
           res.json(data);
