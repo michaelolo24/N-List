@@ -19,18 +19,27 @@ app.factory('links', function($http) {
         n.getAll();
       });
   };
+  n.touched = false;
 
   n.upvote = function(post) {
-    post.likes += 1;
+    if(!n.touched){
+      post.likes += 1;
+      n.touched = true;
+    }
     return $http.put('/resources', post)
-      .success(function(data) {
-      });
+    .success(function(data) {
+    });
   };
 
+  n.dTouched = false;
+  
   n.downvote = function(post) {
+    if(!n.dTouched){
+      post.dislikes += 1;
+      n.dTouched = true;
+    }
     return $http.put('/resources', post)
       .success(function(data) {
-        post.dislikes += 1;
       });
   };
 
