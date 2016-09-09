@@ -17,8 +17,7 @@ module.exports.signIn = (req, res)=>{
         sess = req.session;
         sess.email = data[0].email;
         sess.user = data[0].id;
-        module.exports.sess = sess; //session variable to pass in session information to
-        res.redirect('http://localhost:3000/');
+        module.exports.sess = sess;
       }else{
         res.status(401).send("That email and/or password was not found");
       }
@@ -51,7 +50,7 @@ module.exports.signUp = (req, res)=>{
           sess = req.session;
           sess.email = req.body.email;
           sess.user = data.insertId;
-          module.exports.sess = sess; //session variable to pass in session information to
+          module.exports.sess = sess;
           console.log(sess);
           res.redirect('http://localhost:3000/');
         });
@@ -71,7 +70,7 @@ module.exports.getOneUser = (req, res)=>{
       res.json(data);
     });
   } else {
-    res.redirect('http://localhost:3000/login');
+    res.status(401).send("That email and/or password was not found");
   }
 };
 

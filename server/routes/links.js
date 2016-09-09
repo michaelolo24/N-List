@@ -44,7 +44,7 @@ module.exports.resourses = {
   updateOne: (req, res)=>{
 
       // !req.session.active ? res.redirect('/login') :
-      if(user.sess.email !== undefined){
+      if(users.sess.email !== undefined){
         Links.updateOne(req.body, (err,data)=>{
           if(err) console.log(err);
           res.json(data);
@@ -68,7 +68,7 @@ module.exports.resourcesID = {
 // login here
   deleteOne: (req, res)=>{
       // !req.session.active ? res.redirect('/login') :
-      if(user.sess.email !== undefined){
+      if(users.sess.email !== undefined){
         Links.deleteOne(req.params.id, (err,data)=>{
           if(err) console.log(err);
           res.json(data);
