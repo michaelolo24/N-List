@@ -49,7 +49,6 @@ module.exports.signUp = (req, res)=>{
 
         Users.signUp(req.body, (err,data)=>{
           if(err) console.log(err);
-          console.log(data);
           sess = req.session;
           sess.email = req.body.email;
           sess.user = data.insertId;

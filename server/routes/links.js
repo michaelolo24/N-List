@@ -42,13 +42,16 @@ module.exports.resourses = {
     },
 // login here
   updateOne: (req, res)=>{
-
+      // console.log("***REQUEST BODY*** ", req.body);
       // !req.session.active ? res.redirect('/login') :
       if(users.sess.email !== undefined){
+
+        // Updates resources table and links table
         Links.updateOne(req.body, (err,data)=>{
           if(err) console.log(err);
           res.json(data);
         });
+
       } else {
         res.redirect("http://localhost:3000/login")
       }

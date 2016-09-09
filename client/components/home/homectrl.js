@@ -1,15 +1,21 @@
 var app = angular.module('nList.home', []);
 
-app.controller('homeCtrl',function($scope, links) {
+app.controller('homeCtrl',function($scope, links, checkUser) {
+  var user;
+  checkUser.userStatus().success(function(data){
+    user = data[0];
+  });
+
   $scope.posts = links.links; //Array of all links from database
   console.log($scope.posts);
 
   $scope.incrementLike = function(post) {
-    console.log(post);
-    links.upvote(post);
+    post.uid = user.id;
+    links.upvote(post); //passing in user id, so a vote can be logged in user_vote table, to prevent dupe voting
   };
 
   $scope.incrementDislike = function(post) {
+    post.uid = user.id;
     links.downvote(post);
   };
 
