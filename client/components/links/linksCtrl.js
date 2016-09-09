@@ -2,7 +2,7 @@ var app = angular.module('nList.links', []);
 
 app.controller('linksCtrl',function($scope, links, checkUser) {
   $scope.posts = links.links;
-  console.log($scope.posts)
+  console.log($scope.posts);
 
   $scope.incrementLike = function(post) {
     console.log(post);
@@ -36,10 +36,6 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
     $scope[type+'Filter'] = {};
     $scope[type+'Filter'][type] = value;
   };
-
-
-
-
 
 
 //Selected Options for type, language & topics==

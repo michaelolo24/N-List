@@ -12,7 +12,7 @@ var sess;
 module.exports.signIn = (req, res)=>{
 // redirect to signup when user does not exist
   Users.signIn(req.body, (err,data)=>{
-    bcrypt.compare(req.body.password, data[0].password, (err, result)=>{
+    bcrypt.compare(req.body.password, data[0].password, (err, result) =>  {
       if(result){
         sess = req.session;
         sess.email = data[0].email;
@@ -24,7 +24,7 @@ module.exports.signIn = (req, res)=>{
       }
     });
   });
-}
+};
 
 
 //SIGN UP USERS AND REGISTER SESSION
@@ -65,18 +65,13 @@ module.exports.signUp = (req, res)=>{
 
 module.exports.getOneUser = (req, res)=>{
   //verify user is currently signed in
-<<<<<<< HEAD
-  if(sess !== undefined){
-    Users.getOne(sess.user, function(err,data){
-=======
   if(sess.user !== undefined){
     Users.getOne(sess.user, (err,data)=>{
->>>>>>> da3c85da23167e5ac419c869b93d213159c3e187
       if(err) console.log(err);
       res.json(data);
     });
   } else {
-    res.status(401).send("Must be signed in");
+    res.redirect('http://localhost:3000/login');
   }
 };
 
@@ -101,7 +96,5 @@ module.exports.deleteOne = (req, res)=>{
 module.exports.logout = (req, res)=>{
   sess = undefined;
   req.session.destroy();
-  console.log("I'm signed out!!");
-  console.log(req.session);
   res.status(200).send("request processed");
   };

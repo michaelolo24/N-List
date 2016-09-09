@@ -41,6 +41,6 @@ angular.module('nList', ['nList.services','nList.main','ui.router', 'nList.links
             return checkUser.userStatus();
           }]
         }
-    })
+    });
 
 });

@@ -4,5 +4,5 @@ app.controller('MainController', ['$scope', 'checkUser', function($scope, checkU
   checkUser.userStatus();
   $scope.signout = function(){
     checkUser.signout();
-  }
+  };
 }]);
