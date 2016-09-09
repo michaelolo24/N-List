@@ -3,7 +3,7 @@ const multer = require('multer');
 module.exports = {};
 
 const storage = multer.diskStorage({
-        destination: (request, file, callback)=> callback(null, './uploads/'),
+        destination: (request, file, callback)=> callback(null, './client/uploads/'),
         filename: (request, file, callback)=> callback(null, file.originalname)
     });
 

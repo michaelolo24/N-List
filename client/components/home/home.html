@@ -1,45 +1,38 @@
 <div> <!--View Resources-->
-  <h2>Resources</h2>
-
-    <div>
-    <button ng-click="languageFilter = {name: 'Javascript'}">Javascript</button>
-    <button ng-click="languageFilter = {name: 'C++'}">C++</button>
-    <button ng-click="languageFilter = {name: 'Java '}">Java</button>
-    <button ng-click="languageFilter = {name: 'C#'}">C#</button>
-    <button ng-click="languageFilter = {name: 'Python'}">Python</button>
-    <button ng-click="languageFilter = {name: 'Ruby/Rails'}">Ruby/Rails</button>
-    <!-- <button ng-repeat="name in data.languageOptions" ng-click="setFilter('name', name.label);">{{name.label}}</button> -->
-    <button ng-click="languageFilter = {}">Clear Filter</button>
+   <img class="homepage_logo" src="http://localhost:3000/style/images/n-list-full_500.png">
+    <div class="filter_buttons_container">
+        <button class="filter_button" ng-click="languageFilter = {name: 'Javascript'}">Javascript</button>
+        <button class="filter_button" ng-click="languageFilter = {name: 'C++'}">C++</button>
+        <button class="filter_button" ng-click="languageFilter = {name: 'Java '}">Java</button>
+        <button class="filter_button" ng-click="languageFilter = {name: 'C#'}">C#</button>
+        <button class="filter_button" ng-click="languageFilter = {name: 'Python'}">Python</button>
+        <button class="filter_button" ng-click="languageFilter = {name: 'Ruby/Rails'}">Ruby/Rails</button>
+        <!-- <button ng-repeat="name in data.languageOptions" ng-click="setFilter('name', name.label);">{{name.label}}</button> -->
+        <button class="filter_button" ng-click="languageFilter = {}">Clear Selection</button>
+        <br />
+       <!--  <div class="filter_buttons_secRow">
+            <button class="filter_button" ng-repeat="topic in data.topics" ng-click="setFilter('topic', topic.label);">{{topic.label}}</button>
+            <button class="filter_button" ng-click="topicFilter ={}">Clear Filter</button>
+        </div> -->
     </div>
 
-    <div>
-    <button ng-repeat="topic in data.topics" ng-click="setFilter('topic', topic.label);">{{topic.label}}</button>
-    <button ng-click="topicFilter ={}">Clear Filter</button>
+    <div class="search_container"><input type="text" id="search_input" placeholder="Search Resources" ng-model="search" /><i class="fa fa-search fa-2x" aria-hidden="true"></i></div>
+
+    <div id="resource_list_container">
+        <div class="resource_item" ng-repeat="post in posts | orderBy: 'dislikes - likes' | filter: languageFilter | filter:topicFilter | filter:search">
+            <div class="resource_title"><a ng-href={{post.link}}>{{post.title}}</a></div>
+            <div class="resource_type">
+                <span ng-if="post.type === 'Video'"><i class="fa fa-video-camera" aria-hidden="true"></i></span>
+                <span ng-if="post.type === 'Forum'" ><i class="fa fa-comments-o" aria-hidden="true"></i></span>
+                <span ng-if="post.type === 'Article'" ><i class="fa fa-file-text-o" aria-hidden="true"></i></span>
+            </div>
+            <div class="resource_desc">{{post.keywords}}</div>
+            <div class="resource_lang">{{post.name}}</div>
+            <div class="resource_sub_topic"><span ng-if="post.topic === 'Database'"><i class="fa fa-database" aria-hidden="true"></i></span> {{post.topic}}</div>
+            <div class="like_dislike">
+                <div class="resource_likes" ng-click="incrementLike(post)">{{post.likes}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
+                <div class="resource_dislikes" ng-click="incrementDislike(post)">{{post.dislikes}} <i class="fa fa-thumbs-down" aria-hidden="true"></i></div>
+            </div>
+        </div>
     </div>
-    <hr>
-    <input type="text" placeholder="Search Resources" ng-model="search" />
-
-    <form>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Language</th>
-            <th>Topic</th>
-            <th>Votes</th>
-
-          <tr ng-repeat="post in posts | orderBy: 'dislikes - likes' | filter: languageFilter | filter:topicFilter | filter:search">
-            <td ><a ng-href={{post.link}}>{{post.title}}</a></td>
-            <td><span style = "margin-left:20px">{{post.keywords}}</span></td>
-            <td><span style = "margin-left:20px">{{post.type}}</span></td>
-            <td><span style = "margin-left:20px">{{post.name}}</span></td>
-            <td><span style = "margin-left:20px">{{post.topic}}</span></td>
-            <td><span ng-click="incrementLike(post)" style = "margin-left:20px">{{post.likes}} Likes</span></td>
-            <td><span ng-click="incrementDislike(post)" style = "margin-left:20px">{{post.dislikes}} Dislikes</span></td>
-          </tr>
-        </thead>
-      </table>
-    </form>
 </div>

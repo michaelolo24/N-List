@@ -1,4 +1,4 @@
-var app = angular.module('nList.services', [])
+var app = angular.module('nList.services', []);
 
 app.factory('links', function($http) {
   var n = {
@@ -43,7 +43,7 @@ app.factory('links', function($http) {
 
 app.factory('checkUser', function($http, $window) {
     var checkUser = {
-      currUser: {}
+      currUser: false
     };
 
   checkUser.userStatus = function () {
