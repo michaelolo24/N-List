@@ -1,13 +1,7 @@
-// var express = require('express');
-// var bodyParser = require('body-parser');
-// var userRouter = express.Router();
-// var app = require('../server');
-var Users = require('../../db/controller/users-helpers.js');
-var hashHelpers = require("../helpers/hashHelpers");
-var Promise = require("bluebird");
-var bcrypt = require("bcrypt-nodejs");
-// app.use(bodyParser.json());
-// app.set('trust proxy', 1); // trust first proxy
+const Users = require('../../db/controller/users-helpers.js');
+const hashHelpers = require("../helpers/hashHelpers");
+const Promise = require("bluebird");
+const bcrypt = require("bcrypt-nodejs");
 
 
 
@@ -31,8 +25,6 @@ module.exports.signIn = (req, res)=>{
     });
   });
 }
-
-
 
 
 //SIGN UP USERS AND REGISTER SESSION

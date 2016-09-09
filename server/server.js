@@ -1,14 +1,14 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var app = express();
-var Users = require('../db/controller/users-helpers');
-var links = require('./routes/links');
-var user = require('./routes/user');
-var photos = require('./routes/photos');
+const express = require('express');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const app = express();
+const Users = require('../db/controller/users-helpers');
+const links = require('./routes/links');
+const user = require('./routes/user');
+const photos = require('./routes/photos');
 
 // connection
-var db = require('../db/dbConnect/connection.js');
+const db = require('../db/dbConnect/connection.js');
 
 // Serve up client folder as well as login and signup pages
 
@@ -39,7 +39,6 @@ app.delete('/updateUser', user.deleteOne);
 app.post('/logout', user.logout);
 //Routing for users and links requests
 
-// app.use('/api', linksRouter);
 
 app.post('/resources', links.resourses.postOne);
 
@@ -59,12 +58,11 @@ app.delete('/resources/:id', links.resourcesID.deleteOne);
 //               imageU                 //
 //                                      //
 //////////////////////////////////////////
-// var linksRouter = express.Router();
 
 app.post('/upload', photos.uploader);
 
 app.use('/uploads',express.static(__dirname + '/uploads'));
-// image upload end
+
 
 app.listen(process.env.PORT || 3000);
 console.log("Server is doing big things on port 3000");

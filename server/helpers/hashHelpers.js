@@ -1,5 +1,5 @@
-var bcrypt = require("bcrypt-nodejs");
-var Promise = require("bluebird");
+const bcrypt = require("bcrypt-nodejs");
+const Promise = require("bluebird");
 
 module.exports = {};
 

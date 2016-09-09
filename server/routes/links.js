@@ -1,6 +1,5 @@
-var Links =  require("../../db/controller/links-helpers.js");
-
-var users = require("./user");
+const Links =  require("../../db/controller/links-helpers.js");
+const users = require("./user");
 //each callback below is routed to helper s that preform the actual querying on the database
 
 //our team is so strong!!
@@ -56,10 +55,6 @@ module.exports.resourses = {
 };
 // SINGLE RESOURCE UPDATES (GET, PUT(UPDATE), DELETE);
 
-
-
-
-
 module.exports.resourcesID = {
 
   getOne: (req, res)=>{
@@ -74,7 +69,6 @@ module.exports.resourcesID = {
       // !req.session.active ? res.redirect('/login') :
       if(user.sess.email !== undefined){
         Links.deleteOne(req.params.id, (err,data)=>{
-          console.log('***SINGLE RESOURCE DELETE****', req.params.id);
           if(err) console.log(err);
           res.json(data);
         });
