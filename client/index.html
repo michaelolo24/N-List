@@ -5,7 +5,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <title>Captain Planet to the Rescue</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800|Source+Sans+Pro" rel="stylesheet"><!-- FONTS FROM GOOGLE -->
+  <script src="https://use.fontawesome.com/02c44cd58a.js"></script> <!-- FONT AWESOME ICONS -->
   <link rel="stylesheet" type="text/css" href="style/style.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="apple-mobile-web-app-title" content="hello">
+  <meta name="application-name" content="hello">
+  <meta name="theme-color" content="#ffffff">
+
 
   <script type="text/javascript" src="lib/angular/angular.js"></script>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
@@ -26,10 +37,20 @@
 
     <ul ng-controller="MainController" class="appHeaderNav">
       <li class="logo"><a ui-sref='home'><img class="topbar_logo" src="http://localhost:3000/style/images/logo_500.png"></a></li>
-      <li  class="resources"><a ui-sref='links'>Resources</a></li>
-      <li class="profile"><a href='/login'>Login</a> | <a href='/signup'>Sign Up</a></li>
-      <li class="profile"><a ui-sref='profile'>Edit Pofile</a></li>
-      <li ng-click="signout()"><a>Sign Out</a></li>
+      <li ng-if="headerUser" class="rezzy_button"><a ui-sref='links'>Rezzy</a></li> <!-- have to be logged in to view -->
+      <li ng-if="!headerUser" class="entryButtons">
+        <a href='/login'>Login</a>
+        <a href='/signup'>Sign Up</a>
+      </li>
+      <a href='profile'>
+        <li ng-if="headerUser" class="profileMenu"> <!-- have to be logged in to view -->
+          {{headerUser.name}}
+          <div class="userMenu">
+            <a ui-sref='profile'><div class="userMenu_item">Edit Pofile</div></a>
+            <a ng-click="signout()"><div class="userMenu_item">Sign Out</div></a>
+          </div>
+        </li>
+      </a>
     </ul>
   </header>
 

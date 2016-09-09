@@ -1,30 +1,48 @@
 <div ng-controller="ProfileController as up">
-  <h1>Update Profile</h1>
+  <div class="profile_photo_container">
+    <img class="profile_photo" ng-if="!userUpdate.profile_photo" ng-src="{{userUpdate.photo_path}}">
+    <!-- <img class="profile_photo" ng-if="!userUpdate.profile_photo" src="/style/images/profile_woman.png"> -->
+  </div>
+    <button class="edit_profile_button" ng-click="show_edit_profile_container = !show_edit_profile_container">Edit Profile</button>
+  <div class="profile_information_container">
+    <div class="profile_name">{{ userUpdate.name }}</div>
+    <div class="profile_email">{{ userUpdate.email }}</div>
+  </div>
+  <div class="profile_language_container">
+    <h2> Favorite Languages </h2>
+    <div ng-if="userUpdate.languages" class="profile_languages">{{ userUpdate.languages }}</div>
+    <div ng-if="!userUpdate.languages" class="profile_languages">Edit your profile and add your favorite languages</div>
+  </div>
 
-
-  <form method="post" >
-    <input class="input" ng-model="userUpdate.name" name="name" type="text" value="{{userUpdate.name}}">
-    <input class="input" ng-model="userUpdate.email" name="email" type="email" value="{{userUpdate.email}}">
-    <input class="input" ng-model="userUpdate.password" name="password" type="text" value="{{userUpdate.password}}">
-  </form>
-    <form   name="up.upload_form">
-      <input
-          type="file"
-          ngf-select
-          ng-model="up.file"
-          name="file"
-          id="file"
-          ngf-pattern="'image/*'"
-          accept="image/*"
-          ngf-max-size="20MB"
-          />
-
-      <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
-
-
-
-      <button ng-click="up.submit(); editProfile()">Submit</button>
+  <div class="edit_profile_container" ng-if="show_edit_profile_container">
+    <h2> Edit Profile </h2>
+    <form method="post">
+      <label> Name </label>
+      <input class="input" ng-model="userUpdate.name" name="name" type="text" value="{{userUpdate.name}}">
+      <label> Email </label>
+      <input class="input" ng-model="userUpdate.email" name="email" type="email" value="{{userUpdate.email}}">
+      <label> Password </label>
+      <input class="input" ng-model="userUpdate.password" name="password" type="password" value="{{userUpdate.password}}">
     </form>
+      <form   name="up.upload_form">
+        <input
+            type="file"
+            ngf-select
+            ng-model="up.file"
+            name="file"
+            id="file"
+            ngf-pattern="'image/*'"
+            accept="image/*"
+            ngf-max-size="20MB"
+            />
+
+        <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+
+
+        <br />
+        <button class="submit_profile_button" ng-click="up.submit(); editProfile()">Submit</button>
+      </form>
+    </div>
   </div>
 
 

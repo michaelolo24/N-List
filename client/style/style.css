@@ -70,9 +70,9 @@ footer{
   text-align: center;
   font-size: 1em;
   display: block;
-  position: absolute;
+/*   position: absolute; */
+  margin-top: 5em;
   bottom: 0;
-  margin:0 auto;
   width: 100%;
   padding-bottom: 1em;
 }
@@ -135,7 +135,7 @@ footer ul .copyright{
   padding:0em .5em;
   margin: 1em 0em;
   border:thin solid #CCC;
-  outline-color: #099;
+  outline-color: rgba(16,91,99, 1);
 }
 
 .verification_container button{
@@ -173,9 +173,21 @@ footer ul .copyright{
 .appHeader {
   float:left;
   width:100%;
-  background-color: rgba(189,73,50,1);
-  border-bottom:#333 dashed thick;
+  background-color: rgba(189,73,50, 1);
+  /* border-bottom:#333 solid thin; */
+  border-bottom: none;
+  margin-bottom:2em;
 }
+
+.appHeader a{
+  color:#FFF;
+}
+
+.appHeader a:hover{
+  color:rgba(41,255,255,1);
+  cursor: pointer;
+}
+
 
 .appHeaderNav{
   padding:.5em;
@@ -193,21 +205,361 @@ footer ul .copyright{
 .topbar_logo{
   width: 62.5px;
 }
+.rezzy_button a{
+    margin: 1em;
+    padding:.5em 1em;
+    border-radius:.2em;
+    outline:none;
+    color: #fff;
+    background-color: rgba(232,167,58, 1);
+    text-shadow: -.03em .03em #417cb8;
+    border: none;
+}
 
-.profile{
+  .rezzy_button a:hover{
+    transition: background-color .2s;
+    color:#fff !important;
+    background-color: rgba(222,160,55, 1);
+    text-shadow: -.03em .03em #27496d;
+  }
+
+  .rezzy_button a:active {
+    transition: background-color .2s;
+    color:#fff !important;
+    background-color: rgba(212,153,52, 1);
+    text-shadow: -.01em .01em #193047;
+  }
+
+
+.entryButtons{
+  float: right !important;
+}
+  .entryButtons a{
+    margin: 1em;
+    padding:.5em 1em;
+    border-radius:.2em;
+    outline:none;
+    color: #fff;
+    background-color: rgba(33,184,201, 1);
+    text-shadow: -.03em .03em #417cb8;
+    border: none;
+  }
+
+  .entryButtons a:hover {
+    transition: background-color .2s;
+    color:#fff !important;
+    background-color: rgba(30,170,186, 1);
+    text-shadow: -.03em .03em #27496d;
+  }
+
+  .entryButtons a:active {
+    transition: background-color .2s;
+    color:#fff !important;
+    background-color: rgba(27,152,166, 1);
+    text-shadow: -.01em .01em #193047;
+  }
+
+.profileMenu{
   float:right !important;
+  position: relative;
+  display: inline-block;
 }
 
-.appHeader a{
-  color:#FFF;
+.profileMenu:hover{
+   border-radius:.2em .2em 0em 0em;
+   background-color:#853323;
+   border:thin solid #CCC;
+   border-bottom:none;
+/*    box-shadow: inset 0em 0em 12em .7em #853323; */
+   box-shadow: .3em 0em 1em #333;
+   border:none;
 }
 
-.appHeader a:hover{
-  color:rgba(41,255,255,1);
-  cursor: pointer;
+.userMenu {
+    display: none;
+    position: absolute;
+    min-width: 100%;
+    margin: 0 -1em; /* offset profileMenu offset */
+    background:#999;
+    box-shadow: .4em 0em 1em #666;
+}
+
+.userMenu_item{
+  color: #333 !important;
+  background-color:#fff;
+/*   border:thin solid #CCC; */
+  border-top:none;
+  padding-left: .5em;
+}
+
+.userMenu_item:hover{
+  transition:background-color .2s;
+  color:#fff !important;
+  background: rgba(41,233,255, .8);
+}
+.profileMenu a:hover{
+  color: #fff !important;
+}
+
+.profileMenu:hover .userMenu {
+    display: block;
 }
 
 
 #main_view{
   clear:both;
+  min-width:400px;
+  margin:0em 1em;
 }
+
+/**************** HOME PAGE RESOURCES DESIGNS SETTINGS *****************/
+.fa{
+  color: rgba(189,73,50, 1);
+  font-size:1.1em;
+}
+.homepage_logo{
+  display: block;
+  margin: 0 auto;
+  max-width:200px;
+  min-width:180px;
+  width: 25%;
+  padding: 0;
+
+}
+.search_container{
+  text-align: center;
+}
+#search_input {
+  display:inline-block;
+  position: relative;
+  margin:0 auto;
+  max-width:32em;
+  min-width:20em;
+  width:90%;
+  height:2.9em;
+  margin-bottom:2em;
+  padding:0em 2.5em 0em .5em;
+  font-size:1.1em;
+  outline-color: rgba(35,201,219, 1);
+}
+.fa-search{
+  position:absolute;
+  line-height: 3em;
+  z-index:1;
+  font-size:1.5em;
+  margin:-.5em 0em 0em -1.5em;
+  color: rgba(35,201,219, 1) !important;
+}
+  .fa-search:hover{
+    cursor: pointer;
+  }
+  .filter_buttons_container {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .filter_button{
+    text-align: center;
+    background:none;
+    border: thin solid #CCC;
+    border-radius: .2em;
+    color: #667;
+    outline: none;
+    font-size: 1em;
+    margin:.5em;
+  }
+  .filter_button:hover{
+    transition: color .2s, background-color .2s;
+    text-align: center;
+    color:#FFF;
+    background: rgba(35,201,219, 1);
+    border: thin solid rgba(35,201,219, 1);
+    cursor:pointer;
+  }
+#resource_list_container {
+  display: block;
+  margin:0 auto;
+  max-width:700px;
+  min-width:400px;
+  width:100%;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.resource_item {
+  border-radius:.2em;
+  background-color:#FDFDFD;
+  max-width:50em;
+  margin:1em 0em;
+  padding: 1em
+}
+
+  .resource_item:hover {
+    border-radius:.2em;
+    background-color:rgba(31,233,255,.3);
+    cursor:pointer;
+  }
+
+.resource_title a{
+  text-align:left;
+  font-weight:600;
+  color: #333 !important;
+  font-size: 2.427em;
+  display:inline;
+  float:left;
+
+}
+.resource_type { /* icons */
+  margin: .25em;
+  display:inline;
+  float:right;
+
+}
+.resource_desc {
+  font-size: 1.1em;
+  padding: .25em .25em .25em .5em;
+  color: #43464C;
+  clear:both;
+
+}
+
+
+.resource_lang {
+  padding: .25em .25em .25em .5em;
+  font-weight:700;
+
+}
+
+.resource_sub_topic {
+  padding: .25em .25em .25em .5em;
+}
+.like_dislike{
+  text-align:right;
+}
+
+.resource_likes {
+  padding: .25em .25em .25em .5em;
+  display:inline;
+}
+  .resource_likes:hover {
+    cursor: pointer;
+  }
+
+
+.resource_dislikes {
+  padding: .25em .25em .25em .5em;
+  display:inline;
+}
+  .resource_dislikes:hover {
+    cursor: pointer;
+  }
+/**************** PROFILE PAGE RESOURCES DESIGNS SETTINGS *****************/
+.profile_photo_container{
+  display: block;
+  float:left;
+}
+  .profile_photo{
+    width:250px;
+
+  }
+.profile_information_container{
+  float:left;
+  font-size:1.618em;
+  font-weight:600;
+  color:#667;
+  margin-left:1em;
+
+}
+  .profile_name{
+    margin-bottom:1em;
+  }
+  .profile_email{
+    font-size:.809em;
+  }
+.profile_language_container{
+  clear:both;
+  text-align:center;
+
+}
+ .profile_language_container h2, .edit_profile_container h2{
+    clear:both;
+    font-size:1.618em;
+    font-weight:600;
+    color:#667;
+    padding:2em 0em 1em 0em;
+
+  }
+  .profile_languages{
+
+  }
+
+.edit_profile_button{
+  float:right;
+    text-align: center;
+    background:none;
+    border: thin solid #CCC;
+    border-radius: .2em;
+    color: #667;
+    outline: none;
+    font-size: 1.1em;
+    padding:1em;
+    margin:.5em;
+
+}
+
+.edit_profile_button:hover{
+    transition: color .2s, background-color .2s;
+    text-align: center;
+    color:#FFF;
+    background: rgba(35,201,219, 1);
+    border: thin solid rgba(35,201,219, 1);
+    cursor:pointer;
+  }
+
+.edit_profile_container{
+  margin-top:3em;
+  text-align:center;
+}
+
+.edit_profile_container form{
+  display:block;
+  margin:2em auto 3em auto;
+  width:50%;
+  min-width:400px;
+  max-width:600px;
+  text-align:center;
+}
+
+
+.edit_profile_container .input{
+  display:block;
+  margin:1em auto;
+  width:32em;
+  padding:0em .5em 0em .5em;
+  font-size:1em;
+  color:#666;
+  border: thin solid #999;
+  border-radius:.2em;
+  height:4em;
+  outline-color: rgba(35,201,219, 1);
+}
+
+.submit_profile_button{
+    float:right;
+    text-align: center;
+    background:none;
+    border: thin solid #CCC;
+    border-radius: .2em;
+    color: #667;
+    padding:.5em;
+    outline: none;
+    font-size: 1em;
+    margin:.5em;
+  }
+.submit_profile_button:hover{
+    transition: color .2s, background-color .2s;
+    text-align: center;
+    color:#FFF;
+    background: rgba(35,201,219, 1);
+    border: thin solid rgba(35,201,219, 1);
+    cursor:pointer;
+  }

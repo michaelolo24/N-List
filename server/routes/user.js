@@ -7,19 +7,24 @@ module.exports = {};
 
 var sess;
 // lOGIN USERS AND REGISTER SESSION
-module.exports.signIn = (req, res)=>{
+module.exports.signIn = (req, res) => {
 // redirect to signup when user does not exist
-  Users.signIn(req.body, (err,data)=>{
-    bcrypt.compare(req.body.password, data[0].password, (err, result) =>  {
-      if(result){
-        sess = req.session;
-        sess.email = data[0].email;
-        sess.user = data[0].id;
-        module.exports.sess = sess;
-      }else{
-        res.status(401).send("That email and/or password was not found");
-      }
-    });
+  Users.signIn(req.body, (err,data) => {
+    if(data.length > 0) {
+      bcrypt.compare(req.body.password, data[0].password, (err, result) =>  {
+        if(result){
+          sess = req.session;
+          sess.email = data[0].email;
+          sess.user = data[0].id;
+          module.exports.sess = sess;
+          res.status(202).send();
+        }else{
+          res.status(401).send("That email and/or password was not found");
+        }
+      });
+    } else {
+      res.status(401).send("That email and/or password was not found");
+    }
   });
 };
 

@@ -36,7 +36,7 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
     };
     $http.put('/updateUser', data).success(function(res){
       //place photo back up here
-      load();
+      window.location.href = window.location.href;
       console.log(res);
     });
   };
