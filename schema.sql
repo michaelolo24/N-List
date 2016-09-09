@@ -29,6 +29,20 @@ CREATE TABLE `users` (
 );
 
 -- ---
+-- Table 'users'
+--
+-- ---
+
+DROP TABLE IF EXISTS `user_voted`;
+
+CREATE TABLE `user_voted` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_users` INTEGER UNSIGNED DEFAULT NULL,
+  `id_resources` INTEGER UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
 -- Table 'resources'
 --
 -- ---
@@ -90,12 +104,16 @@ CREATE TABLE `sub_topic` (
 ALTER TABLE `resources` ADD FOREIGN KEY (id_languages) REFERENCES `languages` (`id`);
 ALTER TABLE `resources` ADD FOREIGN KEY (id_resource_type) REFERENCES `resource_type` (`id`);
 ALTER TABLE `resources` ADD FOREIGN KEY (id_sub_topic) REFERENCES `sub_topic` (`id`);
+ALTER TABLE `user_voted` ADD FOREIGN KEY (id_users) REFERENCES `users` (`id`);
+ALTER TABLE `user_voted` ADD FOREIGN KEY (id_resources) REFERENCES `resources` (`id`);
+
 
 -- ---
 -- Table Properties
 -- ---
 
 -- ALTER TABLE `users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `users_voted` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `resources` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `languages` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `resource_type` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
