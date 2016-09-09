@@ -259,6 +259,9 @@ footer ul .copyright{
     text-shadow: -.01em .01em #193047;
   }
 
+.header_photo{
+  width: 5%;
+}
 .profileMenu{
   float:right !important;
   position: relative;

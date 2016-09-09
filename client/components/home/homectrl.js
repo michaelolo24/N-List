@@ -2,7 +2,7 @@ var app = angular.module('nList.home', []);
 
 app.controller('homeCtrl',function($scope, links) {
   $scope.posts = links.links;
-  console.log($scope.posts)
+  console.log($scope.posts);
 
   $scope.incrementLike = function(post) {
     console.log(post);
@@ -34,7 +34,7 @@ app.controller('homeCtrl',function($scope, links) {
   $scope.setFilter = function(type, value) {
     $scope[type+'Filter'] = {};
     $scope[type+'Filter'][type] = value;
-  }
+  };
 
 
 
