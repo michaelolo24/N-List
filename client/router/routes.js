@@ -1,4 +1,4 @@
-angular.module('nList', ['nList.services','nList.main','ui.router', 'nList.links', 'nList.profile'])
+angular.module('nList', ['nList.services', 'nList.home', 'nList.main','ui.router', 'nList.links', 'nList.profile'])
 
 .config(function($stateProvider, $urlRouterProvider){
 
@@ -7,21 +7,14 @@ angular.module('nList', ['nList.services','nList.main','ui.router', 'nList.links
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: 'components/home/home.html'
-
+      templateUrl: 'components/home/home.html',
+      controller: 'homeCtrl',
+      resolve: {
+        linkPromise : ['links', function(links){
+          return links.getAll();
+        }]
+      }
     })
-
-    // .state('links', {
-    //   url:'/links',
-    //   templateUrl: 'components/links/links.html',
-    //   controller: 'linksCtrl',
-    //   resolve: {
-    //     linkPromise : ['links', function(links){
-    //       return links.getAll();
-    //     }]
-    //   }
-    // })
-
     .state('links', {
       url:'/links',
       templateUrl: 'components/links/links.html',
