@@ -64,7 +64,7 @@ module.exports.signUp = (req, res)=>{
 
 module.exports.getOneUser = (req, res)=>{
   //verify user is currently signed in
-  if(sess.user !== undefined){
+  if(sess !== undefined){
     Users.getOne(sess.user, (err,data)=>{
       if(err) console.log(err);
       res.json(data);
