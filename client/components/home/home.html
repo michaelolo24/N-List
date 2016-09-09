@@ -1,3 +1,45 @@
-<div>
-  <h1>This is our Home Page</h1>
+<div> <!--View Resources-->
+  <h2>Resources</h2>
+
+    <div>
+    <button ng-click="languageFilter = {name: 'Javascript'}">Javascript</button>
+    <button ng-click="languageFilter = {name: 'C++'}">C++</button>
+    <button ng-click="languageFilter = {name: 'Java '}">Java</button>
+    <button ng-click="languageFilter = {name: 'C#'}">C#</button>
+    <button ng-click="languageFilter = {name: 'Python'}">Python</button>
+    <button ng-click="languageFilter = {name: 'Ruby/Rails'}">Ruby/Rails</button>
+    <!-- <button ng-repeat="name in data.languageOptions" ng-click="setFilter('name', name.label);">{{name.label}}</button> -->
+    <button ng-click="languageFilter = {}">Clear Filter</button>
+    </div>
+
+    <div>
+    <button ng-repeat="topic in data.topics" ng-click="setFilter('topic', topic.label);">{{topic.label}}</button>
+    <button ng-click="topicFilter ={}">Clear Filter</button>
+    </div>
+    <hr>
+    <input type="text" placeholder="Search Resources" ng-model="search" />
+
+    <form>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Language</th>
+            <th>Topic</th>
+            <th>Votes</th>
+
+          <tr ng-repeat="post in posts | orderBy: 'dislikes - likes' | filter: languageFilter | filter:topicFilter | filter:search">
+            <td ><a ng-href={{post.link}}>{{post.title}}</a></td>
+            <td><span style = "margin-left:20px">{{post.keywords}}</span></td>
+            <td><span style = "margin-left:20px">{{post.type}}</span></td>
+            <td><span style = "margin-left:20px">{{post.name}}</span></td>
+            <td><span style = "margin-left:20px">{{post.topic}}</span></td>
+            <td><span ng-click="incrementLike(post)" style = "margin-left:20px">{{post.likes}} Likes</span></td>
+            <td><span ng-click="incrementDislike(post)" style = "margin-left:20px">{{post.dislikes}} Dislikes</span></td>
+          </tr>
+        </thead>
+      </table>
+    </form>
 </div>
