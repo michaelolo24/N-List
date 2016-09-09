@@ -1,8 +1,8 @@
-var multer = require('multer');
+const multer = require('multer');
 
 module.exports = {};
 
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
         destination: (request, file, callback)=> {
             callback(null, './uploads/');
             // console.log("line 37");
@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
         }
     });
 
-var upload = multer({
+const upload = multer({
                 storage: storage
             }).single('file');
 
