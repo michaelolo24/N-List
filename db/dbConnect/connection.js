@@ -1,6 +1,6 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
-var dbCon = mysql.createConnection({
+const dbCon = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
@@ -22,4 +22,4 @@ dbCon.connect(function(err) {
   console.log('Connected to rezzy database BIG THIngs are COMING');
 });
 
-module.exports = dbCon
+module.exports = dbCon;

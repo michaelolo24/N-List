@@ -13,16 +13,16 @@ var Links = {
       l: languages
       s: subtopics
     */
-    var query = 'SELECT r.title, r.id, r.id_sub_topic, r.id_languages, r.id_resource_type, r.link, r.date_added, r.date_updated, r.keywords, r.likes, r.dislikes, t.type, l.name, s.topic \
+    var query = 'SELECT r.title, r.id, r.id_sub_topic, \
+    r.id_languages, r.id_resource_type, r.link, r.date_added, \
+    r.date_updated, r.keywords, r.likes, r.dislikes,\
+    t.type, l.name, s.topic \
     FROM resources r \
     JOIN resource_type t ON t.id = r.id_resource_type \
     JOIN languages l ON l.id = r.id_languages \
     JOIN sub_topic s ON s.id = r.id_sub_topic \
     ORDER BY date_added DESC';
-    db.query(query, (err, results) =>{
-      console.log(results);
-      callback(err, results);
-    });
+    db.query(query, (err, results) => callback(err, results) );
   },
   // ****POST A RESOURCE****
 
@@ -30,10 +30,11 @@ var Links = {
 
    var data = [params.title, params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
 
-    var query = 'INSERT INTO resources(title, id_languages, id_sub_topic, id_resource_type, link, date_added, keywords, likes, dislikes) value (?,?, ?, ?, ?, NOW(), ?, ?, ?)';
-    db.query(query, data, (err, results) =>{
-      callback(err, results);
-    });
+    var query = 'INSERT INTO resources(title, id_languages,\
+       id_sub_topic, id_resource_type,\
+       link, date_added, keywords,\
+       likes, dislikes) value (?,?, ?, ?, ?, NOW(), ?, ?, ?)';
+    db.query(query, data, (err, results) => callback(err, results) );
   },
 
   // ****GET A RESOURCE-accessed via req.params in url bar****
@@ -41,15 +42,14 @@ var Links = {
   getOne: (linkId, callback) =>{
     var data = [linkId];
 
-    var query = 'SELECT r.id, l.name, t.type, r.sub_topic_id, r.link, r.date_added, r.keywords, r.likes, r.dislikes \
+    var query = 'SELECT r.id, l.name, t.type, r.sub_topic_id, r.link, \
+    r.date_added, r.keywords, r.likes, r.dislikes \
     FROM resources r \
     LEFT OUTER JOIN resource_type t ON (r.id_resource_type = t.id) \
     LEFT OUTER JOIN languages l ON (r.id_languages = l.id) \
     WHERE r.id = ? LIMIT 1';
 
-    db.query(query, data, (err, results) =>{
-      callback(err, results);
-    });
+    db.query(query, data, (err, results) => callback(err, results) );
   },
 
   // ****UPDATE A RESOURCE-accessed via req.params in url bar****
@@ -63,23 +63,16 @@ var Links = {
     var query = 'UPDATE resources r SET likes = ?, dislikes = ? WHERE r.id = '+ params.id;
     console.log(query);
     console.log(data);
-    db.query(query, data, (error, data)=>{
-      callback(error, data);
-    });
+    db.query(query, data, (error, data)=> callback(error, data) );
   },
 
   // ****DELETE A RESOURCE-accessed via req.params in url bar****
 
   deleteOne: (linkId, callback) =>{
     var data = [linkId];
-
-   var query = 'DELETE FROM resources WHERE id=? LIMIT 1';
-    db.query(query, data, (err, results)=>{
-      callback(err, results);
-      console.log("resuts!")
-    });
+    var query = 'DELETE FROM resources WHERE id=? LIMIT 1';
+    db.query(query, data, (err, results) => callback(err, results) );
   }
-
 };
 
 module.exports = Links;

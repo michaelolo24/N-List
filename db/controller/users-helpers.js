@@ -1,6 +1,6 @@
-var db = require('../dbConnect/connection.js');
+const db = require('../dbConnect/connection.js');
 
-var Users = {
+const Users = {
 
   // ****SIGN IN HELPER ****
   signIn:  (params, callback) => {
