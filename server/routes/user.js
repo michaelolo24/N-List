@@ -71,13 +71,13 @@ module.exports.signUp = function(req, res){
 
 module.exports.getOneUser = function(req, res){
   //verify user is currently signed in
-  if(sess.user !== undefined){
+  if(sess !== undefined){
     Users.getOne(sess.user, function(err,data){
       if(err) console.log(err);
       res.json(data);
     });
   } else {
-    res.redirect('http://localhost:3000/login');
+    res.status(401).send("Must be signed in");
   }
 };
 
@@ -98,15 +98,13 @@ module.exports.deleteOne = function(req, res){
   });
 };
 
+//LOGOUT ROUTE
+module.exports.logout = function(req, res){
+  sess = undefined;
+  req.session.destroy();
+  console.log("I'm signed out!!");
+  console.log(req.session);
+  res.status(200).send("request processed");
+  };
 
 module.exports.sess = sess; //session variable to pass in session information to
-
-
-
-//LOGOUT ROUTE
-
-// userRouter.route('/logout')
-// .get(function(req, res){
-//   req.session.destroy();
-//   res.redirect('login');
-// });

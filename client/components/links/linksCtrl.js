@@ -1,6 +1,6 @@
 var app = angular.module('nList.links', []);
 
-app.controller('linksCtrl',function($scope, links) {
+app.controller('linksCtrl',function($scope, links, checkUser) {
   $scope.posts = links.links;
   console.log($scope.posts)
 

@@ -15,6 +15,10 @@
   delete -> deletes one resource : uses deleteOne helper -- needs user id in req.params
 
 */
+var Links =  require("../../db/controller/links-helpers.js");
+var users = require("./user");
+
+
 module.exports= {};
 
 module.exports.resourses = {
