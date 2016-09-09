@@ -12,7 +12,7 @@ var sess;
 module.exports.signIn = (req, res)=>{
 // redirect to signup when user does not exist
   Users.signIn(req.body, (err,data)=>{
-    bcrypt.compare(req.body.password, data[0].password, (err, result)=>{
+    bcrypt.compare(req.body.password, data[0].password, (err, result) =>  {
       if(result){
         sess = req.session;
         sess.email = data[0].email;
@@ -24,7 +24,7 @@ module.exports.signIn = (req, res)=>{
       }
     });
   });
-}
+};
 
 
 //SIGN UP USERS AND REGISTER SESSION

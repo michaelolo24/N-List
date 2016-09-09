@@ -4,16 +4,6 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
 
   $scope.userUpdate = checkUser.currUser;
 
-  console.log("***checkUser****",$scope.userUpdate);
-
-
-  //Reroute user if not logged in;
-  // if($scope.userUpdate === undefined){
-  //   $window.location.href="/login";
-  // }
-  //load();
-
-
   $scope.findPicName = function (){
     var pic = document.getElementById('file').files[0];
     $scope.picName = pic;
@@ -50,9 +40,5 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
       console.log(res);
     });
   };
-
-  $scope.signout = function(){
-    checkUser.signout();
-  }
 
 }])

@@ -1,4 +1,4 @@
-angular.module('nList', ['nList.services','ui.router', 'nList.links', 'nList.profile'])
+angular.module('nList', ['nList.services','nList.main','ui.router', 'nList.links', 'nList.profile'])
 
 .config(function($stateProvider, $urlRouterProvider){
 
@@ -11,17 +11,27 @@ angular.module('nList', ['nList.services','ui.router', 'nList.links', 'nList.pro
 
     })
 
+    // .state('links', {
+    //   url:'/links',
+    //   templateUrl: 'components/links/links.html',
+    //   controller: 'linksCtrl',
+    //   resolve: {
+    //     linkPromise : ['links', function(links){
+    //       return links.getAll();
+    //     }]
+    //   }
+    // })
+
     .state('links', {
       url:'/links',
       templateUrl: 'components/links/links.html',
       controller: 'linksCtrl',
       resolve: {
-        linkPromise : ['links', function(links){
-          return links.getAll();
+        checkUser : ['checkUser', function(checkUser){
+          return checkUser.userStatus();
         }]
       }
     })
-
     .state('profile', {
         url: '/profile',
         templateUrl: 'components/profile/profile.html',
@@ -31,7 +41,6 @@ angular.module('nList', ['nList.services','ui.router', 'nList.links', 'nList.pro
             return checkUser.userStatus();
           }]
         }
-    })
+    });
 
 });
-
