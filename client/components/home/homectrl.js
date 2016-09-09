@@ -1,7 +1,7 @@
 var app = angular.module('nList.home', []);
 
 app.controller('homeCtrl',function($scope, links) {
-  $scope.posts = links.links;
+  $scope.posts = links.links; //Array of all links from database
   console.log($scope.posts);
 
   $scope.incrementLike = function(post) {
