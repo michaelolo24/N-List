@@ -28,9 +28,9 @@ app.factory('links', function($http) {
   };
 
   n.downvote = function(post) {
-    post.dislikes += 1;
     return $http.put('/resources', post)
       .success(function(data) {
+        post.dislikes += 1;
       });
   };
 

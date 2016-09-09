@@ -55,15 +55,40 @@ var Links = {
   // ****UPDATE A RESOURCE-accessed via req.params in url bar****
 
   updateOne: (params, callback) =>{
-    var data = [params.likes, params.dislikes];
+    var dataArray = [params.likes, params.dislikes];
+    var voteData = [params.uid, params.id];
     // var data = [params.language, params.subTopic, params.type, params.link, params.keywords];
 
     // var query = 'UPDATE resources r SET id_languages = ?, sub_topic_id = ?, id_resource_type = ?, link = ?, date_updated = NOW(), keywords = ? WHERE r.id = '+params.id +'LIMIT 1';
-    console.log(params);
-    var query = 'UPDATE resources r SET likes = ?, dislikes = ? WHERE r.id = '+ params.id;
-    console.log(query);
-    console.log(data);
-    db.query(query, data, (error, data)=> callback(error, data) );
+    //Check if vote already exists
+    var checkVotes = 'SELECT id_resources FROM user_voted WHERE id_users = '+params.uid;
+    var alreadyVoted = false;
+
+    db.query(checkVotes, (err, data) => {
+      data.forEach(resources => {
+        if(resources.id_resources === params.id){
+          console.log("ALREADY VOTED");
+          alreadyVoted = true;
+        }
+      });
+
+    if(!alreadyVoted){
+      var votedQuery = 'INSERT INTO user_voted(id_users,id_resources) VALUE(?,?)';
+     var query = 'UPDATE resources r SET likes = ?, dislikes = ? WHERE r.id = '+ params.id;
+
+      db.query(votedQuery, voteData, (error, data) => {
+        db.query(query, dataArray, (error, resource)=>{ callback(error, resource)});
+      });
+
+    }else{
+      console.log("ALREADY VOTED ALREADY VOTED");
+        callback(null,{success:"success"});
+    }
+
+    });
+
+
+
   },
 
   // ****DELETE A RESOURCE-accessed via req.params in url bar****

@@ -1,11 +1,11 @@
 -- ---
 -- Globals
 -- ---
-DROP DATABASE IF EXISTS `rezzy`;
+DROP DATABASE IF EXISTS `NList`;
 
-CREATE DATABASE `rezzy`;
+CREATE DATABASE `NList`;
 
-USE rezzy;
+USE NList;
 
 -- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- SET FOREIGN_KEY_CHECKS=0;
