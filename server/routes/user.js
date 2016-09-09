@@ -3,8 +3,6 @@ const hashHelpers = require("../helpers/hashHelpers");
 const Promise = require("bluebird");
 const bcrypt = require("bcrypt-nodejs");
 
-
-
 module.exports = {};
 
 var sess;
