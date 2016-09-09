@@ -44,6 +44,7 @@
       </li>
       <a href='profile'>
         <li ng-if="headerUser" class="profileMenu"> <!-- have to be logged in to view -->
+<!--           <img class="header_photo" ng-src="{{headerUser.photo_path}}"/> -->
           {{headerUser.name}}
           <div class="userMenu">
             <a ui-sref='profile'><div class="userMenu_item">Edit Pofile</div></a>

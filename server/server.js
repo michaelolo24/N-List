@@ -16,7 +16,6 @@ app.use(express.static(__dirname + '/../client/'));
 app.use(bodyParser.json());
 app.use('/signup', express.static(__dirname + '/views/signup.html'));
 app.use('/login', express.static(__dirname + '/views/login.html'));
-app.use('*', express.static(__dirname + '/views/error404.html'));
 //create user sessions to track user across application
 
 app.use(session({
@@ -63,8 +62,8 @@ app.post('/upload', photos.uploader);
 
 app.use('/uploads',express.static(__dirname + '/uploads'));
 
-
-app.get('*', (req, res) => res.redirect('/views/error404.html') );
+app.use('*', express.static(__dirname + '/views/error404.html'));
+app.use('*', (req, res) => res.redirect('/views/error404.html') );
 
 app.listen(process.env.PORT || 3000);
 console.log("Server is doing big things on port 3000");
