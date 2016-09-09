@@ -1,16 +1,16 @@
-var bcrypt = require("bcrypt-nodejs");
-var Promise = require("bluebird");
+const bcrypt = require("bcrypt-nodejs");
+const Promise = require("bluebird");
 
 module.exports = {};
 
-module.exports.hashPassword = function(password){
+module.exports.hashPassword = (password) => {
   return new Promise(
-    function(resolve, reject){
-      bcrypt.genSalt(10, function(error, salt){
+    (resolve, reject)=>{
+      bcrypt.genSalt(10, (error, salt)=>{
         if(error){
           reject(error)
         }
-        bcrypt.hash(password, salt, null, function(err, hash){
+        bcrypt.hash(password, salt, null, (err, hash)=>{
           if(err){
             reject(err)
           }

@@ -1,13 +1,7 @@
-// var express = require('express');
-// var bodyParser = require('body-parser');
-// var userRouter = express.Router();
-// var app = require('../server');
-var Users = require('../../db/controller/users-helpers.js');
-var hashHelpers = require("../helpers/hashHelpers");
-var Promise = require("bluebird");
-var bcrypt = require("bcrypt-nodejs");
-// app.use(bodyParser.json());
-// app.set('trust proxy', 1); // trust first proxy
+const Users = require('../../db/controller/users-helpers.js');
+const hashHelpers = require("../helpers/hashHelpers");
+const Promise = require("bluebird");
+const bcrypt = require("bcrypt-nodejs");
 
 
 
@@ -15,14 +9,15 @@ module.exports = {};
 
 var sess;
 // lOGIN USERS AND REGISTER SESSION
-module.exports.signIn = function(req, res){
-
-  Users.signIn(req.body, function(err,data){
-    bcrypt.compare(req.body.password, data[0].password, function(err, result){
+module.exports.signIn = (req, res)=>{
+// redirect to signup when user does not exist
+  Users.signIn(req.body, (err,data)=>{
+    bcrypt.compare(req.body.password, data[0].password, (err, result)=>{
       if(result){
         sess = req.session;
         sess.email = data[0].email;
         sess.user = data[0].id;
+        module.exports.sess = sess; //session variable to pass in session information to
         res.redirect('http://localhost:3000/');
       }else{
         res.status(401).send("That email and/or password was not found");
@@ -32,15 +27,13 @@ module.exports.signIn = function(req, res){
 }
 
 
-
-
 //SIGN UP USERS AND REGISTER SESSION
 
-module.exports.signUp = function(req, res){
+module.exports.signUp = (req, res)=>{
 
   //check if user exists already
 
-  Users.checkUser(req.body,function(err,data){
+  Users.checkUser(req.body,(err,data)=>{
 
     if(err) throw err;
 
@@ -49,15 +42,16 @@ module.exports.signUp = function(req, res){
       res.status(409).send("The email address you specified is already in use.");
     }else{
       hashHelpers.hashPassword(req.body.password)
-      .then(function(hashed){
+      .then(hashed=>{
         req.body.password = hashed;
 
-        Users.signUp(req.body, function(err,data){
+        Users.signUp(req.body, (err,data)=>{
           if(err) console.log(err);
           console.log(data);
           sess = req.session;
           sess.email = req.body.email;
           sess.user = data.insertId;
+          module.exports.sess = sess; //session variable to pass in session information to
           console.log(sess);
           res.redirect('http://localhost:3000/');
         });
@@ -69,10 +63,15 @@ module.exports.signUp = function(req, res){
 };
 
 
-module.exports.getOneUser = function(req, res){
+module.exports.getOneUser = (req, res)=>{
   //verify user is currently signed in
+<<<<<<< HEAD
   if(sess !== undefined){
     Users.getOne(sess.user, function(err,data){
+=======
+  if(sess.user !== undefined){
+    Users.getOne(sess.user, (err,data)=>{
+>>>>>>> da3c85da23167e5ac419c869b93d213159c3e187
       if(err) console.log(err);
       res.json(data);
     });
@@ -81,17 +80,17 @@ module.exports.getOneUser = function(req, res){
   }
 };
 
-module.exports.updateOne = function(req, res){
+module.exports.updateOne = (req, res)=>{
   //verify user is currently signed in
-  Users.updateOne(req.body, function(err,data){
+  Users.updateOne(req.body, (err,data)=>{
     if(err) console.log(err);
     res.json(data);
   });
 };
 
-module.exports.deleteOne = function(req, res){
+module.exports.deleteOne = (req, res)=>{
   //verify user is currently signed in
-  Users.deleteOne(req.body, function(err,data){
+  Users.deleteOne(req.body, (err,data)=>{
     if(err) console.log(err);
     //delete user session here
     res.json(data);
@@ -99,12 +98,10 @@ module.exports.deleteOne = function(req, res){
 };
 
 //LOGOUT ROUTE
-module.exports.logout = function(req, res){
+module.exports.logout = (req, res)=>{
   sess = undefined;
   req.session.destroy();
   console.log("I'm signed out!!");
   console.log(req.session);
   res.status(200).send("request processed");
   };
-
-module.exports.sess = sess; //session variable to pass in session information to
