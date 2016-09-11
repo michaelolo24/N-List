@@ -1,6 +1,6 @@
 const db = require('../dbConnect/connection.js');
 
-//********* LINKS HELPER S **************
+//********* LINKS HELPERS **************
 var Links = {
 
   // ****GET ALL RESOURCES****
@@ -9,9 +9,9 @@ var Links = {
     // fetch all resources
     /* ALIAS KEY
       r : resources
-      t: resource_type
-      l: languages
-      s: subtopics
+      t : resource_type
+      l : languages
+      //The sub topic is all handeled in the front end. Only a number key is stored in the back end
     */
     var query = 'SELECT r.title, r.id, r.id_sub_topic, \
     r.id_languages, r.id_resource_type, r.link, r.date_added, \
@@ -24,10 +24,10 @@ var Links = {
     ORDER BY date_added DESC';
     db.query(query, (err, results) => callback(err, results) );
   },
+ 
   // ****POST A RESOURCE****
-
   postOne: (params, callback) =>{
-
+   
    var data = [params.title, params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
 
     var query = 'INSERT INTO resources(title, id_languages,\
@@ -40,6 +40,7 @@ var Links = {
   // ****GET A RESOURCE-accessed via req.params in url bar****
 
   getOne: (linkId, callback) =>{
+    
     var data = [linkId];
 
     var query = 'SELECT r.id, l.name, t.type, r.sub_topic_id, r.link, \
@@ -52,43 +53,95 @@ var Links = {
     db.query(query, data, (err, results) => callback(err, results) );
   },
 
-  // ****UPDATE A RESOURCE-accessed via req.params in url bar****
+  // ********UPDATE A RESOURCE********
 
   updateOne: (params, callback) =>{
-    var dataArray = [params.likes, params.dislikes];
-    var voteData = [params.uid, params.id];
-    // var data = [params.language, params.subTopic, params.type, params.link, params.keywords];
-
-    // var query = 'UPDATE resources r SET id_languages = ?, sub_topic_id = ?, id_resource_type = ?, link = ?, date_updated = NOW(), keywords = ? WHERE r.id = '+params.id +'LIMIT 1';
+    params.vote = Number(params.vote); // make sure it is being read as a number
+    let voteData = [params.uid, params.id, params.vote]; //uid  = user id // id = resource id
+         
     //Check if vote already exists
-    var checkVotes = 'SELECT id_resources FROM user_voted WHERE id_users = '+params.uid;
-    var alreadyVoted = false;
+    const checkUserVote = 'SELECT * FROM user_voted WHERE id_users = '+params.uid;
+    let alreadyVoted = false;
+    let likes = 0; //This will store all of the current likes for this resource
+    let dislikes = 0; //This will store all of the current dislikes for this resource
 
-    db.query(checkVotes, (err, data) => {
-      data.forEach(resources => {
+    db.query(checkUserVote, (err, userVoteData) => {
+      userVoteData.forEach(resources => {
         if(resources.id_resources === params.id){
-          console.log("ALREADY VOTED");
           alreadyVoted = true;
+          console.log(resources);
+          userVoteStatus = Number(resources.vote); //make sure it is read as a number
+          console.log(userVoteStatus);
+        }
+      });//we don't close off the query here to force an asynchronous process (maybe convert to promises if time permits)
+
+
+      //Check if vote already exists
+      const checkResourceVotes = 'SELECT vote FROM user_voted WHERE id_resources = '+params.id;
+
+      db.query(checkResourceVotes, (err, resourceVoteData) => {
+        resourceVoteData.forEach(resource => {
+          if(resource.vote === 1){
+            likes++; //get total number of current likes based on user vote table data
+          }
+          if(resource.vote === 0){
+            dislikes++; //get total number of current dislikes based on user vote table data
+          }
+        }); //we don't close off the query here to force an asynchronous process (maybe convert to promises if time permits)
+
+        const updateResourcesTable = (finalLike, finalDislike) => { //this function is reused multiple times; abstracted to update resource table;
+          const finalUpdateQuery = 'UPDATE resources r SET likes = ?, dislikes = ? WHERE r.id = '+ params.id;
+          db.query(finalUpdateQuery, [finalLike, finalDislike], (finalError, finalResource)=>{ callback(finalError, finalResource)});
+        };
+
+        if(!alreadyVoted){
+          console.log("NOT ALREADY VOTED");
+          const votedQuery = 'INSERT INTO user_voted(id_users,id_resources, vote) VALUE(?,?,?)';
+          
+          params.vote === 1 ? likes++ : dislikes++ ; 
+          db.query(votedQuery, voteData, (error, data) => {
+            updateResourcesTable(likes,dislikes);
+          });
+        }else{
+          if(params.vote === userVoteStatus){
+            console.log("VOTES MATCH");
+            const deleteVote = 'DELETE FROM user_voted WHERE id_users = ? AND id_resources = ?';
+            db.query(deleteVote, [params.uid, params.id], (error, data) => {
+              if(err) throw err;
+              console.log(data);
+              if(params.vote === 0){
+                console.log("REMOVING A DISLIKE");
+                dislikes--;
+                updateResourcesTable(likes,dislikes);
+              }
+              if(params.vote === 1){
+                console.log("REMOVING A LIKE");
+                likes--;
+                updateResourcesTable(likes,dislikes);
+              }
+            });
+          }else{
+            console.log("SWITCHING VOTES");
+            const userVoteQuery = 'UPDATE user_voted u SET vote = ? WHERE u.id_resources = '+ params.id +' AND u.id_users ='+ params.uid;
+            if(params.vote > userVoteStatus){
+            console.log("SWITCHING TO LIKE")
+              dislikes--;
+              likes++;
+              db.query(userVoteQuery, [params.vote], (error, data) =>{
+                updateResourcesTable(likes, dislikes);
+              });
+            }else if(params.vote < userVoteStatus){
+            console.log("SWITCHING TO DISLIKE");
+              likes--;
+              dislikes++;
+              db.query(userVoteQuery, [params.vote], (error, data) =>{
+                updateResourcesTable(likes, dislikes);
+              });
+            }
+          }
         }
       });
-
-    if(!alreadyVoted){
-      var votedQuery = 'INSERT INTO user_voted(id_users,id_resources) VALUE(?,?)';
-     var query = 'UPDATE resources r SET likes = ?, dislikes = ? WHERE r.id = '+ params.id;
-
-      db.query(votedQuery, voteData, (error, data) => {
-        db.query(query, dataArray, (error, resource)=>{ callback(error, resource)});
-      });
-
-    }else{
-      console.log("ALREADY VOTED ALREADY VOTED");
-        callback(null,{success:"success"});
-    }
-
     });
-
-
-
   },
 
   // ****DELETE A RESOURCE-accessed via req.params in url bar****
