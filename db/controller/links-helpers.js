@@ -75,6 +75,7 @@ let Links = {
     let alreadyVoted = false;
     let likes = 0; //This will store all of the current likes for this resource
     let dislikes = 0; //This will store all of the current dislikes for this resource
+    let userVoteStatus = null;
 
     db.query(checkUserVote, (err, userVoteData) => {
       userVoteData.forEach(resources => {
