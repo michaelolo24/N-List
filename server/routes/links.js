@@ -1,8 +1,7 @@
 const Links =  require("../../db/controller/links-helpers.js");
 const users = require("./user");
-//each callback below is routed to helper s that preform the actual querying on the database
+//each callback below is routed to helpers that preform the actual querying on the database
 
-//our team is so strong!!
 
 //API ROUTES
 
@@ -21,7 +20,6 @@ const users = require("./user");
 module.exports= {};
 
 module.exports.resourses = {
-// login here
   postOne: (req, res)=>{
     if(users.sess !== undefined){
       Links.postOne(req.body, (err,data)=>{ //Post one resource into resource database
@@ -29,48 +27,41 @@ module.exports.resourses = {
         res.json(data);
       });
     } else{
-      res.redirect("http://localhost:3000/login");
+      res.status(403).send("Please log in");
     }
   },
 
   getAll: (req, res)=>{
-      // !req.session.active ? res.redirect('/login') :
-      Links.getAll((err,data)=>{
+    Links.getAll((err,data)=>{
+      if(err) console.log(err);
+      res.json(data);
+    });
+  },
+
+  getLanguages: (req, res)=>{
+    Links.getLanguages((err,data)=>{
+      if(err) console.log(err);
+      res.json(data);
+    });
+  },   
+
+  updateVote: (req, res)=>{
+    if(users.sess.email !== undefined){
+      Links.updateVote(req.body, (err,data)=>{
         if(err) console.log(err);
         res.json(data);
       });
-    },
-
-   getLanguages: (req, res)=>{
-      // !req.session.active ? res.redirect('/login') :
-      Links.getLanguages((err,data)=>{
-        if(err) console.log(err);
-        res.json(data);
-      });
-    },   
-// login here
-  updateOne: (req, res)=>{
-      // console.log("***REQUEST BODY*** ", req.body);
-      // !req.session.active ? res.redirect('/login') :
-      if(users.sess.email !== undefined){
-
-        // Updates resources table and links table
-        Links.updateOne(req.body, (err,data)=>{
-          if(err) console.log(err);
-          res.json(data);
-        });
-
-      } else {
-        res.redirect("http://localhost:3000/login")
-      }
+    } else {
+      res.status(403).send("Please log in");
     }
+  }
 };
-// SINGLE RESOURCE UPDATES (GET, PUT(UPDATE), DELETE);
+
+// SINGLE RESOURCE UPDATES (GET, PUT(UPDATE), DELETE); 
 
 module.exports.resourcesID = {
 
   getOne: (req, res)=>{
-      // !req.session.active ? res.redirect('/login') :
       Links.getOne(req.params.id, (err,data)=>{
         if(err) console.log(err);
         res.json(data);
@@ -78,14 +69,13 @@ module.exports.resourcesID = {
     },
 // login here
   deleteOne: (req, res)=>{
-      // !req.session.active ? res.redirect('/login') :
       if(users.sess.email !== undefined){
         Links.deleteOne(req.params.id, (err,data)=>{
           if(err) console.log(err);
           res.json(data);
         });
       } else {
-        res.redirect("http://localhost:3000/login")
+        res.status(403).send("Please log in");
       }
     }
 };

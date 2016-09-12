@@ -1,6 +1,6 @@
 var app = angular.module('nList.services', []);
 
-app.factory('links', function($http) {
+app.factory('links', ['$http', ($http) => {
   var n = {
     links: [],
     languages: []
@@ -29,7 +29,7 @@ app.factory('links', function($http) {
   };
 
   n.upvote = function(post) {
-    post.vote = 1;
+    post.vote = 1; //1 = upvote
     return $http.put('/resources', post)
     .success(function(data) {
       n.getAll();
@@ -38,7 +38,7 @@ app.factory('links', function($http) {
 
 
   n.downvote = function(post) {
-    post.vote = 0;
+    post.vote = 0; //0 = downvote
     return $http.put('/resources', post)
       .success(function(data) {
         n.getAll();
@@ -47,36 +47,34 @@ app.factory('links', function($http) {
 
   return n;
 
-});
+}]);
 
 
 //  USERS FACTORY FOR CHECKING WHETHER A USER IS LOGGED IN
 
-app.factory('checkUser', function($http, $window) {
+  app.factory('checkUser',['$http', '$window', ($http, $window) => {
     var checkUser = {
       currUser: false
     };
 
-  checkUser.userStatus = function () {
+  checkUser.userStatus = () => {
     return $http.get('/updateUser')
-    .success(function(data) {
+    .success(data => {
       checkUser.currUser = data[0];
-    }).error(function(res, status){
-if(window.location.href !== window.location.origin+'/#/home' && window.location.href !== window.location.origin+'/#/about' && status === 401){        if(status === 401){
-          console.log(window.location.href);
-          $window.location.href="/login";
-        }
+    }).error((res, status) => { //Allow not logged in users to stay on home page or about page
+      if(window.location.href !== window.location.origin+'/#/home' && window.location.href !== window.location.origin+'/#/about' && status === 401){
+        $window.location.href="/login";
       }
     });
   };
 
-  checkUser.signout = function(){
+  checkUser.signout = () => {
     return $http.post('/logout')
-    .success(function(data){
+    .success(data => {
       $window.location.href="/login";
     });
   };
 
   return checkUser;
 
-});
+}]);

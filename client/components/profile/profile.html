@@ -23,21 +23,21 @@
       <input class="input" ng-model="userUpdate.email" name="email" type="email" value="{{userUpdate.email}}">
       <label> Favorite Languages </label>
       <input class="input" ng-model="userUpdate.languages" name="text" type="text" value="{{userUpdate.languages}}">
-      <label> Password </label>
-      <input class="input" ng-model="userUpdate.password" name="password" type="password" value="{{userUpdate.password}}">
+      <label> New Password </label>
+      <input class="input" ng-model="userUpdate.newPassword" name="password" type="password" value="">
     </form>
       <form   name="up.upload_form">
         <input
-            class="imageUpload"
-            type="file"
-            ngf-select
-            ng-model="up.file"
-            name="file"
-            id="file"
-            ngf-pattern="'image/*'"
-            accept="image/*"
-            ngf-max-size="20MB"
-            />
+          class="imageUpload"
+          type="file"
+          ngf-select
+          ng-model="up.file"
+          name="file"
+          id="file"
+          ngf-pattern="'image/*'"
+          accept="image/*"
+          ngf-max-size="20MB"
+        />
 
         <img class="thumbnail" ngf-size="{width:100, height:100, quality: .8;}" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
 
@@ -45,6 +45,3 @@
       </form>
     </div>
   </div>
-
-
-  <!-- <option ng-repeat="option in data.languageOptions" value="{{option.label}}">{{option.label}}</option> -->
