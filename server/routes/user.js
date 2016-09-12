@@ -53,7 +53,6 @@ module.exports.signUp = (req, res)=>{
           sess.email = req.body.email;
           sess.user = data.insertId;
           module.exports.sess = sess;
-          console.log(sess);
           res.redirect('http://localhost:3000/');
         });
       })

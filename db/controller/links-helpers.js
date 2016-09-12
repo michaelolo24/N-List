@@ -1,8 +1,10 @@
+'use strict'
+
 const db = require('../dbConnect/connection.js');
 
 //********* LINKS HELPERS **************//
 
-var Links = {
+let Links = {
 
   // ****GET ALL RESOURCES****//
 
@@ -14,7 +16,7 @@ var Links = {
       l : languages
       s : sub_topic
     */
-    var query = 'SELECT r.title, r.id, r.id_sub_topic, \
+    const query = 'SELECT r.title, r.id, r.id_sub_topic, \
     r.id_languages, r.id_resource_type, r.link, r.date_added, \
     r.date_updated, r.keywords, r.likes, r.dislikes,\
     t.type, l.name, l.logo, s.topic \
@@ -27,7 +29,7 @@ var Links = {
   },
 
   getLanguages: (callback) =>{
-    var query = 'SELECT * FROM languages';
+    const query = 'SELECT * FROM languages';
     db.query(query, (err, results) => callback(err, results) );
   },
  
@@ -37,9 +39,9 @@ var Links = {
 
    //subtopic can be null
 
-   var data = [params.title, params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
+   let data = [params.title, params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
 
-    var query = 'INSERT INTO resources(title, id_languages,\
+  const query = 'INSERT INTO resources(title, id_languages,\
        id_sub_topic, id_resource_type,\
        link, date_added, keywords,\
        likes, dislikes) value (?,?, ?, ?, ?, NOW(), ?, ?, ?)';
@@ -50,9 +52,9 @@ var Links = {
 
   getOne: (linkId, callback) =>{
     
-    var data = [linkId];
+    let data = [linkId];
 
-    var query = 'SELECT r.id, l.name, t.type, r.sub_topic_id, r.link, \
+    const query = 'SELECT r.id, l.name, t.type, r.sub_topic_id, r.link, \
     r.date_added, r.keywords, r.likes, r.dislikes \
     FROM resources r \
     LEFT OUTER JOIN resource_type t ON (r.id_resource_type = t.id) \
@@ -78,9 +80,7 @@ var Links = {
       userVoteData.forEach(resources => {
         if(resources.id_resources === params.id){
           alreadyVoted = true;
-          console.log(resources);
           userVoteStatus = Number(resources.vote); //make sure it is read as a number
-          console.log(userVoteStatus);
         }
       });//we don't close off the query here to force an asynchronous process (maybe convert to promises if time permits)
 
@@ -115,7 +115,6 @@ var Links = {
             const deleteVote = 'DELETE FROM user_voted WHERE id_users = ? AND id_resources = ?';
             db.query(deleteVote, [params.uid, params.id], (error, data) => {
               if(err) throw err;
-              console.log(data);
               if(params.vote === 0){
                 dislikes--;
                 updateResourcesTable(likes,dislikes);
@@ -130,14 +129,12 @@ var Links = {
             
             const userVoteQuery = 'UPDATE user_voted u SET vote = ? WHERE u.id_resources = '+ params.id +' AND u.id_users ='+ params.uid;
             if(params.vote > userVoteStatus){
-            console.log("SWITCHING TO LIKE")
               dislikes--;
               likes++;
               db.query(userVoteQuery, [params.vote], (error, data) =>{
                 updateResourcesTable(likes, dislikes);
               });
             }else if(params.vote < userVoteStatus){
-            console.log("SWITCHING TO DISLIKE");
               likes--;
               dislikes++;
               db.query(userVoteQuery, [params.vote], (error, data) =>{
@@ -153,8 +150,8 @@ var Links = {
   // ****DELETE A RESOURCE-accessed via req.params in url bar****
 
   deleteOne: (linkId, callback) =>{
-    var data = [linkId];
-    var query = 'DELETE FROM resources WHERE id=? LIMIT 1';
+    let data = [linkId];
+    const query = 'DELETE FROM resources WHERE id=? LIMIT 1';
     db.query(query, data, (err, results) => callback(err, results) );
   }
 };
