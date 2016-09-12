@@ -42,7 +42,7 @@
   <header class="appHeader">
 
     <ul ng-controller="MainController" class="appHeaderNav">
-      <li class="logo"><a ui-sref='home'><img class="topbar_logo" src="http://localhost:3000/style/images/logo_500.png"></a></li>
+      <li class="logo"><a ui-sref='home'><img class="topbar_logo" src="/style/images/logo_500.png"></a></li>
       <li ng-if="headerUser" class="rezzy_button"><a ui-sref='links'>Add a rezzy</a></li> <!-- have to be logged in to view -->
       <li ng-if="!headerUser" class="entryButtons">
         <a href='/login'>Login</a>
@@ -75,5 +75,13 @@
         <li class="copyright">&copy; NList 2016</li>
     </ul>
   </footer>
+  <script>
+
+  $('.daniel_description').hide();
+
+  $('.daniel').on('click', function(){
+    $(".daniel_description").show();
+  )};
+</script>
 </body>
 </html>

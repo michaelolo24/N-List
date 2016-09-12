@@ -53,7 +53,7 @@ module.exports.signUp = (req, res)=>{
           sess.email = req.body.email;
           sess.user = data.insertId;
           module.exports.sess = sess;
-          res.redirect('http://localhost:3000/');
+          res.status(200).send();
         });
       })
       //if user doesn't exist, sign them up and reroute them to home page
