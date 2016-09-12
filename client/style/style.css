@@ -197,7 +197,6 @@ footer ul .copyright{
 }
 
 .appHeaderNav > li{
-  display:inline;
   float:left;
   line-height:62.5px;
   height:62.5px;
@@ -263,7 +262,6 @@ footer ul .copyright{
 .profileMenu{
   float:right !important;
   position: relative;
-  display: inline-block;
 }
 
 .profileMenu:hover{
@@ -335,9 +333,7 @@ footer ul .copyright{
   width: 100%;
   font-size:5em;
 }
-.main-lang-logos{
-  /*margin:0 1em;*/
-}
+
 .main-lang-logos:hover{
   cursor:pointer;
   text-shadow:.1em .1em .1em #999;
