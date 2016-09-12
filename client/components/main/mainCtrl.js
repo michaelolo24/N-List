@@ -1,12 +1,11 @@
+'use strict'
+
 var app = angular.module('nList.main', []);
 
-app.controller('MainController', ['$scope','checkUser', function($scope, checkUser){
+app.controller('MainController', ['$scope','checkUser', ($scope, checkUser) => {
 
-  checkUser.userStatus().success(function(data){
-    $scope.headerUser = data[0];
-  });
+  checkUser.userStatus().success(data => $scope.headerUser = data[0]);
 
-  $scope.signout = function(){
-    checkUser.signout();
-  };
+  $scope.signout = () =>  checkUser.signout();
+
 }]);

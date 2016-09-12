@@ -1,19 +1,22 @@
+'use strict'
+
 const db = require('../dbConnect/connection.js');
 
-//********* LINKS HELPERS **************
-var Links = {
+//********* LINKS HELPERS **************//
 
-  // ****GET ALL RESOURCES****
+let Links = {
+
+  // ****GET ALL RESOURCES****//
 
   getAll: (callback) =>{
-    // fetch all resources
+
     /* ALIAS KEY
       r : resources
       t : resource_type
       l : languages
-      //The sub topic is all handeled in the front end. Only a number key is stored in the back end
+      s : sub_topic
     */
-    var query = 'SELECT r.title, r.id, r.id_sub_topic, \
+    const query = 'SELECT r.title, r.id, r.id_sub_topic, \
     r.id_languages, r.id_resource_type, r.link, r.date_added, \
     r.date_updated, r.keywords, r.likes, r.dislikes,\
     t.type, l.name, l.logo, s.topic \
@@ -26,30 +29,32 @@ var Links = {
   },
 
   getLanguages: (callback) =>{
-    var query = 'SELECT * FROM languages';
+    const query = 'SELECT * FROM languages';
     db.query(query, (err, results) => callback(err, results) );
   },
  
  
-  // ****POST A RESOURCE****
+  // ****POST A RESOURCE**** //
   postOne: (params, callback) =>{
-   
-   var data = [params.title, params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
 
-    var query = 'INSERT INTO resources(title, id_languages,\
+   //subtopic can be null
+
+   let data = [params.title, params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
+
+  const query = 'INSERT INTO resources(title, id_languages,\
        id_sub_topic, id_resource_type,\
        link, date_added, keywords,\
        likes, dislikes) value (?,?, ?, ?, ?, NOW(), ?, ?, ?)';
     db.query(query, data, (err, results) => callback(err, results) );
   },
 
-  // ****GET A RESOURCE-accessed via req.params in url bar****
+  // ****GET A RESOURCE **** //
 
   getOne: (linkId, callback) =>{
     
-    var data = [linkId];
+    let data = [linkId];
 
-    var query = 'SELECT r.id, l.name, t.type, r.sub_topic_id, r.link, \
+    const query = 'SELECT r.id, l.name, t.type, r.sub_topic_id, r.link, \
     r.date_added, r.keywords, r.likes, r.dislikes \
     FROM resources r \
     LEFT OUTER JOIN resource_type t ON (r.id_resource_type = t.id) \
@@ -59,9 +64,9 @@ var Links = {
     db.query(query, data, (err, results) => callback(err, results) );
   },
 
-  // ********UPDATE A RESOURCE********
+  // ********UPDATE A VOTE******** //
 
-  updateOne: (params, callback) =>{
+  updateVote: (params, callback) =>{
     params.vote = Number(params.vote); // make sure it is being read as a number
     let voteData = [params.uid, params.id, params.vote]; //uid  = user id // id = resource id
          
@@ -75,9 +80,7 @@ var Links = {
       userVoteData.forEach(resources => {
         if(resources.id_resources === params.id){
           alreadyVoted = true;
-          console.log(resources);
           userVoteStatus = Number(resources.vote); //make sure it is read as a number
-          console.log(userVoteStatus);
         }
       });//we don't close off the query here to force an asynchronous process (maybe convert to promises if time permits)
 
@@ -101,7 +104,6 @@ var Links = {
         };
 
         if(!alreadyVoted){
-          console.log("NOT ALREADY VOTED");
           const votedQuery = 'INSERT INTO user_voted(id_users,id_resources, vote) VALUE(?,?,?)';
           
           params.vote === 1 ? likes++ : dislikes++ ; 
@@ -110,34 +112,29 @@ var Links = {
           });
         }else{
           if(params.vote === userVoteStatus){
-            console.log("VOTES MATCH");
             const deleteVote = 'DELETE FROM user_voted WHERE id_users = ? AND id_resources = ?';
             db.query(deleteVote, [params.uid, params.id], (error, data) => {
               if(err) throw err;
-              console.log(data);
               if(params.vote === 0){
-                console.log("REMOVING A DISLIKE");
                 dislikes--;
                 updateResourcesTable(likes,dislikes);
               }
               if(params.vote === 1){
-                console.log("REMOVING A LIKE");
                 likes--;
                 updateResourcesTable(likes,dislikes);
               }
             });
           }else{
-            console.log("SWITCHING VOTES");
+            //if votes are equivalent, delete the vote, if they are not equivalent to what is in database, switch accordingly
+            
             const userVoteQuery = 'UPDATE user_voted u SET vote = ? WHERE u.id_resources = '+ params.id +' AND u.id_users ='+ params.uid;
             if(params.vote > userVoteStatus){
-            console.log("SWITCHING TO LIKE")
               dislikes--;
               likes++;
               db.query(userVoteQuery, [params.vote], (error, data) =>{
                 updateResourcesTable(likes, dislikes);
               });
             }else if(params.vote < userVoteStatus){
-            console.log("SWITCHING TO DISLIKE");
               likes--;
               dislikes++;
               db.query(userVoteQuery, [params.vote], (error, data) =>{
@@ -153,8 +150,8 @@ var Links = {
   // ****DELETE A RESOURCE-accessed via req.params in url bar****
 
   deleteOne: (linkId, callback) =>{
-    var data = [linkId];
-    var query = 'DELETE FROM resources WHERE id=? LIMIT 1';
+    let data = [linkId];
+    const query = 'DELETE FROM resources WHERE id=? LIMIT 1';
     db.query(query, data, (err, results) => callback(err, results) );
   }
 };

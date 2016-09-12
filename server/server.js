@@ -16,6 +16,7 @@ app.use(express.static(__dirname + '/../client/'));
 app.use(bodyParser.json());
 app.use('/signup', express.static(__dirname + '/views/signup.html'));
 app.use('/login', express.static(__dirname + '/views/login.html'));
+
 //create user sessions to track user across application
 
 app.use(session({
@@ -36,6 +37,7 @@ app.put('/updateUser', user.updateOne);
 app.delete('/updateUser', user.deleteOne);
 
 app.post('/logout', user.logout);
+
 //Routing for users and links requests
 
 
@@ -43,7 +45,7 @@ app.post('/resources', links.resourses.postOne);
 
 app.get('/resources', links.resourses.getAll);
 
-app.put('/resources', links.resourses.updateOne);
+app.put('/resources', links.resourses.updateVote);
 
 
 
@@ -51,6 +53,7 @@ app.get('/resources/:id', links.resourcesID.getOne);
 
 app.delete('/resources/:id', links.resourcesID.deleteOne);
 
+//Get language resources from lang tabe
 
 app.get('/langResources', links.resourses.getLanguages);
 

@@ -1,6 +1,6 @@
 angular.module('nList', ['nList.services', 'nList.home', 'nList.main','ui.router', 'nList.links', 'nList.profile'])
 
-.config(function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
 
   $urlRouterProvider.otherwise('/home');
 
@@ -10,10 +10,10 @@ angular.module('nList', ['nList.services', 'nList.home', 'nList.main','ui.router
       templateUrl: 'components/home/home.html',
       controller: 'homeCtrl',
       resolve: {
-        linkPromise : ['links', function(links){
+        linkPromise : ['links', (links) => {
           return links.getAll();
         }],
-        languagePromise : ['links', function(links){
+        languagePromise : ['links', (links) => {
           return links.getLanguages();
         }]
       }
@@ -23,7 +23,7 @@ angular.module('nList', ['nList.services', 'nList.home', 'nList.main','ui.router
       templateUrl: 'components/links/links.html',
       controller: 'linksCtrl',
       resolve: {
-        checkUser : ['checkUser', function(checkUser){
+        checkUser : ['checkUser',(checkUser) => {
           return checkUser.userStatus();
         }]
       }
@@ -33,7 +33,7 @@ angular.module('nList', ['nList.services', 'nList.home', 'nList.main','ui.router
         templateUrl: 'components/profile/profile.html',
         controller: 'ProfileController',
         resolve: {
-          checkUser : ['checkUser', function(checkUser){
+          checkUser : ['checkUser', (checkUser) => {
             return checkUser.userStatus();
           }]
         }
@@ -43,4 +43,4 @@ angular.module('nList', ['nList.services', 'nList.home', 'nList.main','ui.router
       templateUrl: 'components/about/about.html'
     })
 
-});
+}]);

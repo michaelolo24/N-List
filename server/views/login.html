@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Login</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800|Source+Sans+Pro" rel="stylesheet"> <!--FONTS FROM GOOGLE -->
-  <link rel="stylesheet" type="text/css" href="http://localhost:3000/style/style.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:3000/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="http://localhost:3000/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="http://localhost:3000/favicon-16x16.png" sizes="16x16">
-  <link rel="mask-icon" href="http://localhost:3000/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="stylesheet" type="text/css" href="/style/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 </head>
 <body>
 
   <header class="verification_header">
-    <a href="/"><img class="verification_logo" src="http://localhost:3000/style/images/logo_500.png"></a>
+    <a href="/"><img class="verification_logo" src="/style/images/logo_500.png"></a>
   </header>
 
   <section class="verification_container">
@@ -37,7 +37,7 @@
 
 <footer>
   <ul>
-      <li class="about_footer"><a href="/about">About</a></li>
+      <li class="about_footer"><a href="/#/about">About</a></li>
       <li class="blog_footer"><a href="/blog">Blog</a></li>
       <li class="press_footer"><a href="/press">Press</a></li>
       <li class="careers_footer"><a href="/careers">Careers</a></li>
@@ -87,7 +87,7 @@ $('button').on('click', function(e){
       type: "post",
       data: JSON.stringify(data),
       success: function(){
-        window.location.href = 'http://localhost:3000/';
+        window.location.href = '/';
       },
       error: function(data){
         $('.errorMsg').fadeOut(function(){ $(this).text(data.responseText); }).fadeIn(200);
