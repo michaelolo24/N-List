@@ -6,17 +6,47 @@
     </p>
 
   <h1>Team Captain Planet</h1>
-  <div class="profile_overlay">
+
+  <div class="profile_overlay daniel">
     <img class="profile_img"src="../../assets/dan.png" alt="Daniel photo">
     <h2 class="team_mate">Daniel Wirz</h2>
-    <span class="about_description"><h1>Hi! I'm Dan</h1></span>
   </div>
-  <div class="profile_overlay"><img class="profile_img" src="../../assets/harris.png" alt="Harris photo">
-  <div><h2 class="team_mate">Harris Lee</h2></div></div>
-  <div class="profile_overlay"><img class="profile_img" src="../../assets/kent.png" alt="Kent photo">
-  <h2 class="team_mate">Kent Moreland</h2></div>
-  <div class="profile_overlay"><img class="profile_img" src="../../assets/mike.png" alt="Mike photo">
-  <h2 class="team_mate">Michael Olorunnisola</h2></div>
-  <div class="profile_overlay"><img class="profile_img" src="../../assets/neek.png" alt="Neekon photo">
-  <h2 class="team_mate">Neekon Etemad</h2></div>
+  <div class="daniel_description "><h1>Hi! I'm Dan</h1></div>
+
+  <div class="profile_overlay harris">
+    <img class="profile_img" src="../../assets/harris.png" alt="Harris photo">
+    <div><h2 class="team_mate">Harris Lee</h2></div>
+  </div>
+  <div class="harris_description"><h1>Hi! I'm Harris</h1></div>
+
+  <div class="profile_overlay kent">
+    <img class="profile_img" src="../../assets/kent.png" alt="Kent photo">
+    <h2 class="team_mate">Kent Moreland</h2>
+  </div>
+  <div class="kent_description"><h1>Hi! I'm Kent</h1></div>
+
+  <div class="profile_overlay michael">
+    <img class="profile_img" src="../../assets/mike.png" alt="Mike photo">
+    <h2 class="team_mate">Michael Olorunnisola</h2>
+  </div>
+  <div class="michael_description"><h1>Hi! I'm Michael</h1></div>
+
+  <div class="profile_overlay neekon">
+    <img class="profile_img" src="../../assets/neek.png" alt="Neekon photo">
+    <h2 class="team_mate">Neekon Etemad</h2>
+  </div>
+  <div class="neekon_description"><h1>Hi! I'm Neekon</h1></div>
+
 </div>
+<script>
+
+  var fullName = $('#fullName');
+  var email = $('#email');
+  var password = $('#password');
+  var errorMsg = $('.errorMsg');
+
+  $('.daniel').on('click', function(){
+    $(".daniel_description").show();
+    };
+  })
+</script>

@@ -709,10 +709,11 @@ footer ul .copyright{
 }
 .profile_overlay{
   position: relative;
+  float: left;
+  clear: both;
   width: 200px;
   height: 300px;
   margin: 2em;
-
 }
 .profile_overlay .team_mate {
     position: absolute;
@@ -730,6 +731,15 @@ footer ul .copyright{
     background: rgba(0, 0, 0, .6);
 }
 
-.about_description {
+.daniel_description, .harris_description, .kent_description, .michael_description, .neekon_description {
+  float: left;
+  margin: 1em 2em;
+  font-size: 3em;
+}
 
+.about_description {
+  display:none;
+  float: left;
+  margin: 1em 2em;
+  font-size: 3em;
 }
