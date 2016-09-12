@@ -60,7 +60,7 @@ CREATE TABLE `resources` (
   `keywords` VARCHAR(255) DEFAULT NULL,
   `likes` INTEGER UNSIGNED DEFAULT NULL,
   `dislikes` INTEGER UNSIGNED DEFAULT NULL,
-  `date_added` TIMESTAMP NOT NULL,
+  `date_added` DATETIME NOT NULL,
   `date_updated` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`)
 );

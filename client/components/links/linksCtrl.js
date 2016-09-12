@@ -12,7 +12,8 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
       link: $scope.link,
       keywords: $scope.description,
       likes: $scope.posts.likes || 0,
-      dislikes: $scope.posts.dislikes || 0
+      dislikes: $scope.posts.dislikes || 0,
+      date_added: new Date().toISOString().slice(0, 19).replace('T', ' ')
     });
     $scope.title='';
     $scope.description = '';

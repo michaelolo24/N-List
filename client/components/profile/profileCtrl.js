@@ -6,10 +6,12 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
 
   $scope.findPicName = function (){
     var pic = document.getElementById('file').files[0];
-    $scope.picName = pic;
-    console.log(pic.name, 'findPicName');
-    console.log($scope.picName);
-    return pic.name;
+    if(pic){
+      $scope.picName = pic;
+      console.log(pic.name, 'findPicName');
+      console.log($scope.picName);
+      return pic.name;
+    }
   };
 
   this.submit = function(){
@@ -32,12 +34,11 @@ app.controller('ProfileController', ['$scope', '$http', 'Upload', '$window', 'ch
       name: $scope.userUpdate.name,
       email: $scope.userUpdate.email,
       password: $scope.userUpdate.password,
-      photoPath: 'http://localhost:3000/uploads/'+$scope.findPicName()
+      photoPath: $scope.findPicName() ? 'http://localhost:3000/uploads/'+$scope.findPicName() : null
     };
     $http.put('/updateUser', data).success(function(res){
       //place photo back up here
-      window.location.href = window.location.href;
-      console.log(res);
+        location.reload();
     });
   };
 

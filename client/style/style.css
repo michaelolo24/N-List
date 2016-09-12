@@ -192,8 +192,9 @@ footer ul .copyright{
 
 
 .appHeaderNav{
-  padding:.5em;
-  width:95%;
+  padding: 0em 1em;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .appHeaderNav > li{
@@ -336,7 +337,7 @@ footer ul .copyright{
 
 .main-lang-logos:hover{
   cursor:pointer;
-  text-shadow:.1em .1em .1em #999;
+  text-shadow: .04em .04em .1em #999;
 }
 
 .filter_button{
@@ -367,12 +368,12 @@ footer ul .copyright{
 #search_input {
   display:inline-block;
   position: relative;
-  margin:3em auto;
-  max-width:32em;
+  margin:1.5em auto;
+  max-width: 40em;
   min-width:20em;
   width:90%;
   border:thin solid #CCC;
-  height:2.9em;
+  height: 3.5em;
   margin-bottom:3em;
   padding:0em 2.5em 0em .5em;
   background:rgba(255,255,255,.6);
@@ -384,7 +385,7 @@ footer ul .copyright{
   line-height: 3em;
   z-index:1;
   font-size:1.5em;
-  margin:1.75em 0em 0em -1.5em;
+  margin:.75em 0em 0em -1.5em;
   color: rgba(35,201,219, 1) !important;
 }
   .fa-search:hover{
@@ -427,19 +428,23 @@ footer ul .copyright{
 
 .resource_title {
   text-align:left;
+  padding-bottom: .1em;
+  width: 90%;
+  word-wrap: break-word;
   font-weight:600;
   color: #333 !important;
   font-size: 2.427em;
   float:left;
-
 }
 
 .resource_url{
   clear:both;
   font-size:1em;
-  color:#999;
+  color: #FFF;
   float:left;
-  padding-bottom:.5em;
+  padding: .5em;
+  background: rgba(112,128,144,1);
+  width: 100%;
 }
 .resource_type { /* icons */
   margin: .25em;
@@ -573,6 +578,10 @@ footer ul .copyright{
   outline-color: rgba(35,201,219, 1);
 }
 
+.thumbnail{
+  width:200px;
+}
+
 .submit_profile_button{
     float:right;
     text-align: center;
@@ -582,8 +591,9 @@ footer ul .copyright{
     color: #667;
     padding:.5em;
     outline: none;
-    font-size: 1em;
-    margin:.5em;
+    font-size: 1.2em;
+    width:100%;
+    margin:2em 0em;
   }
 .submit_profile_button:hover{
     transition: color .2s, background-color .2s;
@@ -676,4 +686,10 @@ footer ul .copyright{
   .rules li{
     padding:.3em 0em;
     list-style: square;
+  }
+
+  .successMessage {
+    color:#008000;
+    font-weight: 700;
+    font-size: 2em;
   }
