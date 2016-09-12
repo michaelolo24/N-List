@@ -2,13 +2,21 @@ var app = angular.module('nList.services', []);
 
 app.factory('links', function($http) {
   var n = {
-    links: []
+    links: [],
+    languages: []
   };
 
   n.getAll = function() {
     return $http.get('/resources')
       .success(function(data) {
       angular.copy(data, n.links);
+      });
+  };
+
+  n.getLanguages = function() {
+    return $http.get('/langResources')
+      .success(function(data) {
+      angular.copy(data, n.languages);
       });
   };
 

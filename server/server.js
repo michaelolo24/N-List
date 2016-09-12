@@ -52,6 +52,8 @@ app.get('/resources/:id', links.resourcesID.getOne);
 app.delete('/resources/:id', links.resourcesID.deleteOne);
 
 
+app.get('/langResources', links.resourses.getLanguages);
+
 //////////////////////////////////////////
 //                                      //
 //               imageU                 //
@@ -65,7 +67,8 @@ app.use('/uploads',express.static(__dirname + '/uploads'));
 app.use('*', express.static(__dirname + '/views/error404.html'));
 app.use('*', (req, res) => res.redirect('/views/error404.html') );
 
-app.listen(process.env.PORT || 3000);
-console.log("Server is doing big things on port 3000");
+var port = process.env.PORT || 3000;
+app.listen(port);
+console.log("Server is doing big things on port "+ port);
 
 module.exports = app;

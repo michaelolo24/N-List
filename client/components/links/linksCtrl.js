@@ -2,17 +2,7 @@ var app = angular.module('nList.links', []);
 
 app.controller('linksCtrl',function($scope, links, checkUser) {
   $scope.posts = links.links;
-  console.log($scope.posts);
-
-  $scope.incrementLike = function(post) {
-    console.log(post);
-    links.upvote(post);
-  };
-
-  $scope.incrementDislike = function(post) {
-    links.downvote(post);
-  };
-
+  $scope.language;
   $scope.addPost = function() {
     links.addOne({
       title: $scope.title,
@@ -42,26 +32,99 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
   $scope.data = {
     type: null,
     typeOptions: [
-      {value: '1', label: 'Forum'},
-      {value: '2', label: 'Article'},
-      {value: '3', label: 'Video'}
+      {value: '1', label: 'Article'},
+      {value: '2', label: 'Book'},
+      {value: '3', label: 'Forum'},
+      {value: '4', label: 'Video'}
     ],
     name: null,
     languageOptions: [
-      {value: '1', label: 'Javascript'},
+      {value: '1', label: 'C'},
       {value: '2', label: 'C++'},
-      {value: '3', label: 'Java '},
-      {value: '4', label: 'C#'},
-      {value: '5', label: 'Python'},
-      {value: '6', label: 'Ruby/Rails'}
+      {value: '3', label: 'C#'},
+      {value: '4', label: 'CSS'},
+      {value: '5', label: 'Deployment'},
+      {value: '6', label: '.Net'},
+      {value: '7', label: 'Git'},
+      {value: '8', label: 'Go'},
+      {value: '9', label: 'Html'},
+      {value: '10', label: 'Java'},
+      {value: '11', label: 'Javascript'},
+      {value: '12', label: 'Php'},
+      {value: '13', label: 'Python'},
+      {value: '14', label: 'Ruby'},
+      {value: '15', label: 'Sql'}
     ],
     topic: null,
-    topics: [
-      {value: '1', label: 'Front-End'},
-      {value: '2', label: 'REST APIs'},
-      {value: '3', label: 'Database'},
-      {value: '4', label: 'Back-End'},
-    ]
+    topics: {
+      '1':[{value: '34', label: 'none'}],
+      '2':[{value: '34', label: 'none'}],
+      '3':[{value: '34', label: 'none'}],
+      '4':[
+          {value: '1', label:'Bootstrap'},
+          {value: '2', label:'Jeet'},
+          {value: '3', label:'Less'},
+          {value: '4', label:'Sass'},
+        ],
+
+      '5':[
+          {value: '5', label:'Amazon Web Services'},
+          {value: '6', label:'Apache'},
+          {value: '7', label:'Bower'},
+          {value: '8', label:'Docker'},
+          {value: '9', label:'Grunt'},
+          {value: '10', label:'Gulp'},
+          {value: '11', label:'Heroku'},
+        ],
+
+      '6':[{value: '34', label: 'none'}],
+
+      '7':[
+          {value: '12', label:'Bitbucket'},
+          {value: '13', label:'Github'},
+          {value: '14', label:'Gitlab'},
+        ],
+
+      '8':[{value: '34', label: 'none'}],
+
+      '9':[{value: '34', label: 'none'}],
+
+      '10':[{value: '34', label: 'none'}],
+
+      '11':[
+          {value: '15', label:'Angular'},
+          {value: '16', label:'Backbone'},
+          {value: '17', label:'CoffeeScript'},
+          {value: '18', label:'D3'},
+          {value: '19', label:'Jquery'},
+          {value: '20', label:'Kraken'},
+          {value: '21', label:'Meteor'},
+          {value: '22', label:'Mongo'},
+          {value: '23', label:'Node'},
+          {value: '24', label:'React'},
+        ],
+
+      '12':[
+          {value: '25', label:'CodeIgniter'},
+          {value: '26', label:'Doctrine'},
+          {value: '27', label:'Laravel'},
+          {value: '28', label:'Symfony'},
+          {value: '29', label:'Yii'},
+        ],
+
+      '13':[
+          {value: '30', label:'Django'},
+        ],
+
+      '14':[
+          {value: '31', label:'Rails'},
+        ],
+
+      '15':[
+          {value: '32', label:'MySql'},
+          {value: '33', label:'PostgreSql'},
+        ]
+    }
    };
 //=================================================
 

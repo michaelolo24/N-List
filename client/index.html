@@ -8,6 +8,8 @@
   <script src="https://use.fontawesome.com/02c44cd58a.js"></script> <!-- FONT AWESOME ICONS -->
   <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" /> <!-- fav-icon folder -->
   <link rel="stylesheet" type="text/css" href="style/style.css"> <!-- style highlighter -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css"> <!-- Dev Icons -->
+
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -38,7 +40,7 @@
 
     <ul ng-controller="MainController" class="appHeaderNav">
       <li class="logo"><a ui-sref='home'><img class="topbar_logo" src="http://localhost:3000/style/images/logo_500.png"></a></li>
-      <li ng-if="headerUser" class="rezzy_button"><a ui-sref='links'>Rezzy</a></li> <!-- have to be logged in to view -->
+      <li ng-if="headerUser" class="rezzy_button"><a ui-sref='links'>Add a rezzy</a></li> <!-- have to be logged in to view -->
       <li ng-if="!headerUser" class="entryButtons">
         <a href='/login'>Login</a>
         <a href='/signup'>Sign Up</a>
@@ -48,8 +50,8 @@
 <!--           <img class="header_photo" ng-src="{{headerUser.photo_path}}"/> -->
           {{headerUser.name}}
           <div class="userMenu">
-            <a ui-sref='profile'><div class="userMenu_item">Edit Pofile</div></a>
-            <a ng-click="signout()"><div class="userMenu_item">Sign Out</div></a>
+            <a ui-sref='profile'><div class="userMenu_item"><i class="fa fa-user" aria-hidden="true"></i> Pofile</div></a>
+            <a ng-click="signout()"><div class="userMenu_item"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</div></a>
           </div>
         </li>
       </a>

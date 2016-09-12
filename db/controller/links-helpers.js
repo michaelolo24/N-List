@@ -16,7 +16,7 @@ var Links = {
     var query = 'SELECT r.title, r.id, r.id_sub_topic, \
     r.id_languages, r.id_resource_type, r.link, r.date_added, \
     r.date_updated, r.keywords, r.likes, r.dislikes,\
-    t.type, l.name, s.topic \
+    t.type, l.name, l.logo, s.topic \
     FROM resources r \
     JOIN resource_type t ON t.id = r.id_resource_type \
     JOIN languages l ON l.id = r.id_languages \
@@ -24,6 +24,12 @@ var Links = {
     ORDER BY date_added DESC';
     db.query(query, (err, results) => callback(err, results) );
   },
+
+  getLanguages: (callback) =>{
+    var query = 'SELECT * FROM languages';
+    db.query(query, (err, results) => callback(err, results) );
+  },
+ 
  
   // ****POST A RESOURCE****
   postOne: (params, callback) =>{

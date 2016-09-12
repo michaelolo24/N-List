@@ -7,7 +7,7 @@ app.controller('homeCtrl',function($scope, links, checkUser) {
   });
 
   $scope.posts = links.links; //Array of all links from database
-  console.log($scope.posts);
+  $scope.languages = links.languages;
 
   $scope.incrementLike = function(post) {
     post.uid = user.id;
@@ -17,24 +17,6 @@ app.controller('homeCtrl',function($scope, links, checkUser) {
   $scope.incrementDislike = function(post) {
     post.uid = user.id;
     links.downvote(post);
-  };
-
-  $scope.addPost = function() {
-    links.addOne({
-      language: $scope.data.language,
-      subTopic: $scope.data.topic,
-      type: $scope.data.type,
-      link: $scope.link,
-      keywords: $scope.description,
-      likes: $scope.posts.likes || 0,
-      dislikes: $scope.posts.dislikes || 0
-    });
-
-    $scope.description = '';
-    $scope.link = '';
-    $scope.topic = null;
-    $scope.data.type = null;
-    $scope.language = null;
   };
 
   $scope.setFilter = function(type, value) {
