@@ -40,6 +40,14 @@ module.exports.resourses = {
         res.json(data);
       });
     },
+
+   getLanguages: (req, res)=>{
+      // !req.session.active ? res.redirect('/login') :
+      Links.getLanguages((err,data)=>{
+        if(err) console.log(err);
+        res.json(data);
+      });
+    },   
 // login here
   updateOne: (req, res)=>{
       // console.log("***REQUEST BODY*** ", req.body);

@@ -12,6 +12,9 @@ angular.module('nList', ['nList.services', 'nList.home', 'nList.main','ui.router
       resolve: {
         linkPromise : ['links', function(links){
           return links.getAll();
+        }],
+        languagePromise : ['links', function(links){
+          return links.getLanguages();
         }]
       }
     })

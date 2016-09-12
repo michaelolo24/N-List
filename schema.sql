@@ -60,7 +60,7 @@ CREATE TABLE `resources` (
   `keywords` VARCHAR(255) DEFAULT NULL,
   `likes` INTEGER UNSIGNED DEFAULT NULL,
   `dislikes` INTEGER UNSIGNED DEFAULT NULL,
-  `date_added` TIMESTAMP NOT NULL,
+  `date_added` DATETIME NOT NULL,
   `date_updated` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
@@ -75,6 +75,7 @@ DROP TABLE IF EXISTS `languages`;
 CREATE TABLE `languages` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
+  `logo` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -104,7 +105,7 @@ CREATE TABLE `sub_topic` (
 
 ALTER TABLE `resources` ADD FOREIGN KEY (id_languages) REFERENCES `languages` (`id`);
 ALTER TABLE `resources` ADD FOREIGN KEY (id_resource_type) REFERENCES `resource_type` (`id`);
-ALTER TABLE `resources` ADD FOREIGN KEY (id_sub_topic) REFERENCES `sub_topic` (`id`);
+-- ALTER TABLE `resources` ADD FOREIGN KEY (id_sub_topic) REFERENCES `sub_topic` (`id`);
 ALTER TABLE `user_voted` ADD FOREIGN KEY (id_users) REFERENCES `users` (`id`);
 ALTER TABLE `user_voted` ADD FOREIGN KEY (id_resources) REFERENCES `resources` (`id`);
 
@@ -133,8 +134,22 @@ ALTER TABLE `user_voted` ADD FOREIGN KEY (id_resources) REFERENCES `resources` (
 -- Languages Test Data
 -- INSERT INTO `languages` (`id`,`name`) VALUES
 -- ('','');
-  INSERT INTO `languages` (`name`) VALUES
-  ('Javascript'), ('C++'), ('Java '), ('C#'), ('Python'), ('Ruby/Rails');
+  INSERT INTO `languages` (`name`, `logo`) VALUES 
+  ('C language', 'c'), 
+  ('C++ language', 'cplusplus'), 
+  ('C# language', 'csharp'), 
+  ('CSS language', 'css3'),
+  ('Deployment language', 'heroku'),
+  ('.Net language', 'dot-net'), 
+  ('Git language', 'git'),
+  ('Go language', 'go'),
+  ('Html language', 'html5'), 
+  ('Java language', 'java'),
+  ('Javascript language', 'javascript'),
+  ('Php language', 'php'), 
+  ('Python language', 'python'),
+  ('Ruby language', 'ruby'),
+  ('MySql language', 'sql');
 
 -- this will create an id_languages of 1 via auto_increment for the sub_topics below
 
@@ -145,9 +160,41 @@ ALTER TABLE `user_voted` ADD FOREIGN KEY (id_resources) REFERENCES `resources` (
 -- ('Forum'), ('Article'), ('Video');
 
 INSERT INTO `resource_type` (`type`) VALUES
-('Forum'), ('Article'), ('Video');
+('Article'), ('Book'), ('Forum'), ('Video');
 
 
 INSERT INTO `sub_topic` (`topic`) VALUES
-('Front-End'), ('REST APIs'), ('Database'), ('Back-End');
-
+('Bootstrap'),
+('Jeet'),
+('Less'),
+('Sass'),
+('Amazon Web Services'),
+('Apache'),
+('Bower'),
+('Docker'),
+('Grunt'),
+('Gulp'),
+('Heroku'),
+('Bitbucket'),
+('Github'),
+('Gitlab'),
+('angularjs'),
+('Backbonejs'),
+('CoffeeScript'),
+('D3js'),
+('Jquery'),
+('Kraken'),
+('Meteor'),
+('Mongo'),
+('Nodejs'),
+('React'),
+('CodeIgniter'),
+('Doctrine'),
+('Laravel'),
+('Symfony'),
+('Yii'),
+('Django'),
+('Rails'),
+('MySql'),
+('PostgreSql'),
+('');

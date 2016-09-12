@@ -1,34 +1,50 @@
 <div> <!--View Resources-->
    <img class="homepage_logo" src="http://localhost:3000/style/images/n-list-full_500.png">
     <div class="filter_buttons_container">
-        <button class="filter_button" ng-click="languageFilter = {name: 'Javascript'}">Javascript</button>
-        <button class="filter_button" ng-click="languageFilter = {name: 'C++'}">C++</button>
-        <button class="filter_button" ng-click="languageFilter = {name: 'Java '}">Java</button>
-        <button class="filter_button" ng-click="languageFilter = {name: 'C#'}">C#</button>
-        <button class="filter_button" ng-click="languageFilter = {name: 'Python'}">Python</button>
-        <button class="filter_button" ng-click="languageFilter = {name: 'Ruby/Rails'}">Ruby/Rails</button>
-        <!-- <button ng-repeat="name in data.languageOptions" ng-click="setFilter('name', name.label);">{{name.label}}</button> -->
-        <button class="filter_button" ng-click="languageFilter = {}">Clear Selection</button>
-        <br />
-       <!--  <div class="filter_buttons_secRow">
-            <button class="filter_button" ng-repeat="topic in data.topics" ng-click="setFilter('topic', topic.label);">{{topic.label}}</button>
-            <button class="filter_button" ng-click="topicFilter ={}">Clear Filter</button>
-        </div> -->
+      <!-- 'language' is placed after programming language name so individual letters like C aren't generally picked up' -->
+
+      <i ng-click="languageFilter = {name: 'C language'}" class="devicon-c-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'C++ language'}" class="devicon-cplusplus-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'C# language'}" class="devicon-csharp-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'CSS language'}" class="devicon-css3-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Deployment language'}" class="devicon-heroku-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: '.Net language'}" class="devicon-dot-net-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Git language'}" class="devicon-git-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Go language'}" class="devicon-go-plain colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Html language'}" class="devicon-html5-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Java language'}" class="devicon-java-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Javascript language'}" class="devicon-javascript-plain colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Php language'}" class="devicon-php-plain colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Python language'}" class="devicon-python-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Ruby language'}" class="devicon-ruby-plain-wordmark colored main-lang-logos"></i>
+      <i ng-click="languageFilter = {name: 'Sql language'}" class="devicon-mysql-plain-wordmark colored main-lang-logos"></i>
+      <br/>
+      <br/>
+      <i ng-click="languageFilter = {}" class="fa fa-code main-lang-logos" aria-hidden="true"></i>
     </div>
 
     <div class="search_container"><input type="text" id="search_input" placeholder="Search Resources" ng-model="search" /><i class="fa fa-search fa-2x" aria-hidden="true"></i></div>
 
     <div id="resource_list_container">
-        <div class="resource_item" ng-repeat="post in posts | orderBy: 'dislikes - likes' | filter: languageFilter | filter:topicFilter | filter:search">
-            <div class="resource_title"><a ng-href={{post.link}}>{{post.title}}</a></div>
+        <div class="resource_item" ng-repeat="post in posts | orderBy: date_added | filter: languageFilter | filter:topicFilter | filter:search">
+          <a ng-href={{post.link}} target="_blank"> 
+            <div class="resource_title">{{post.title}}</div>
             <div class="resource_type">
-                <span ng-if="post.type === 'Video'"><i class="fa fa-video-camera" aria-hidden="true"></i></span>
-                <span ng-if="post.type === 'Forum'" ><i class="fa fa-comments-o" aria-hidden="true"></i></span>
                 <span ng-if="post.type === 'Article'" ><i class="fa fa-file-text-o" aria-hidden="true"></i></span>
+                <span ng-if="post.type === 'Book'" ><i class="fa fa-book" aria-hidden="true"></i></span>
+                <span ng-if="post.type === 'Forum'" ><i class="fa fa-comments-o" aria-hidden="true"></i></span>
+                <span ng-if="post.type === 'Video'"><i class="fa fa-video-camera" aria-hidden="true"></i></span>
+            </div>
+            <div class="resource_url">{{post.link.replace('http://','').replace('https://','').replace('www.','').split('/[/?#]/')[0] }}</div>
+            <div class="resource_lang">
+              <!--if statements due to inconsistency in naming patterns of devicon site -->
+              <i class="devicon-{{post.logo}}-plain colored miniCodeLogo"></i> <!--main language logo -->
+              <span ng-if="post.topic === 'D3js' || post.topic === 'angularjs'"><i class="devicon-{{post.topic.split(' ').join('').toLowerCase()}}-plain colored miniCodeLogo"></i></span> <!-- need for these logos -->
+              <span ng-if="post.topic === 'Sass'"><i class="devicon-{{post.topic.split(' ').join('').toLowerCase()}}-original colored miniCodeLogo"></i></span> <!-- need for these logos -->
+              <span ng-if="post.topic !== 'angularjs'"><i class="devicon-{{post.topic.split(' ').join('').toLowerCase()}}-plain-wordmark colored miniCodeLogo"></i></span>
             </div>
             <div class="resource_desc">{{post.keywords}}</div>
-            <div class="resource_lang">{{post.name}}</div>
-            <div class="resource_sub_topic"><span ng-if="post.topic === 'Database'"><i class="fa fa-database" aria-hidden="true"></i></span> {{post.topic}}</div>
+          </a> <!-- clicking on anything besides like or dislikes will lead you to the page -->
             <div class="like_dislike">
                 <div class="resource_likes" ng-click="incrementLike(post)">{{post.likes}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
                 <div class="resource_dislikes" ng-click="incrementDislike(post)">{{post.dislikes}} <i class="fa fa-thumbs-down" aria-hidden="true"></i></div>
