@@ -340,6 +340,7 @@ footer ul .copyright{
 }
 .main-lang-logos:hover{
   cursor:pointer;
+  text-shadow:.1em .1em .1em #999;
 }
 
 .filter_button{

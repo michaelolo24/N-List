@@ -37,14 +37,16 @@
             <div class="resource_url">{{post.link.replace('http://','').replace('https://','').replace('www.','').split('/[/?#]/')[0] }}</div>
             <div class="resource_lang">
               <i class="devicon-{{post.logo}}-plain colored miniCodeLogo"></i>
+              <span ng-if="post.topic === 'D3js'"><i class="devicon-{{post.topic.split(' ').join('').toLowerCase()}}-plain colored miniCodeLogo"></i></span> <!-- need for these logos -->
+              <span ng-if="post.topic === 'Sass'"><i class="devicon-{{post.topic.split(' ').join('').toLowerCase()}}-original colored miniCodeLogo"></i></span> <!-- need for these logos -->
               <i class="devicon-{{post.topic.split(' ').join('').toLowerCase()}}-plain-wordmark colored miniCodeLogo"></i>
             </div>
             <div class="resource_desc">{{post.keywords}}</div>
+          </a> <!-- clicking on anything besides like or dislikes will lead you to the page -->
             <div class="like_dislike">
                 <div class="resource_likes" ng-click="incrementLike(post)">{{post.likes}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
                 <div class="resource_dislikes" ng-click="incrementDislike(post)">{{post.dislikes}} <i class="fa fa-thumbs-down" aria-hidden="true"></i></div>
             </div>
-          </a>
         </div>
     </div>
 </div>

@@ -27,6 +27,7 @@
         <li>Are your links clean and safe?</li>
         <li>Can you make your description more detailed to help others out?</li>
       </ul>
-      <button type="submit">Submit</button>
+      <button type="submit" ng-submit="successMessage = true">Submit</button>
     </form>
+    <span ng-if="successMessage">It's posted!</span>
 </div>
