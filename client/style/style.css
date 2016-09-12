@@ -693,3 +693,43 @@ footer ul .copyright{
     font-weight: 700;
     font-size: 2em;
   }
+
+
+  /************* ABOUT PAGE *********************/
+.about_container {
+  text-align: center;
+}
+
+.profile_img {
+  border-radius: 50%;
+}
+
+.team_mate{
+  padding: 1em;
+}
+.profile_overlay{
+  position: relative;
+  width: 200px;
+  height: 300px;
+  margin: 2em;
+
+}
+.profile_overlay .team_mate {
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    line-height: 300px;
+    display: none;
+    color: #FFF;
+}
+.profile_overlay:hover .team_mate {
+    display: block;
+    background: rgba(0, 0, 0, .6);
+}
+
+.about_description {
+
+}

@@ -37,6 +37,10 @@ angular.module('nList', ['nList.services', 'nList.home', 'nList.main','ui.router
             return checkUser.userStatus();
           }]
         }
-    });
+    })
+    .state('about',{
+      url: '/about',
+      templateUrl: 'components/about/about.html'
+    })
 
 });

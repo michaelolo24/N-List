@@ -1,5 +1,5 @@
 <div> <!--View Resources-->
-   <img class="homepage_logo" src="http://localhost:3000/style/images/n-list-full_500.png">
+   <img class="homepage_logo" src="/style/images/n-list-full_500.png">
     <div class="filter_buttons_container">
       <!-- 'language' is placed after programming language name so individual letters like C aren't generally picked up' -->
 
@@ -26,8 +26,8 @@
     <div class="search_container"><input type="text" id="search_input" placeholder="Search Resources" ng-model="search" /><i class="fa fa-search fa-2x" aria-hidden="true"></i></div>
 
     <div id="resource_list_container">
-        <div class="resource_item" ng-repeat="post in posts | orderBy: date_added | filter: languageFilter | filter:topicFilter | filter:search">
-          <a ng-href={{post.link}} target="_blank"> 
+        <div class="resource_item" ng-repeat="post in posts | orderBy: 'dislikes-likes' | filter: languageFilter | filter:topicFilter | filter:search">
+          <a ng-href={{post.link}} target="_blank">
             <div class="resource_title">{{post.title}}</div>
             <div class="resource_type">
                 <span ng-if="post.type === 'Article'" ><i class="fa fa-file-text-o" aria-hidden="true"></i></span>

@@ -36,7 +36,7 @@ app.factory('links', function($http) {
     });
   };
 
-  
+
   n.downvote = function(post) {
     post.vote = 0;
     return $http.put('/resources', post)
@@ -62,8 +62,7 @@ app.factory('checkUser', function($http, $window) {
     .success(function(data) {
       checkUser.currUser = data[0];
     }).error(function(res, status){
-      if(window.location.href !== 'http://localhost:3000/#/home'){
-        if(status === 401){
+if(window.location.href !== window.location.origin+'/#/home' && window.location.href !== window.location.origin+'/#/about' && status === 401){        if(status === 401){
           console.log(window.location.href);
           $window.location.href="/login";
         }
