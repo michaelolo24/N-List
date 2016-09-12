@@ -134,19 +134,19 @@ ALTER TABLE `user_voted` ADD FOREIGN KEY (id_resources) REFERENCES `resources` (
 -- Languages Test Data
 -- INSERT INTO `languages` (`id`,`name`) VALUES
 -- ('','');
-  INSERT INTO `languages` (`name`, `logo`) VALUES 
-  ('C language', 'c'), 
-  ('C++ language', 'cplusplus'), 
-  ('C# language', 'csharp'), 
+  INSERT INTO `languages` (`name`, `logo`) VALUES
+  ('C language', 'c'),
+  ('C++ language', 'cplusplus'),
+  ('C# language', 'csharp'),
   ('CSS language', 'css3'),
   ('Deployment language', 'heroku'),
-  ('.Net language', 'dot-net'), 
+  ('.Net language', 'dot-net'),
   ('Git language', 'git'),
   ('Go language', 'go'),
-  ('Html language', 'html5'), 
+  ('Html language', 'html5'),
   ('Java language', 'java'),
   ('Javascript language', 'javascript'),
-  ('Php language', 'php'), 
+  ('Php language', 'php'),
   ('Python language', 'python'),
   ('Ruby language', 'ruby'),
   ('MySql language', 'sql');
