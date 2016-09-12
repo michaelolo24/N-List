@@ -183,7 +183,7 @@ INSERT INTO `sub_topic` (`topic`) VALUES
 ('CoffeeScript'),
 ('D3js'),
 ('Jquery'),
-('Kraken'),
+('Krakenjs'),
 ('Meteor'),
 ('Mongo'),
 ('Nodejs'),

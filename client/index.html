@@ -8,8 +8,9 @@
   <script src="https://use.fontawesome.com/02c44cd58a.js"></script> <!-- FONT AWESOME ICONS -->
   <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" /> <!-- fav-icon folder -->
   <link rel="stylesheet" type="text/css" href="style/style.css"> <!-- style highlighter -->
-  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css"> <!-- Dev Icons -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css"> <!-- DEV ICONS -->
 
+  <!-- FAVICON LINKS -->
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -20,12 +21,13 @@
   <meta name="application-name" content="hello">
   <meta name="theme-color" content="#ffffff">
 
-
+  <!-- ANGULAR FILES -->
   <script type="text/javascript" src="lib/angular/angular.js"></script>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
   <script type="text/javascript" src="lib/ng-file-upload/ng-file-upload.min.js"></script>
   <script type="text/javascript" src="lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
 
+  <!-- COMPONENT FILES -->
   <script src="components/links/linksCtrl.js"></script>
   <script src="service/service.js"></script>
   <script src="components/profile/profileCtrl.js"></script>
@@ -47,7 +49,6 @@
       </li>
       <a ui-sref='profile'>
         <li ng-if="headerUser" class="profileMenu"> <!-- have to be logged in to view -->
-<!--           <img class="header_photo" ng-src="{{headerUser.photo_path}}"/> -->
           {{headerUser.name}}
           <div class="userMenu">
             <a ui-sref='profile'><div class="userMenu_item"><i class="fa fa-user" aria-hidden="true"></i> Pofile</div></a>
@@ -59,12 +60,12 @@
   </header>
 
   <div id="main_view">
-  <ui-view><ui-view>
+    <ui-view><ui-view>
   </div>
 
   <footer>
     <ul>
-        <li class="about_footer"><a href="/about">About</a></li>
+        <li class="about_footer"><a href="/#/about">About</a></li>
         <li class="blog_footer"><a href="/blog">Blog</a></li>
         <li class="press_footer"><a href="/press">Press</a></li>
         <li class="careers_footer"><a href="/careers">Careers</a></li>

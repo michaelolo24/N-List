@@ -78,10 +78,22 @@ module.exports.getOneUser = (req, res)=>{
 
 module.exports.updateOne = (req, res)=>{
   //verify user is currently signed in
-  Users.updateOne(req.body, (err,data)=>{
-    if(err) console.log(err);
-    res.json(data);
-  });
+  if(req.body.newPassword){
+    hashHelpers.hashPassword(req.body.newPassword)
+    .then(hashed=>{
+      delete req.body.newPassword;
+      req.body.password = hashed;
+      Users.updateOne(req.body, (err,data)=>{
+        if(err) console.log(err);
+        res.json(data);
+      });
+    });
+  }else{
+    Users.updateOne(req.body, (err,data)=>{
+      if(err) console.log(err);
+      res.json(data);
+    });
+  }
 };
 
 module.exports.deleteOne = (req, res)=>{

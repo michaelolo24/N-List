@@ -1,17 +1,18 @@
 const db = require('../dbConnect/connection.js');
 
-//********* LINKS HELPERS **************
+//********* LINKS HELPERS **************//
+
 var Links = {
 
-  // ****GET ALL RESOURCES****
+  // ****GET ALL RESOURCES****//
 
   getAll: (callback) =>{
-    // fetch all resources
+
     /* ALIAS KEY
       r : resources
       t : resource_type
       l : languages
-      //The sub topic is all handeled in the front end. Only a number key is stored in the back end
+      s : sub_topic
     */
     var query = 'SELECT r.title, r.id, r.id_sub_topic, \
     r.id_languages, r.id_resource_type, r.link, r.date_added, \
@@ -31,9 +32,11 @@ var Links = {
   },
  
  
-  // ****POST A RESOURCE****
+  // ****POST A RESOURCE**** //
   postOne: (params, callback) =>{
-   
+
+   //subtopic can be null
+
    var data = [params.title, params.language,(params.subTopic || null), params.type, params.link, params.keywords, params.likes, params.dislikes];
 
     var query = 'INSERT INTO resources(title, id_languages,\
@@ -43,7 +46,7 @@ var Links = {
     db.query(query, data, (err, results) => callback(err, results) );
   },
 
-  // ****GET A RESOURCE-accessed via req.params in url bar****
+  // ****GET A RESOURCE **** //
 
   getOne: (linkId, callback) =>{
     
@@ -59,9 +62,9 @@ var Links = {
     db.query(query, data, (err, results) => callback(err, results) );
   },
 
-  // ********UPDATE A RESOURCE********
+  // ********UPDATE A VOTE******** //
 
-  updateOne: (params, callback) =>{
+  updateVote: (params, callback) =>{
     params.vote = Number(params.vote); // make sure it is being read as a number
     let voteData = [params.uid, params.id, params.vote]; //uid  = user id // id = resource id
          
@@ -101,7 +104,6 @@ var Links = {
         };
 
         if(!alreadyVoted){
-          console.log("NOT ALREADY VOTED");
           const votedQuery = 'INSERT INTO user_voted(id_users,id_resources, vote) VALUE(?,?,?)';
           
           params.vote === 1 ? likes++ : dislikes++ ; 
@@ -110,24 +112,22 @@ var Links = {
           });
         }else{
           if(params.vote === userVoteStatus){
-            console.log("VOTES MATCH");
             const deleteVote = 'DELETE FROM user_voted WHERE id_users = ? AND id_resources = ?';
             db.query(deleteVote, [params.uid, params.id], (error, data) => {
               if(err) throw err;
               console.log(data);
               if(params.vote === 0){
-                console.log("REMOVING A DISLIKE");
                 dislikes--;
                 updateResourcesTable(likes,dislikes);
               }
               if(params.vote === 1){
-                console.log("REMOVING A LIKE");
                 likes--;
                 updateResourcesTable(likes,dislikes);
               }
             });
           }else{
-            console.log("SWITCHING VOTES");
+            //if votes are equivalent, delete the vote, if they are not equivalent to what is in database, switch accordingly
+            
             const userVoteQuery = 'UPDATE user_voted u SET vote = ? WHERE u.id_resources = '+ params.id +' AND u.id_users ='+ params.uid;
             if(params.vote > userVoteStatus){
             console.log("SWITCHING TO LIKE")

@@ -1,9 +1,11 @@
+'use strict'
+
 var app = angular.module('nList.links', []);
 
-app.controller('linksCtrl',function($scope, links, checkUser) {
+app.controller('linksCtrl',['$scope','links','checkUser', ($scope, links, checkUser) => {
   $scope.posts = links.links;
-  $scope.language;
-  $scope.addPost = function() {
+
+  $scope.addPost = () => {
     links.addOne({
       title: $scope.title,
       language: $scope.data.name,
@@ -13,7 +15,7 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
       keywords: $scope.description,
       likes: $scope.posts.likes || 0,
       dislikes: $scope.posts.dislikes || 0,
-      date_added: new Date().toISOString().slice(0, 19).replace('T', ' ')
+      date_added: new Date().toISOString().slice(0, 19).replace('T', ' ') //Generates a current time stamp in MySql DATETIME database format
     });
     $scope.title='';
     $scope.description = '';
@@ -23,13 +25,13 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
     $scope.data.name = null;
   };
 
-  $scope.setFilter = function(type, value) {
+  $scope.setFilter = (type, value) => {
     $scope[type+'Filter'] = {};
     $scope[type+'Filter'][type] = value;
   };
 
 
-//Selected Options for type, language & topics==
+//Selected options for type, language & topics
   $scope.data = {
     type: null,
     typeOptions: [
@@ -62,6 +64,7 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
       '2':[{value: '34', label: 'none'}],
       '3':[{value: '34', label: 'none'}],
       '4':[
+          {value: '34', label: 'none'},
           {value: '1', label:'Bootstrap'},
           {value: '2', label:'Jeet'},
           {value: '3', label:'Less'},
@@ -69,6 +72,7 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
         ],
 
       '5':[
+          {value: '34', label: 'none'},
           {value: '5', label:'Amazon Web Services'},
           {value: '6', label:'Apache'},
           {value: '7', label:'Bower'},
@@ -81,6 +85,7 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
       '6':[{value: '34', label: 'none'}],
 
       '7':[
+          {value: '34', label: 'none'},
           {value: '12', label:'Bitbucket'},
           {value: '13', label:'Github'},
           {value: '14', label:'Gitlab'},
@@ -93,6 +98,7 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
       '10':[{value: '34', label: 'none'}],
 
       '11':[
+          {value: '34', label: 'none'},
           {value: '15', label:'Angular'},
           {value: '16', label:'Backbone'},
           {value: '17', label:'CoffeeScript'},
@@ -106,6 +112,7 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
         ],
 
       '12':[
+          {value: '34', label: 'none'},
           {value: '25', label:'CodeIgniter'},
           {value: '26', label:'Doctrine'},
           {value: '27', label:'Laravel'},
@@ -114,20 +121,20 @@ app.controller('linksCtrl',function($scope, links, checkUser) {
         ],
 
       '13':[
+          {value: '34', label: 'none'},
           {value: '30', label:'Django'},
         ],
 
       '14':[
+          {value: '34', label: 'none'},
           {value: '31', label:'Rails'},
         ],
 
       '15':[
+          {value: '34', label: 'none'},
           {value: '32', label:'MySql'},
           {value: '33', label:'PostgreSql'},
         ]
     }
    };
-//=================================================
-
-
-});
+}]);
