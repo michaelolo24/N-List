@@ -8,7 +8,7 @@ app.controller('homeCtrl',['$scope','links','checkUser',($scope, links, checkUse
 
   $scope.posts = links.links; //Array of all links from database
   $scope.languages = links.languages; //Array of all main languages
-  $scope.sortType = 'dislikes - likes';
+  $scope.sortType = 'date_added';
   $scope.sortReverse = false;
   $scope.searchFinish = '';
   // Below user id is passed in, so a vote can be logged in user_vote table, to prevent dupe voting
