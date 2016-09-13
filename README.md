@@ -21,6 +21,17 @@
 ## Usage
 
 > Some usage instructions
+in one terminal window run
+mysql.server start
+after this open another terminal window
+and start your express server
+then go back to the mysql.server termianl and run
+mysql -u root < schema.sql
+that adds the new database 'rezzy'
+in another termianl window 3 run
+mysql -u root
+SHOW DATABASES;
+
 
 ## Requirements
 
