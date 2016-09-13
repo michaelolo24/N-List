@@ -52,7 +52,7 @@
         <li ng-if="headerUser" class="profileMenu"> <!-- have to be logged in to view -->
           {{headerUser.name}}
           <div class="userMenu">
-            <a ui-sref='profile'><div class="userMenu_item"><i class="fa fa-user" aria-hidden="true"></i> Pofile</div></a>
+            <a ui-sref='profile'><div class="userMenu_item"><i class="fa fa-user" aria-hidden="true"></i> Profile</div></a>
             <a ng-click="signout()"><div class="userMenu_item"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</div></a>
           </div>
         </li>
@@ -75,13 +75,6 @@
         <li class="copyright">&copy; NList 2016</li>
     </ul>
   </footer>
-  <script>
 
-  $('.daniel_description').hide();
-
-  $('.daniel').on('click', function(){
-    $(".daniel_description").show();
-  )};
-</script>
 </body>
 </html>

@@ -263,6 +263,7 @@ footer ul .copyright{
 .profileMenu{
   float:right !important;
   position: relative;
+  min-width:10em;
 }
 
 .profileMenu:hover{
@@ -699,9 +700,38 @@ footer ul .copyright{
 .about_container {
   text-align: center;
 }
+.about_quote{
+  width: 90%;
+  color: #999;
+  font-style: italic;
+  margin: 0 auto;
+  text-shadow: .01em .01em .1em #CCC;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1.2em;
+}
+.about_container h1{
+  font-size: 4em;
+  font-weight: 700;
+  background-color: #999;
+  color: transparent;
+  text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+  -webkit-background-clip: text;
+}
+
+.about_container h2{
+  font-size:1em;
+}
+
+.about_container h3{
+  font-size:1.5em;
+}
 
 .profile_img {
   border-radius: 50%;
+  display: inline-block;
+  width: 300px;
+
 }
 
 .team_mate{
@@ -714,6 +744,12 @@ footer ul .copyright{
   width: 200px;
   height: 300px;
   margin: 2em;
+  width: 100%;
+  /*display: -webkit-inline-box;
+  display:inline-box;*/
+  opacity: .6;
+  text-align: center;
+
 }
 .profile_overlay .team_mate {
     position: absolute;
@@ -726,20 +762,62 @@ footer ul .copyright{
     display: none;
     color: #FFF;
 }
+
+.profile_overlay:hover{
+  transition: opacity .5s, display .5s;
+  opacity:1;
+  display: -webkit-inline-box;
+  display:inline-box;
+}
 .profile_overlay:hover .team_mate {
     display: block;
     background: rgba(0, 0, 0, .6);
 }
+.harris:hover > .harris_description{
+  visibility: visible;
+  opacity: 1;
+  transition: visibility .5s, opacity .8s;
+  display:inline-block;
+  vertical-align:top;
+}
+.daniel:hover > .daniel_description{
+  visibility: visible;
+  opacity: 1;
+  transition: visibility .5s, opacity .8s;
+  display:inline-block;
+  vertical-align:top;
+}
+
+.kent:hover > .kent_description {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility .5s, opacity .8s;
+  display:inline-block;
+  vertical-align:top;
+}
+
+.michael:hover > .michael_description {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility .5s, opacity .8s;
+  display:inline-block;
+  vertical-align:top;
+}
+
+.neekon:hover > .neekon_description {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility .5s, opacity .8s;
+  display:inline-block;
+  vertical-align:top;
+}
+
 
 .daniel_description, .harris_description, .kent_description, .michael_description, .neekon_description {
-  float: left;
+  visibility: hidden;
+  color: #667 !important;
+  opacity:0;
   margin: 1em 2em;
   font-size: 3em;
 }
 
-.about_description {
-  display:none;
-  float: left;
-  margin: 1em 2em;
-  font-size: 3em;
-}
