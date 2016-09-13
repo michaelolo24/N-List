@@ -22,10 +22,33 @@
     <i ng-click="languageFilter = {}" class="fa fa-code main-lang-logos" aria-hidden="true"></i>
   </div>
 
+  <div> <!--sortby button -->
+  <a href="#" ng-click ="sortType = 'dislikes - likes'; sortReverse = !sortReverse">
+  By Votes
+  <span ng-show="sortType == 'dislikes - likes' && !sortReverse" class="fa fa-caret-down"></span>
+  <!-- <span ng-show="sortType == 'dislikes - likes' && sortReverse" class="fa fa-caret-up"></span> -->
+  ||
+  </a>
+
+  <a href="#" ng-click="sortType = 'date_added'; sortReverse = !sortReverse">
+  Date Added
+  <span ng-show="sortType == 'date_added' && !sortReverse" class="fa fa-caret-down"></span>
+  <!-- <span ng-show="sortType == 'date_added' && sortReverse" class="fa fa-caret-up"></span> -->
+  ||
+  </a>
+
+  <a href="#" ng-click="sortType = 'type'; sortReverse = !sortReverse">
+  Type
+  <span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span>
+  <!-- <span ng-show="sortType == type' && sortReverse" class="fa fa-caret-up"></span> -->
+  ||
+  </a>
+  <div>
+
   <div class="search_container"><input type="text" id="search_input" placeholder="Search Resources" ng-model="search" /><i class="fa fa-search fa-2x" aria-hidden="true"></i></div>
 
  <div id="resource_list_container">
-    <div class="resource_item" ng-repeat="post in posts | orderBy: date_added | filter: languageFilter | filter:topicFilter | filter:search">
+    <div class="resource_item" ng-repeat="post in posts | orderBy: sortType:sortReverse | filter: languageFilter | filter:topicFilter | filter:search">
       <a ng-href={{post.link}} target="_blank"> <!-- clicking on anything besides like or dislikes will lead you to the page -->
         <div class="resource_title">{{post.title}}</div>
         <div class="resource_type">
@@ -43,7 +66,7 @@
           <span ng-if="post.topic !== 'angularjs'"><i class="devicon-{{post.topic.split(' ').join('').toLowerCase()}}-plain-wordmark colored miniCodeLogo"></i></span>
         </div>
         <div class="resource_desc">{{post.keywords}}</div><!-- This is the description -->
-      </a> 
+      </a>
       <div class="like_dislike">
           <div class="resource_likes" ng-click="incrementLike(post)">{{post.likes}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
           <div class="resource_dislikes" ng-click="incrementDislike(post)">{{post.dislikes}} <i class="fa fa-thumbs-down" aria-hidden="true"></i></div>
