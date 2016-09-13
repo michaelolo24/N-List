@@ -44,7 +44,67 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+about.html
+Pictures and information about the creators of the website
+
+home.html – homectrl.js
+Main page where the aggregated site are shown
+
+links.html – linksctrl.js
+This is where signing in users can add resources to the database
+
+mainCtrl.js
+Controller for user sign in and sign out
+
+profile.html – profileCtrl.js
+modify profile information and add a user profile picture
+
+routes.js
+front-end page routing
+
+services.js
+Communication between back-end and front-end
+
+index.html
+layout of the header and the footer for every page
+
+links-helpers.js
+database queries for links
+
+user-helpers.js
+database queries for users
+
+connection.js
+server connection to database
+
+hash-helpers.js
+hashes and salts passwords that are to be stored in the database
+
+links.js
+routing helpers for links
+
+photos.js
+routing helpers for profile
+
+user.js
+routing helpers for users
+
+
+error404.html
+error handling page
+
+login.html
+login page
+
+signup.html
+sign up page
+
+server.js
+main server for all the routing and hosting
+
+schema.sql
+mysql schema design for users, user_voted, resources, languages, resource_type, and sub_topic.
+Also test data is inserted to prepopulate the pages with languages, resource_type, and sub_topic.
 
 
 ## Contributing
