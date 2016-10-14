@@ -36,10 +36,10 @@
 
 From within the root directory:
 
-
-- sudo npm install -g mysql
-- npm install
-
+```sh
+ sudo npm install -g mysql
+ npm install
+```
 
 ### Roadmap
 
