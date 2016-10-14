@@ -20,9 +20,9 @@
 
 ## Usage
 
-> Start mysql server with mysql.server start command
-> Install database with mysql -u root -p < schema.sql
-> npm start to run files
+- Start mysql server with mysql.server start command
+- Install database with mysql -u root -p < schema.sql
+- npm start to run files
 
 ## Requirements
 
@@ -36,10 +36,10 @@
 
 From within the root directory:
 
-```sh
-sudo npm install -g mysql
-npm install
-```
+
+- sudo npm install -g mysql
+- npm install
+
 
 ### Roadmap
 
