@@ -1,5 +1,6 @@
+![alt text](https://github.com/michaelolo24/N-List/blob/master/client/style/images/n-list-logo_125.png "N-List")
+
 # N-List
-> ![alt text](https://github.com/michaelolo24/N-List/blob/master/client/style/images/n-list-logo_125.png "Logo Title Text 1")
 > Reddit like resource aggregator for developers
 
 ## Team
