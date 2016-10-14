@@ -44,23 +44,23 @@ From within the root directory:
 
 ### Roadmap
 
-- server.js : main server for all the routing and hosting
+- server.js : Main server for all the routing and hosting
 
-- about.html : Pictures and information about the creators of the website
+- about.html : Information regarding project developers
 
-- home.html : homectrl.js Main page where the aggregated site are shown
+- home.html : homectrl.js Main content page for aggregated resources
 
-- links.html : linksctrl.js This is where signing in users can add resources to the database
+- links.html : linksctrl.js Route for authenticated users to add resources
 
 - mainCtrl.js : Controller for user sign in and sign out
 
-- profile.html : profileCtrl.js modify profile information and add a user profile picture
+- profile.html : profileCtrl.js Modify profile information and add a user profile picture
 
-- routes.js : front-end page routing
+- routes.js : Front-end page routing
 
 - services.js : Communication between back-end and front-end
 
-- index.html : layout of the header and the footer for every page
+- index.html : Layout of the header and the footer for every page
 
 - links-helpers.js : database queries for links
 
