@@ -1,5 +1,5 @@
 # N-List
-![alt text](https://github.com/michaelolo24/N-List/blob/master/client/style/images/n-list-full_500.png "Logo Title Text 1")
+![alt text](https://github.com/michaelolo24/N-List/blob/master/client/style/images/n-list-logo_125.png "Logo Title Text 1")
 > Pithy project description
 
 ## Team
