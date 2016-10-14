@@ -1,12 +1,12 @@
 # N-List
-![alt text](https://github.com/michaelolo24/N-List/blob/master/client/style/images/n-list-logo_125.png "Logo Title Text 1")
-> Pithy project description
+> ![alt text](https://github.com/michaelolo24/N-List/blob/master/client/style/images/n-list-logo_125.png "Logo Title Text 1")
+> Reddit like resource aggregator for developers
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Kent Moreland
+  - __Scrum Master__: Michael Olorunnisola
+  - __Development Team Members__: Neekon Etemad, Harris Lee, Daniel Wirz
 
 ## Table of Contents
 
@@ -20,15 +20,15 @@
 
 ## Usage
 
-> Some usage instructions
+> Start mysql server with mysql.server start command
+> Install database with mysql -u root -p < schema.sql
+> npm start to run files
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 6.x
+- MySQL 5.x
+
 
 ## Development
 
@@ -37,9 +37,8 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
+sudo npm install -g mysql
 npm install
-bower install
 ```
 
 ### Roadmap
