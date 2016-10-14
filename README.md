@@ -43,7 +43,31 @@ From within the root directory:
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+- server.js : main server for all the routing and hosting
+
+- about.html : Pictures and information about the creators of the website
+
+- home.html : homectrl.js Main page where the aggregated site are shown
+
+- links.html : linksctrl.js This is where signing in users can add resources to the database
+
+- mainCtrl.js : Controller for user sign in and sign out
+
+- profile.html : profileCtrl.js modify profile information and add a user profile picture
+
+- routes.js : front-end page routing
+
+- services.js : Communication between back-end and front-end
+
+- index.html : layout of the header and the footer for every page
+
+- links-helpers.js : database queries for links
+
+- user-helpers.js : database queries for users
+
+- connection.js : server connection to database
+
+- hash-helpers.js hashes and salts passwords that are to be stored in the database
 
 
 ## Contributing
