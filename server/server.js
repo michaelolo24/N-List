@@ -20,7 +20,7 @@ app.use('/login', express.static(__dirname + '/views/login.html'));
 //create user sessions to track user across application
 
 app.use(session({
-  secret: 'my team is the suicide squad',
+  secret: 'captainPlanet',
   resave: false,
   saveUninitialized: true,
   cookie: {}
