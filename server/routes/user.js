@@ -1,6 +1,5 @@
 const Users = require('../../db/controller/users-helpers.js');
 const hashHelpers = require("../helpers/hashHelpers");
-const Promise = require("bluebird");
 const bcrypt = require("bcrypt-nodejs");
 
 module.exports = {};
